@@ -102,11 +102,12 @@ document.querySelectorAll(".iframe").forEach((link) => {
     e.preventDefault();
     msg.style.display = "block";
     msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
+    dialogbox();
     const iframeSrc = this.getAttribute("data-id");
     iframeContainer.style.display = "block";
     videoElement.style.display = "none";
     playWithIframe(iframeSrc);
-    dialogbox();
+    
   });
 });
 
