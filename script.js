@@ -108,7 +108,6 @@ function playWithIframe(iframeSrc) {
   player.src("");
   player.pause();
   }
-  
   let iframe = document.getElementById("dynamic-iframe");
   if (!iframe) {
     iframe = document.createElement("iframe");
