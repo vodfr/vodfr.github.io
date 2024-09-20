@@ -123,15 +123,16 @@ function playWithIframe(iframeSrc) {
   iframe.style.display = "block";
   
   }
-window.addEventListener('load', () => {
-document.getElementById("sideMenu").classList.add("open");
-});
 videoElement.addEventListener('click', () => {
 player = videojs("my-video");
-player.controls(true);
-  if (!player.paused()) {
+if (!player.paused()) {
   player.pause();
   } else {
   player.play();
   }    
+player.controls(true);
+});
+
+window.addEventListener('load', () => {
+document.getElementById("sideMenu").classList.add("open");
 });
