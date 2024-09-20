@@ -22,25 +22,21 @@ links.forEach((link) => {
           if (data[i].chaine.title === clickedLink) {
             if (data[i].chaine.protocol === "https") {
               const type = link.getAttribute("data-youtube");
-              // Initialiser Video.js
+            
               player = videojs("my-video");
-              // Mettre à jour la source du lecteur
               player.src({
                 src: data[i].chaine.url,
                 type: player.currentType()
               });
-              // Charger et jouer la vidéo
               player.load();
               player.play();
               player.controls(true);
-              // Passer en plein écran
               openFullscreen();
             } else {
               player.pause();
               window.open(data[i].chaine.url);
             }
-            // Gestion des événements de lecture et de pause
-            player.on("play", function () {
+              player.on("play", function () {
               msg.style.display = "block";
               msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
               dialogbox();
@@ -65,10 +61,8 @@ document.addEventListener("touchmove", function (e) {
   let touch = e.touches[0];
   let deltaX = touch.clientX - startX;
   if (deltaX > 50) {
-    // Swipe de gauche à droite (ouvrir le menu)
     document.getElementById("sideMenu").classList.add("open");
   } else if (deltaX < -50) {
-    // Swipe de droite à gauche (fermer le menu)
     document.getElementById("sideMenu").classList.remove("open");
   }
 });
