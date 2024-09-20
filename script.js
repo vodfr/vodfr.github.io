@@ -22,7 +22,6 @@ links.forEach((link) => {
           if (data[i].chaine.title === clickedLink) {
             if (data[i].chaine.protocol === "https") {
               const type = link.getAttribute("data-youtube");
-            
               player = videojs("my-video");
               player.src({
                 src: data[i].chaine.url,
@@ -104,8 +103,6 @@ document.querySelectorAll(".iframe").forEach((link) => {
     
   });
 });
-
-
 function playWithIframe(iframeSrc) {
   player = videojs("my-video");
   if (!player.paused()) {
@@ -118,7 +115,6 @@ function playWithIframe(iframeSrc) {
     iframe.id = "dynamic-iframe";
     iframeContainer.appendChild(iframe);
   }
-  // Assigner la source et afficher l'iframe
   iframe.src = iframeSrc;
   iframe.width = "100%";
   iframe.height = "100%";
@@ -126,4 +122,7 @@ function playWithIframe(iframeSrc) {
   iframe.allowFullscreen = true;
   iframe.allowTransparency = true;
   iframe.style.display = "block";
-                      }
+  }
+window.addEventListener('load', () => {
+document.getElementById("sideMenu").classList.add("open");
+});
