@@ -127,3 +127,12 @@ function playWithIframe(iframeSrc) {
 window.addEventListener('load', () => {
 document.getElementById("sideMenu").classList.add("open");
 });
+videoElement.addEventListener('click', () => {
+player = videojs("my-video");
+player.controls(true);
+  if (!player.paused()) {
+  player.pause();
+  } else {
+  player.play();
+  }    
+});
