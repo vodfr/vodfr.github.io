@@ -104,8 +104,8 @@ document.querySelectorAll(".iframe").forEach((link) => {
 });
 function playWithIframe(iframeSrc) {
   player = videojs("my-video");
-  player.controls(true);
   if (!player.paused()) {
+  player.controls(true);
   player.src("");
   player.pause();
   }
