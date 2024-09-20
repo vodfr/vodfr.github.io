@@ -120,7 +120,7 @@ function playWithIframe(iframeSrc) {
     player.src("");
   }
   // Vérifier si un iframe existe déjà, sinon le créer
-alert(iframeSrc);
+
   let iframe = document.getElementById("dynamic-iframe");
   if (!iframe) {
     iframe = document.createElement("iframe");
