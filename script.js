@@ -1,4 +1,4 @@
-/*/script/projet*/
+/*/script projet simpleTV/*/
 const links = document.querySelectorAll("a.open");
 const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
@@ -123,6 +123,7 @@ function playWithIframe(iframeSrc) {
   iframe.style.display = "block";
   
   }
+
 videoElement.addEventListener('click', () => {
 player = videojs("my-video");
 if (!player.paused()) {
