@@ -114,13 +114,8 @@ document.querySelectorAll(".iframe").forEach((link) => {
 
 function playWithIframe(iframeSrc) {
   player = videojs("my-video");
-  if (!player.paused()) {
-    // Arrêter la lecture et réinitialiser le lecteur Video.js
-    player.pause();
-    player.src("");
-  }
-  // Vérifier si un iframe existe déjà, sinon le créer
-
+  player.pause();
+  player.src("");
   let iframe = document.getElementById("dynamic-iframe");
   if (!iframe) {
     iframe = document.createElement("iframe");
