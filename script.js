@@ -122,7 +122,7 @@ function playWithIframe(iframeSrc) {
   iframe.allowFullscreen = true;
   iframe.allowTransparency = true;
   iframe.style.display = "block";
-  player.controls(true);
+  
   }
 window.addEventListener('load', () => {
 document.getElementById("sideMenu").classList.add("open");
