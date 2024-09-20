@@ -103,10 +103,7 @@ document.querySelectorAll(".iframe").forEach((link) => {
   });
 });
 function playWithIframe(iframeSrc) {
-  player = videojs("my-video",{
-  "controls":true,
-  "fluid":true
-  });
+  player = videojs("my-video");
   if (!player.paused()) {
   player.src("");
   player.pause();
