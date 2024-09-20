@@ -191,7 +191,7 @@ button {
 
   cursor: default;
 
-  z-index: -1;
+  z-index: 0;
 }
 b {
   color: yellow;
