@@ -1,0 +1,198 @@
+/*css*/
+/* au Style boostrap pour le menu new*/
+html,
+body {
+  width: 100%;
+
+  height: 100%;
+
+  margin: 0;
+
+  padding: 0;
+
+  background: transparent; /* S'assurer que le fond est transparent */
+}
+.side-menu {
+  position: fixed;
+
+  top: 0;
+
+  left: -300px; /* Cache le menu à gauche */
+
+  width: 187px;
+
+  height: 100%;
+
+  background-color: #000000;
+
+  padding: 20px;
+
+  transition: left 0.3s ease;
+
+  border: 1px solid white;
+
+  border-style: none none none none;
+
+  opacity: 0.8;
+
+  overflow-y: scroll;
+
+  overflow-x: hidden;
+
+  z-index: 9999; /* Au-dessus du lecteur vidéo */
+}
+.main-content {
+  padding: 20px;
+
+  z-index: 1;
+}
+/* Classe pour montrer le menu */
+.side-menu.open {
+  left: 0;
+
+  padding: 0px;
+
+  cursor: default;
+}
+/* Style pour le lecteur vidéo */
+#my-video {
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  z-index: 0; /* Derrière le menu */
+}
+.btn.btn-primary {
+  color: white;
+
+  text-decoration: none;
+
+  background-color: #000;
+
+  border: 0px;
+
+  white-space: nowrap;
+
+  text-align: left;
+}
+.btn.btn-primary:hover {
+  width: 90%;
+
+  padding: 10px 10px;
+
+  margin: 10px;
+
+  color: yellow;
+}
+.btn.btn-dark.btn-sm {
+  color: white;
+
+  margin: 0px;
+
+  border: 1px solid white;
+
+  padding: 5px 5px;
+}
+.side-menu::-webkit-scrollbar {
+  width: 2px;
+}
+.side-menu::-webkit-scrollbar-track {
+  background: tranparent;
+
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+input,
+button {
+  width: 80%;
+
+  color: white;
+
+  background-color: #000000;
+
+  border: 1px solid white;
+
+  border-radius: 3px;
+}
+.side-menu::-webkit-scrollbar-thumb {
+  background: white;
+
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.search {
+  padding-left: 5px;
+
+  width: 100%;
+
+  border: 0px;
+}
+.message-box {
+  position: absolute;
+
+  top: 50%;
+
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background-color: #000;
+
+  color: #fff;
+
+  border: 1px solid #ccc;
+
+  padding: 10px;
+
+  width: 50%;
+
+  text-align: center;
+
+  border-radius: 5px;
+
+  font-size: 11px;
+
+  z-index: 1;
+
+  display: none;
+}
+
+.toutsat:hover {
+  color: white;
+
+  text-decoration: none;
+}
+.journal:hover {
+  color: white;
+
+  text-decoration: none;
+}
+.iframe:hover {
+  color: white;
+
+  text-decoration: none;
+}
+#iframe-container {
+  position: absolute;
+
+  width: 100%;
+
+  height: 100%;
+
+  top: -45px;
+
+  left: 0px;
+
+  display: none;
+
+  cursor: default;
+
+  z-index: -1;
+}
+b {
+  color: yellow;
+}
