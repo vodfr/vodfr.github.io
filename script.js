@@ -1,4 +1,4 @@
-/*/script/projet/*/
+/*/script/projet*/
 const links = document.querySelectorAll("a.open");
 const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
@@ -122,6 +122,7 @@ function playWithIframe(iframeSrc) {
   iframe.allowFullscreen = true;
   iframe.allowTransparency = true;
   iframe.style.display = "block";
+  player.controls(true);
   }
 window.addEventListener('load', () => {
 document.getElementById("sideMenu").classList.add("open");
