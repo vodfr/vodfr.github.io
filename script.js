@@ -8,9 +8,8 @@ links.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
     const clickedLink = link.getAttribute("data-id");
-    iframeContainer.innerHTML = ""; //formater le contenu
+    iframeContainer.innerHTML = ""; //formater le contenu ->
     videoElement.style.display = "block";
-    // Créer une requête XMLHttpRequest pour récupérer les données JSON
     var xhr = new XMLHttpRequest();
     var baseURL =
       "https://raw.githubusercontent.com/ma00tv/ma00tv.github.io/main/JB.json";
@@ -108,6 +107,7 @@ function playWithIframe(iframeSrc) {
   if (!player.paused()) {
   player.src("");
   player.pause();
+  player.controls(true);
   }
   let iframe = document.getElementById("dynamic-iframe");
   if (!iframe) {
