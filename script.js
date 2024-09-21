@@ -1,4 +1,4 @@
-u/*/script projet simpleTV/*/
+/*/script projet simpleTV/*/
 const links = document.querySelectorAll("a.open");
 const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
@@ -92,25 +92,22 @@ function dialogbox() {
 document.querySelectorAll(".iframe").forEach((link) => {
   link.addEventListener("click", function (e) {
     e.preventDefault();
-    videoElement.style.display = "none";
-    iframeContainer.style.display = "block";
     msg.style.display = "block";
     msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
     dialogbox();
     const iframeSrc = this.getAttribute("data-id");
+    iframeContainer.style.display = "block";
+    videoElement.style.display = "none";
     playWithIframe(iframeSrc);
     
   });
 });
 function playWithIframe(iframeSrc) {
   player = videojs("my-video");
-  player.ready(function () {
   if (!player.paused()) {
   player.src("");
   player.pause();
   }
-  
-  });
   let iframe = document.getElementById("dynamic-iframe");
   if (!iframe) {
     iframe = document.createElement("iframe");
@@ -126,7 +123,6 @@ function playWithIframe(iframeSrc) {
   iframe.style.display = "block";
   
   }
-
 videoElement.addEventListener('click', () => {
 player = videojs("my-video");
 if (!player.paused()) {
