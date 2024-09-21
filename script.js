@@ -153,6 +153,8 @@ function playWithIframe(iframeSrc) {
 
   
   if (!iframe) {
+    iframe.remove();
+    
     iframe = document.createElement("iframe");
 
     iframe.id = "dynamic-iframe";
