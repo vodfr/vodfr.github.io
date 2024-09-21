@@ -181,7 +181,7 @@ function playWithIframe(iframeSrc) {
 
   iframe.style.display = "block";
 
-  message = "Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu.";
+  const message = "Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu.";
   
   const p = document.createElement("p");
   
