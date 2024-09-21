@@ -3,8 +3,7 @@ const links = document.querySelectorAll("a.open");
 const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
 const iframeContainer = document.getElementById("iframe-container");
-let iframe = document.getElementById("dynamic-iframe");
-let player;
+var player;
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
@@ -64,7 +63,7 @@ links.forEach((link) => {
               msg.style.display = "block";
 
               msg.innerHTML = link.textContent + " est en <b>PAUSE</b>...";
-    
+
               dialogbox();
             });
           }
@@ -145,16 +144,13 @@ function playWithIframe(iframeSrc) {
 
   if (!player.paused()) {
     player.src("");
+
     player.pause();
-  } else {
-    player.controls(false);
   }
 
-  
-  if (!iframe) {
+  let iframe = document.getElementById("dynamic-iframe");
 
-    iframeContainer.innerHTML = '';
-    
+  if (!iframe) {
     iframe = document.createElement("iframe");
 
     iframe.id = "dynamic-iframe";
