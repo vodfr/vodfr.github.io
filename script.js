@@ -182,15 +182,19 @@ function playWithIframe(iframeSrc) {
 
   iframe.style.display = "block";
   
-   
+const message = "Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu.";
+
+const existingP = document.querySelector("p");
+
+if (existingP) {
+    existingP.remove();
+}
   
- const message = "Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu.";
+const dynPar = document.createElement("p");
   
-  const p = document.createElement("p");
+dynPar.innerHTML = message;
   
-  p.innerHTML = message;
-  
-  iframeContainer.insertAdjacentElement("beforeend", p);
+  iframeContainer.insertAdjacentElement("beforeend", dynPar);
 
 }
 videoElement.addEventListener("click", () => {
