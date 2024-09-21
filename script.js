@@ -31,7 +31,6 @@ links.forEach((link) => {
               const type = link.getAttribute("data-youtube");
               
               player = videojs("my-video");
-              player.controls(false);
               player.src({
                 src: data[i].chaine.url,
 
@@ -180,11 +179,13 @@ videoElement.addEventListener("click", () => {
 
   if (!player.paused()) {
     player.pause();
+    player.controls(false);
   } else {
     player.play();
+    player.controls(true);
   }
 
-  player.controls(true);
+  
 });
 window.addEventListener("load", () => {
   document.getElementById("sideMenu").classList.add("open");
