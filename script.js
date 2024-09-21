@@ -37,7 +37,8 @@ links.forEach((link) => {
 
                 type: player.currentType()
               });
-
+              player.ready(function (){ //lecture quant le lecteur est pret
+                
               player.load();
 
               player.play();
@@ -45,6 +46,8 @@ links.forEach((link) => {
               player.controls(true);
 
               openFullscreen();
+              });
+              
             } else {
               player.pause();
 
