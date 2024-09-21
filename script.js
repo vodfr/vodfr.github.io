@@ -145,9 +145,13 @@ function playWithIframe(iframeSrc) {
   player = videojs("my-video");
 
   if (!player.paused()) {
-    player.src("");
-
     player.pause();
+    player.src("");
+    player.controls(false);
+  } else {
+    player.pause();
+    player.src("");
+    player.controls(false);
   }
 
   let iframe = document.getElementById("dynamic-iframe");
@@ -179,10 +183,10 @@ videoElement.addEventListener("click", () => {
 
   if (!player.paused()) {
     player.pause();
-    player.controls(false);
+    
   } else {
     player.play();
-    player.controls(true);
+    
   }
 
   
