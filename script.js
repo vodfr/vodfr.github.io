@@ -147,7 +147,7 @@ function playWithIframe(iframeSrc) {
     player.src("");
     player.pause();
     player.controls(false);
-  }
+  });
 
   let iframe = document.getElementById("dynamic-iframe");
 
