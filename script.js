@@ -153,7 +153,8 @@ function playWithIframe(iframeSrc) {
 
   
   if (!iframe) {
-    iframe.remove();
+
+    iframeContainer.innerHTML = '';
     
     iframe = document.createElement("iframe");
 
