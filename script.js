@@ -3,6 +3,7 @@ const links = document.querySelectorAll("a.open");
 const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
 const iframeContainer = document.getElementById("iframe-container");
+let iframe = document.getElementById("dynamic-iframe");
 var player;
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
@@ -63,7 +64,7 @@ links.forEach((link) => {
               msg.style.display = "block";
 
               msg.innerHTML = link.textContent + " est en <b>PAUSE</b>...";
-
+    
               dialogbox();
             });
           }
@@ -150,8 +151,7 @@ function playWithIframe(iframeSrc) {
     player.controls(false);
   }
 
-  let iframe = document.getElementById("dynamic-iframe");
-
+  
   if (!iframe) {
     iframe = document.createElement("iframe");
 
