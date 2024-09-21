@@ -127,7 +127,6 @@ document.querySelectorAll(".iframe").forEach((link) => {
     msg.style.display = "block";
 
     msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
-
     dialogbox();
 
     const iframeSrc = this.getAttribute("data-id");
