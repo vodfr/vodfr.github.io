@@ -104,10 +104,12 @@ document.querySelectorAll(".iframe").forEach((link) => {
 });
 function playWithIframe(iframeSrc) {
   player = videojs("my-video");
+  player.ready(function () {
   if (!player.paused()) {
   player.src("");
   player.pause();
   }
+  });
   let iframe = document.getElementById("dynamic-iframe");
   if (!iframe) {
     iframe = document.createElement("iframe");
