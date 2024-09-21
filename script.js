@@ -6,6 +6,7 @@ const iframeContainer = document.getElementById("iframe-container");
 var player;
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
+    
     e.preventDefault();
 
     const clickedLink = link.getAttribute("data-id");
