@@ -141,12 +141,11 @@ document.querySelectorAll(".iframe").forEach((link) => {
 function playWithIframe(iframeSrc) {
   player = videojs("my-video");
 
-  player.ready(function () {
   if (!player.paused()) {
     player.src("");
     player.pause();
     player.controls(false);
-  });
+  }
 
   let iframe = document.getElementById("dynamic-iframe");
 
