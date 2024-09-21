@@ -180,11 +180,11 @@ function playWithIframe(iframeSrc) {
 
   iframe.style.display = "block";
 
+  const message = 'Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu.';
+  
   const p = document.createElement('p');
   
-  p.innerHTML "";
-  
-  p.innerHTML = 'Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu.';
+  p.innerHTML = message;
   
   iframeContainer.insertAdjacentElement('beforeend', p);
   
