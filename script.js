@@ -182,6 +182,8 @@ function playWithIframe(iframeSrc) {
 
   const p = document.createElement('p');
   
+  p.innerHTML "";
+  
   p.innerHTML = 'Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu.';
   
   iframeContainer.insertAdjacentElement('beforeend', p);
