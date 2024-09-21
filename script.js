@@ -1,4 +1,4 @@
-/*/script projet simpleTV/*/
+u/*/script projet simpleTV/*/
 const links = document.querySelectorAll("a.open");
 const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
@@ -97,7 +97,6 @@ document.querySelectorAll(".iframe").forEach((link) => {
     dialogbox();
     const iframeSrc = this.getAttribute("data-id");
     iframeContainer.style.display = "block";
-    videoElement.style.display = "none";
     playWithIframe(iframeSrc);
     
   });
@@ -109,6 +108,7 @@ function playWithIframe(iframeSrc) {
   player.src("");
   player.pause();
   }
+  videoElement.style.display = "none";
   });
   let iframe = document.getElementById("dynamic-iframe");
   if (!iframe) {
