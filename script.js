@@ -3,7 +3,6 @@ const links = document.querySelectorAll("a.open");
 const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
 const iframeContainer = document.getElementById("iframe-container");
-const message;
 var player;
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
@@ -129,8 +128,6 @@ document.querySelectorAll(".iframe").forEach((link) => {
     
     e.preventDefault();
     
-    message = "";
-    
     videoElement.style.display = "none";
         
     msg.style.display = "block";
@@ -187,7 +184,7 @@ function playWithIframe(iframeSrc) {
   
    
   
- message = "Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu.";
+ const message = "Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu.";
   
   const p = document.createElement("p");
   
