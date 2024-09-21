@@ -179,6 +179,13 @@ function playWithIframe(iframeSrc) {
   iframe.allowTransparency = true;
 
   iframe.style.display = "block";
+
+  const p = document.createElement('p');
+  
+  p.innerHTML = 'Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu.';
+  
+  iframeContainer.insertAdjacentElement('beforeend', p);
+  
 }
 videoElement.addEventListener("click", () => {
   player = videojs("my-video");
