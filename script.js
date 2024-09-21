@@ -125,7 +125,9 @@ function dialogbox() {
 document.querySelectorAll(".iframe").forEach((link) => {
   link.addEventListener("click", function (e) {
     e.preventDefault();
-
+    
+    videoElement.style.display = "none";
+        
     msg.style.display = "block";
 
     msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
@@ -136,7 +138,7 @@ document.querySelectorAll(".iframe").forEach((link) => {
 
     iframeContainer.style.display = "block";
 
-    videoElement.style.display = "none";
+    
 
     playWithIframe(iframeSrc);
   });
@@ -145,12 +147,10 @@ function playWithIframe(iframeSrc) {
   player = videojs("my-video");
 
   if (player.paused()) {
-    alert("paused");
-    player.pause();
     player.src("");
     player.controls(false);
+    
   } else {
-    alert("play");
     player.pause();
     player.src("");
     player.controls(false);
