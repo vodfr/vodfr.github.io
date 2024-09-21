@@ -127,6 +127,7 @@ document.querySelectorAll(".iframe").forEach((link) => {
     msg.style.display = "block";
 
     msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
+
     dialogbox();
 
     const iframeSrc = this.getAttribute("data-id");
@@ -143,8 +144,8 @@ function playWithIframe(iframeSrc) {
 
   if (!player.paused()) {
     player.src("");
+
     player.pause();
-    player.controls(false);
   }
 
   let iframe = document.getElementById("dynamic-iframe");
