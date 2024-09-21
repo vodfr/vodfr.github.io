@@ -111,6 +111,7 @@ body {
 }
 input,
 button {
+  
   width: 80%;
 
   color: white;
@@ -185,7 +186,7 @@ button {
 
   height: 100%;
 
-  top: -37px;
+  top: -40px;
 
   left: 0px;
 
