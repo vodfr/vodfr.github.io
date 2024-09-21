@@ -68,9 +68,6 @@ body {
 
   z-index: 0; /* Derrière le menu */
 }
-.video-js .vjs-control-bar {
-  height: 50px; 
-}
 .btn.btn-primary {
   color: white;
 
