@@ -4,7 +4,7 @@ const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
 const iframeContainer = document.getElementById("iframe-container");
 let iframe = document.getElementById("dynamic-iframe");
-var player;
+let player;
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
