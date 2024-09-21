@@ -144,11 +144,13 @@ document.querySelectorAll(".iframe").forEach((link) => {
 function playWithIframe(iframeSrc) {
   player = videojs("my-video");
 
-  if (!player.paused()) {
+  if (player.paused()) {
+    alert("paused");
     player.pause();
     player.src("");
     player.controls(false);
   } else {
+    alert("play");
     player.pause();
     player.src("");
     player.controls(false);
