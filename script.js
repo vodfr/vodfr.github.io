@@ -145,7 +145,6 @@ function playWithIframe(iframeSrc) {
 
   if (!player.paused()) {
     player.src("");
-
     player.pause();
   } else {
     player.controls(false);
