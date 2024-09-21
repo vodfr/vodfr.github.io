@@ -1,4 +1,4 @@
-/*/script projet simpleTV made in algeria/*/
+/*/script projet SimpleTV made in algeria/*/
 const links = document.querySelectorAll("a.open");
 const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
