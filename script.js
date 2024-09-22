@@ -38,8 +38,6 @@ links.forEach((link) => {
                 type: player.currentType()
               });
               player.ready(function (){ //lecture quant le lecteur est pret
-
-              player.pause();
                 
               player.load();
 
