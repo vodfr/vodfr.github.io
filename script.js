@@ -135,13 +135,20 @@ document.querySelectorAll(".iframe").forEach((link) => {
     dialogbox();
     
     player = videojs("my-video");
-    
-    player.pause();
-    
+
+    if (!player.paused()) {
+      
+    player.pause()
     player.src("");
-    
     player.controls(false);
-    
+      
+    } else {
+      
+    player.src("");
+    player.controls(false);
+
+    }
+
     videoElement.style.display = "none";
 
     const iframeSrc = this.getAttribute("data-id");
