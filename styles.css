@@ -1,21 +1,22 @@
 /*/CSS/*/
 html,
 body {
+  display: flex;
 
   width: 100%;
 
   height: 100%;
 
-  margin: 0px;
+  margin: 0;
 
-  padding: 0px;
+  padding: 0;
 
-  background: black; /* S'assurer que le fond est transparent */
+  background: transparent; /* S'assurer que le fond est transparent */
 }
 .side-menu {
   position: fixed;
 
-  top: 0px;
+  top: 0;
 
   left: -300px; /* Cache le menu à gauche */
 
@@ -41,7 +42,11 @@ body {
 
   z-index: 9999; /* Au-dessus du lecteur vidéo */
 }
+.main-content {
+  padding: 20px;
 
+  z-index: 1;
+}
 .side-menu.open {
   left: 0;
 
@@ -49,6 +54,7 @@ body {
 
   cursor: default;
 }
+/* Style pour le lecteur vidéo */
 #my-video {
   position: fixed;
 
@@ -60,9 +66,7 @@ body {
 
   height: 100%;
 
-  display: block;
-
-  z-index: 10;
+  z-index: 1;
 }
 .btn.btn-primary {
   color: white;
@@ -153,7 +157,7 @@ button {
 
   font-size: 11px;
 
-  z-index: 30;
+  z-index: 3;
 
   display: none;
 }
@@ -171,16 +175,18 @@ button {
   color: white;
 
   text-decoration: none;
-}
+  
+  }
 b {
   color: yellow;
-}
+  
+  }
 #iframe-container {
   position: absolute;
   top: -40px;
   left: 0px;
   width: 100%;
-  height: 100%;
-  display: none;
-  z-index: 20;
-}
+  height: 100vh;
+  z-index: 2;
+  
+  }
