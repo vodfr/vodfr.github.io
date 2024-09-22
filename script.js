@@ -120,19 +120,12 @@ function dialogbox() {
 document.querySelectorAll(".iframe").forEach((link) => {
   link.addEventListener("click", function (e) {
     e.preventDefault();
-
-    
-
     msg.style.display = "block";
-
     msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
-
     dialogbox();
-
     const iframeSrc = this.getAttribute("data-id");
     videoElement.style.display = "none";
     iframeContainer.style.display = "block";
-
     playWithIframe(iframeSrc);
   });
 });
@@ -144,41 +137,25 @@ function playWithIframe(iframeSrc) {
 
   if (!iframe) {
     iframe = document.createElement("iframe");
-
     iframe.id = "dynamic-iframe";
-
     iframeContainer.appendChild(iframe);
   }
-
   iframe.src = iframeSrc;
-
   iframe.width = "100%";
-
   iframe.height = "100%";
-
   iframe.frameBorder = "0";
-
-  iframe.allowFullscreen = true;
-
-  iframe.allowTransparency = true;
-
+  iframe.setAttribute("allowFullscreen", "true");
+  iframe.setAttribute("allowTransparency", "true");
   iframe.style.display = "block";
-
   const message =
     "Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu.";
-
   const existingP = document.querySelector("p");
-
   if (existingP) {
     existingP.remove();
   }
-
   const dynPar = document.createElement("p");
-
   dynPar.innerHTML = message;
-
   iframeContainer.insertAdjacentElement("beforeend", dynPar);
-  
   videoElement.style.display = "none";
 }
 videoElement.addEventListener("click", () => {
