@@ -120,19 +120,21 @@ function dialogbox() {
 document.querySelectorAll(".iframe").forEach((link) => {
   link.addEventListener("click", function (e) {
     e.preventDefault();
+    if (player) {
+    player.pause();
+     }
+    videoElement.style.display = "none";
+    iframeContainer.style.display = "block";
     msg.style.display = "block";
     msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
     dialogbox();
     const iframeSrc = this.getAttribute("data-id");
-    videoElement.style.display = "none";
-    iframeContainer.style.display = "block";
+   
     playWithIframe(iframeSrc);
   });
 });
 function playWithIframe(iframeSrc) {
-  if (player) {
-    player.pause();
-  }
+  
   let iframe = document.getElementById("dynamic-iframe");
 
   if (!iframe) {
@@ -156,7 +158,7 @@ function playWithIframe(iframeSrc) {
   const dynPar = document.createElement("p");
   dynPar.innerHTML = message;
   iframeContainer.insertAdjacentElement("beforeend", dynPar);
-  videoElement.style.display = "none";
+  
 }
 videoElement.addEventListener("click", () => {
   if (player) {
