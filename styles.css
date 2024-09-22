@@ -171,23 +171,12 @@ button {
 
   text-decoration: none;
 }
-#iframe-container {
-
-
-}
-
-b {
-  color: yellow;
-  
-}
-
 .iframe:hover {
   color: white;
 
   text-decoration: none;
   
   }
-
 b {
   color: yellow;
   
@@ -200,6 +189,5 @@ b {
   height: 100vh;
   
   
-}
-
+  }
 
