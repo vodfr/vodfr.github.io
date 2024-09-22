@@ -32,8 +32,6 @@ links.forEach((link) => {
               const type = link.getAttribute("data-youtube");
               
               player = videojs("my-video");
-              
-              
               player.src({
                 src: data[i].chaine.url,
 
@@ -150,12 +148,12 @@ document.querySelectorAll(".iframe").forEach((link) => {
 function playWithIframe(iframeSrc) {
   player = videojs("my-video");
 
-  if (!player.paused()) {
-    player.pause();
+  if (player.paused()) {
     player.src("");
     player.controls(false);
     
   } else {
+    player.pause();
     player.src("");
     player.controls(false);
   }
