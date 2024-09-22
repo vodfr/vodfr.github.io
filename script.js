@@ -131,16 +131,12 @@ document.querySelectorAll(".iframe").forEach((link) => {
     e.preventDefault();
     
     player = videojs("my-video");
-
-  if (player.paused()) {
-    player.src("");
-    player.controls(false);
     
-  } else {
     player.pause();
+    
     player.src("");
+    
     player.controls(false);
-  }
     
     videoElement.style.display = "none";
         
