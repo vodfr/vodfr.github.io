@@ -1,12 +1,11 @@
-/*/script projet SimpleTV made in algeria/*/
+/*/Simple tv final/*/
 const links = document.querySelectorAll("a.open");
 const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
 const iframeContainer = document.getElementById("iframe-container");
-var player;
+let player = videojs("my-video");
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
-    
     e.preventDefault();
 
     const clickedLink = link.getAttribute("data-id");
@@ -30,24 +29,23 @@ links.forEach((link) => {
           if (data[i].chaine.title === clickedLink) {
             if (data[i].chaine.protocol === "https") {
               const type = link.getAttribute("data-youtube");
-              
-              player = videojs("my-video");
+
               player.src({
                 src: data[i].chaine.url,
 
                 type: player.currentType()
               });
-              player.ready(function (){ //lecture quant le lecteur est pret
-                
-              player.load();
+              player.ready(function () {
+                //lecture quant le lecteur est pret
 
-              player.play();
+                player.load();
 
-              player.controls(true);
+                player.play();
 
-              openFullscreen();
+                player.controls(true);
+
+                openFullscreen();
               });
-              
             } else {
               player.pause();
 
@@ -125,11 +123,12 @@ function dialogbox() {
 }
 document.querySelectorAll(".iframe").forEach((link) => {
   link.addEventListener("click", function (e) {
-    
     e.preventDefault();
-    
+    if (player) {
+      player.pause();
+    }
     videoElement.style.display = "none";
-        
+
     msg.style.display = "block";
 
     msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
@@ -140,24 +139,10 @@ document.querySelectorAll(".iframe").forEach((link) => {
 
     iframeContainer.style.display = "block";
 
-    
-
     playWithIframe(iframeSrc);
   });
 });
 function playWithIframe(iframeSrc) {
-  player = videojs("my-video");
-
-  if (player.paused()) {
-    player.src("");
-    player.controls(false);
-    
-  } else {
-    player.pause();
-    player.src("");
-    player.controls(false);
-  }
-
   let iframe = document.getElementById("dynamic-iframe");
 
   if (!iframe) {
@@ -181,34 +166,28 @@ function playWithIframe(iframeSrc) {
   iframe.allowTransparency = true;
 
   iframe.style.display = "block";
-  
-const message = "Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu.";
 
-const existingP = document.querySelector("p");
+  const message =
+    "Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu.";
 
-if (existingP) {
+  const existingP = document.querySelector("p");
+
+  if (existingP) {
     existingP.remove();
-}
-  
-const dynPar = document.createElement("p");
-  
-dynPar.innerHTML = message;
-  
-  iframeContainer.insertAdjacentElement("beforeend", dynPar);
-
-}
-videoElement.addEventListener("click", () => {
-  player = videojs("my-video");
-
-  if (!player.paused()) {
-    player.pause();
-    
-  } else {
-    player.play();
-    
   }
 
-  
+  const dynPar = document.createElement("p");
+
+  dynPar.innerHTML = message;
+
+  iframeContainer.insertAdjacentElement("beforeend", dynPar);
+}
+videoElement.addEventListener("click", () => {
+  if (!player.paused()) {
+    player.pause();
+  } else {
+    player.play();
+  }
 });
 window.addEventListener("load", () => {
   document.getElementById("sideMenu").classList.add("open");
