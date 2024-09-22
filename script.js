@@ -10,7 +10,7 @@ links.forEach((link) => {
 
     const clickedLink = link.getAttribute("data-id");
 
-    iframeContainer.innerHTML = "";
+    iframeContainer.style.display = "none";
 
     videoElement.style.display = "block";
 
