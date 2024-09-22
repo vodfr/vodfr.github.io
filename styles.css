@@ -6,16 +6,16 @@ body {
 
   height: 100%;
 
-  margin: 0;
+  margin: 0px;
 
-  padding: 0;
+  padding: 0px;
 
   background: transparent; /* S'assurer que le fond est transparent */
 }
 .side-menu {
   position: fixed;
 
-  top: 0;
+  top: 0px;
 
   left: -300px; /* Cache le menu à gauche */
 
