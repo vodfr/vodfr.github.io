@@ -3,14 +3,17 @@ const links = document.querySelectorAll("a.open");
 const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
 const iframeContainer = document.getElementById("iframe-container");
-var player;
+let player;
+let tacheEncour = false;
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
     
     e.preventDefault();
 
     const clickedLink = link.getAttribute("data-id");
-
+    
+    tacheEncour = true;
+    
     iframeContainer.innerHTML = ""; //formater le contenu ->
 
     videoElement.style.display = "block";
@@ -60,6 +63,10 @@ links.forEach((link) => {
               msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
 
               dialogbox();
+            });
+            
+            player.on("playing", function () {
+              tacheEncour = false;
             });
 
             player.on("pause", function () {
@@ -127,7 +134,28 @@ document.querySelectorAll(".iframe").forEach((link) => {
   link.addEventListener("click", function (e) {
     
     e.preventDefault();
+    if (tacheEncour) {
+ iframeContainer.style.display = "none";    
+ videoElement.style.display = "block";
+ msg.style.display = "block";
+msg.innerHTML = "une lécture est déja <br><b>en cour de d'exécution!!!</b>...";
+   if (!player) {
+     player = videojs("my-video");
+     }
+player.src({
+
+src: player.currentSrc,
+type: player.currentType()
+
+});
+player.play();   
+  
+     
+dialogbox();
     
+    return;
+
+}
     msg.style.display = "block";
 
     msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
