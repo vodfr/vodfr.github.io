@@ -30,7 +30,9 @@ links.forEach((link) => {
           if (data[i].chaine.title === clickedLink) {
             if (data[i].chaine.protocol === "https") {
               const type = link.getAttribute("data-youtube");
-              
+              if (player) {
+              player.dispose();
+               }
               player = videojs("my-video");
               player.src({
                 src: data[i].chaine.url,
