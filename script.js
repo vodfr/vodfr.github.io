@@ -83,7 +83,9 @@ document.addEventListener("touchstart", function (e) {
 });
 document.addEventListener("touchmove", function (e) {
   let touch = e.touches[0];
+
   let deltaX = touch.clientX - startX;
+
   if (deltaX > 50) {
     document.getElementById("sideMenu").classList.add("open");
   } else if (deltaX < -50) {
@@ -128,6 +130,7 @@ document.querySelectorAll(".iframe").forEach((link) => {
     if (player) {
      player.pause();
      player.src("");
+     
       }
     videoElement.style.display = "none";
         
@@ -199,8 +202,8 @@ videoElement.addEventListener("click", () => {
     
   }
   }
+  
 });
 window.addEventListener("load", () => {
   document.getElementById("sideMenu").classList.add("open");
 });
-
