@@ -121,7 +121,7 @@ document.querySelectorAll(".iframe").forEach((link) => {
   link.addEventListener("click", function (e) {
     e.preventDefault();
 
-    videoElement.style.display = "none";
+    
 
     msg.style.display = "block";
 
@@ -130,7 +130,7 @@ document.querySelectorAll(".iframe").forEach((link) => {
     dialogbox();
 
     const iframeSrc = this.getAttribute("data-id");
-
+    videoElement.style.display = "none";
     iframeContainer.style.display = "block";
 
     playWithIframe(iframeSrc);
@@ -178,6 +178,8 @@ function playWithIframe(iframeSrc) {
   dynPar.innerHTML = message;
 
   iframeContainer.insertAdjacentElement("beforeend", dynPar);
+  
+  videoElement.style.display = "none";
 }
 videoElement.addEventListener("click", () => {
   if (player) {
