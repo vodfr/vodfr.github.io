@@ -130,6 +130,12 @@ document.querySelectorAll(".iframe").forEach((link) => {
     
     e.preventDefault();
     
+    msg.style.display = "block";
+
+    msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
+
+    dialogbox();
+    
     player = videojs("my-video");
     
     player.pause();
@@ -139,12 +145,6 @@ document.querySelectorAll(".iframe").forEach((link) => {
     player.controls(false);
     
     videoElement.style.display = "none";
-        
-    msg.style.display = "block";
-
-    msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
-
-    dialogbox();
 
     const iframeSrc = this.getAttribute("data-id");
 
