@@ -10,7 +10,7 @@ body {
 
   padding: 0px;
 
-  background: transparent; /* S'assurer que le fond est transparent */
+  background: black; /* S'assurer que le fond est transparent */
 }
 .side-menu {
   position: fixed;
@@ -60,7 +60,7 @@ body {
 
   height: 100%;
 
-  display: none;
+  display: block;
 
   z-index: 10;
 }
