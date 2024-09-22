@@ -142,6 +142,7 @@ document.querySelectorAll(".iframe").forEach((link) => {
     playWithIframe(iframeSrc);
   });
 });
+
 function playWithIframe(iframeSrc) {
   let iframe = document.getElementById("dynamic-iframe");
 
