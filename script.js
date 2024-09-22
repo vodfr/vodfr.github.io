@@ -1,174 +1,192 @@
-/*/script/*/
-const links = document.querySelectorAll("a.open");
-const msg = document.querySelector(".message-box");
-const videoElement = document.getElementById("my-video");
-const iframeContainer = document.getElementById("iframe-container");
-var player;
-links.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    const clickedLink = link.getAttribute("data-id");
-
-    iframeContainer.innerHTML = "";
-
-    videoElement.style.display = "block";
-
-    var xhr = new XMLHttpRequest();
-
-    var baseURL =
-      "https://raw.githubusercontent.com/ma00tv/ma00tv.github.io/main/JB.json";
-    xhr.open("GET", baseURL, true);
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        var data = JSON.parse(xhr.responseText);
-        for (var i = 0; i < data.length; i++) {
-          if (data[i].chaine.title === clickedLink) {
-            if (data[i].chaine.protocol === "https") {
-              player = videojs("my-video");
-              player.src({
-                src: data[i].chaine.url,
-
-                type: player.currentType()
-              });
-              player.ready(function () {
-                //lecture quant le lecteur est pret
-
-                player.load();
-
-                player.play();
-
-                player.controls(true);
-
-                openFullscreen();
-              });
-            } else {
-              player.pause();
-
-              window.open(data[i].chaine.url);
-            }
-
-            player.on("play", function () {
-              msg.style.display = "block";
-
-              msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
-
-              dialogbox();
-            });
-
-            player.on("pause", function () {
-              msg.style.display = "block";
-
-              msg.innerHTML = link.textContent + " est en <b>PAUSE</b>...";
-
-              dialogbox();
-            });
-          }
-        }
-      }
-    };
-
-    xhr.send();
-  });
-});
-let startX;
-document.addEventListener("touchstart", function (e) {
-  startX = e.touches[0].clientX;
-});
-document.addEventListener("touchmove", function (e) {
-  let touch = e.touches[0];
-
-  let deltaX = touch.clientX - startX;
-
-  if (deltaX > 50) {
-    document.getElementById("sideMenu").classList.add("open");
-  } else if (deltaX < -50) {
-    document.getElementById("sideMenu").classList.remove("open");
-  }
-});
-const b = document.querySelector("button");
-const elem = document.querySelector("body");
-b.addEventListener("click", function () {
-  const api = "https://api.vevioz.com/apis/search/";
-
-  const d = document.querySelector(".elem");
-
-  const mp3 = d.value;
-
-  window.open(api + mp3);
-});
-function openFullscreen() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) {
-    /* Safari */
-
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) {
-    /* IE11 */
-
-    elem.msRequestFullscreen();
-  }
-}
-function dialogbox() {
-  setTimeout(() => {
-    msg.style.display = "none";
-
-    msg.innerHTML = "";
-  }, 3000);
-}
-document.querySelectorAll(".iframe").forEach((link) => {
-  link.addEventListener("click", function (e) {
-    e.preventDefault();
-    if (player) {
-    player.pause();
-     }
-    videoElement.style.display = "none";
-    iframeContainer.style.display = "block";
-    msg.style.display = "block";
-    msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
-    dialogbox();
-    const iframeSrc = this.getAttribute("data-id");
-   
-    playWithIframe(iframeSrc);
-  });
-});
-function playWithIframe(iframeSrc) {
+/*/CSS/*/
+html,
+body {
   
-  let iframe = document.getElementById("dynamic-iframe");
+  display: flex;
 
-  if (!iframe) {
-    iframe = document.createElement("iframe");
-    iframe.id = "dynamic-iframe";
-    iframeContainer.appendChild(iframe);
-  }
-  iframe.src = iframeSrc;
-  iframe.width = "100%";
-  iframe.height = "100%";
-  iframe.frameBorder = "0";
-  iframe.setAttribute("allowFullscreen", "true");
-  iframe.setAttribute("allowTransparency", "true");
-  iframe.style.display = "block";
-  const message =
-    "Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu.";
-  const existingP = document.querySelector("p");
-  if (existingP) {
-    existingP.remove();
-  }
-  const dynPar = document.createElement("p");
-  dynPar.innerHTML = message;
-  iframeContainer.insertAdjacentElement("beforeend", dynPar);
-  
+  width: 100%;
+
+  height: 100%;
+
+  margin: 0;
+
+  padding: 0;
+
+  background: transparent; /* S'assurer que le fond est transparent */
 }
-videoElement.addEventListener("click", () => {
-  if (player) {
-    if (!player.paused()) {
-      player.pause();
-    } else {
-      player.play();
-    }
-  }
-});
-window.addEventListener("load", () => {
-  document.getElementById("sideMenu").classList.add("open");
-});
+.side-menu {
+  position: fixed;
+
+  top: 0;
+
+  left: -300px; /* Cache le menu à gauche */
+
+  width: 187px;
+
+  height: 100%;
+
+  background-color: #000000;
+
+  padding: 20px;
+
+  transition: left 0.3s ease;
+
+  border: 1px solid white;
+
+  border-style: none none none none;
+
+  opacity: 0.8;
+
+  overflow-y: scroll;
+
+  overflow-x: hidden;
+
+  z-index: 9999; /* Au-dessus du lecteur vidéo */
+}
+.main-content {
+  padding: 20px;
+
+  z-index: 1;
+}
+.side-menu.open {
+  left: 0;
+
+  padding: 0px;
+
+  cursor: default;
+}
+#my-video {
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  display: block;
+
+  z-index: -10;
+}
+.btn.btn-primary {
+  color: white;
+
+  text-decoration: none;
+
+  background-color: #000;
+
+  border: 0px;
+
+  white-space: nowrap;
+
+  text-align: left;
+}
+.btn.btn-primary:hover {
+  width: 90%;
+
+  padding: 10px 10px;
+
+  margin: 10px;
+
+  color: yellow;
+}
+.btn.btn-dark.btn-sm {
+  color: white;
+
+  margin: 0px;
+
+  border: 1px solid white;
+
+  padding: 5px 5px;
+}
+.side-menu::-webkit-scrollbar {
+  width: 5px;
+}
+.side-menu::-webkit-scrollbar-track {
+  background: tranparent;
+
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+input,
+button {
+  width: 80%;
+
+  color: white;
+
+  background-color: #000000;
+
+  border: 1px solid white;
+
+  border-radius: 3px;
+}
+.side-menu::-webkit-scrollbar-thumb {
+  background: yellow;
+  border-radius: 5px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+.search {
+  padding-left: 5px;
+
+  width: 100%;
+
+  border: 0px;
+}
+.message-box {
+  position: absolute;
+
+  top: 50%;
+
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background-color: #000;
+
+  color: #fff;
+
+  border: 1px solid yellow;
+
+  border-style: dashed dashed dashed dashed;
+  padding: 10px;
+
+  width: 50%;
+
+  text-align: center;
+
+  border-radius: 5px;
+
+  font-size: 11px;
+
+  z-index: 30;
+
+  display: none;
+}
+.toutsat:hover {
+  color: white;
+
+  text-decoration: none;
+}
+.journal:hover {
+  color: white;
+
+  text-decoration: none;
+}
+.iframe:hover {
+  color: white;
+
+  text-decoration: none;
+}
+b {
+  color: yellow;
+}
+#iframe-container {
+  position: absolute;
+  top: -40px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  display: none;
+  z-index: 20;
+}
