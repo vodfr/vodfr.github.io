@@ -1,8 +1,8 @@
-/*/sauce css/*/
+/*/CSS/*/
 html,
 body {
   display: flex;
-  
+
   width: 100%;
 
   height: 100%;
@@ -47,7 +47,6 @@ body {
 
   z-index: 1;
 }
-/* Classe pour montrer le menu */
 .side-menu.open {
   left: 0;
 
@@ -67,7 +66,7 @@ body {
 
   height: 100%;
 
-  z-index: 0; /* Derrière le menu */
+  z-index: 0;
 }
 .btn.btn-primary {
   color: white;
@@ -101,7 +100,7 @@ body {
   padding: 5px 5px;
 }
 .side-menu::-webkit-scrollbar {
-  width: 2px;
+  width: 5px;
 }
 .side-menu::-webkit-scrollbar-track {
   background: tranparent;
@@ -110,7 +109,6 @@ body {
 }
 input,
 button {
-  
   width: 80%;
 
   color: white;
@@ -122,8 +120,8 @@ button {
   border-radius: 3px;
 }
 .side-menu::-webkit-scrollbar-thumb {
-  background: orange;
-  border-radius: 5px 5px 5px 5px;
+  background: yellow;
+  border-radius: 5px;
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
 .search {
@@ -146,8 +144,9 @@ button {
 
   color: #fff;
 
-  border: 1px solid #ccc;
+  border: 1px solid yellow;
 
+  border-style: dashed dashed dashed dashed;
   padding: 10px;
 
   width: 50%;
@@ -162,7 +161,6 @@ button {
 
   display: none;
 }
-
 .toutsat:hover {
   color: white;
 
@@ -172,29 +170,4 @@ button {
   color: white;
 
   text-decoration: none;
-}
-.iframe:hover {
-  color: white;
-
-  text-decoration: none;
-}
-#iframe-container {
-  position: absolute;
-
-  width: 100%;
-
-  height: 100%;
-
-  top: -40px;
-
-  left: 0px;
-
-  display: none;
-
-  cursor: default;
-
-  z-index: 1;
-}
-b {
-  color: orange;
 }
