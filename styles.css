@@ -68,7 +68,7 @@ body {
 
   display: block;
 
-  z-index: 0;
+  z-index: -1;
 }
 .btn.btn-primary {
   color: white;
