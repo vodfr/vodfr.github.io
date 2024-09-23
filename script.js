@@ -9,8 +9,7 @@ links.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
    const clickedLink = link.getAttribute("data-id");
-   iframeContainer.innerHTML = '';
-    videoElement.style.display = 'block';
+    showVideo();
     var xhr = new XMLHttpRequest();
     var baseURL =
  "https://raw.githubusercontent.com/ma00tv/ma00tv.github.io/main/JB.json";
@@ -99,18 +98,35 @@ document.querySelectorAll(".iframe").forEach((link) => {
     msg.style.display = "block";
     msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
     const iframeSrc = this.getAttribute("data-id");
-    iframeContainer.style.display = "block";
-    videoElement.style.display = "none";
+  
     playWithIframe(iframeSrc);
     dialogbox();
   });
 });
+
+function hideVideo() {
+    videoElement.style.display = 'none'; 
+}
+function showVideo() {
+    videoElement.style.display = 'block'; 
+}
+function hideIframe() {
+    if (iframe) {
+        iframe.style.display = 'none'; 
+      
+    }
+}
+function showIframe() {
+    if (iframe) {
+        iframe.style.display = 'block'; 
+           
+    }
+}
 function playWithIframe(iframeSrc) {
   if (!iframe) {
-    iframe = document.createElement("iframe");
-    iframe.id = "dynamic-iframe";
-    iframeContainer.appendChild(iframe);
-  
+  iframe = document.createElement("iframe");
+  iframe.id = "dynamic-iframe";
+  iframeContainer.appendChild(iframe);
   iframe.src = iframeSrc;
   iframe.width = "100%";
   iframe.height = "100%";
@@ -137,6 +153,7 @@ iframe.addEventListener('load', function () {
   if (player && !player.paused()) {
      player.pause();
           }
+  hideVideo();
                 });
   }
 }
