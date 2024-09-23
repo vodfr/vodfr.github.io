@@ -162,7 +162,7 @@ input,button{
 
   color: #fff;
 
-  border: 1px solid #ccc;
+  border: 2px solid #fff;
 
   padding: 10px;
 
@@ -171,6 +171,8 @@ input,button{
   text-align: center;
 
   border-radius: 5px;
+
+  border-style: dashed dashed dashed dashed;
 
   font-size: 11px;
 
