@@ -8,9 +8,8 @@ links.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
    const clickedLink = link.getAttribute("data-id");
-   iframeContainer.innerHTML = ''; //formater le contenu
+   iframeContainer.innerHTML = '';
     videoElement.style.display = 'block';
-    // Créer une requête XMLHttpRequest pour récupérer les données JSON
     var xhr = new XMLHttpRequest();
     var baseURL =
  "https://raw.githubusercontent.com/ma00tv/ma00tv.github.io/main/JB.json";
@@ -21,26 +20,22 @@ links.forEach((link) => {
         for (var i = 0; i < data.length; i++) {
           if (data[i].chaine.title === clickedLink) {
             if (data[i].chaine.protocol === "https") {
-              const type = link.getAttribute("data-youtube");
-              // Initialiser Video.js
-              player = videojs("my-video");
-              // Mettre à jour la source du lecteur
-              player.src({
+            player = videojs("my-video");
+            player.src({
                 src: data[i].chaine.url,
                 type: player.currentType()
               });
-              // Charger et jouer la vidéo
+              player.ready(function() {
               player.load();
               player.play();
               player.controls(true);
-              // Passer en plein écran
               openFullscreen();
+              });
             } else {
               player.pause();
               window.open(data[i].chaine.url);
             }
-            // Gestion des événements de lecture et de pause
-            player.on("play", function () {
+              player.on("play", function () {
               msg.style.display = "block";
               msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
               dialogbox();
@@ -114,11 +109,9 @@ function playWithIframe(iframeSrc) {
   player = videojs('my-video');
   }
   if (!player.paused()) {
-    // Arrêter la lecture et réinitialiser le lecteur Video.js
     player.pause();
     player.src('');
   } 
-  // Vérifier si un iframe existe déjà, sinon le créer
 
   let iframe = document.getElementById("dynamic-iframe");
   if (!iframe) {
@@ -126,7 +119,6 @@ function playWithIframe(iframeSrc) {
     iframe.id = "dynamic-iframe";
     iframeContainer.appendChild(iframe);
   }
-  // Assigner la source et afficher l'iframe
   iframe.src = iframeSrc;
   iframe.width = "100%";
   iframe.height = "100%";
