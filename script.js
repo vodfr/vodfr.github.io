@@ -154,9 +154,11 @@ iframe.addEventListener('load', function () {
   if (player && !player.paused()) {
      player.pause();
           }
-  hideVideo();
+  
                 });
   }
+  showIframe();
+  hideVideo();
 }
 videoElement.addEventListener("click", () => {
   if (!player) {
