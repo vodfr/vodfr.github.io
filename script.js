@@ -124,6 +124,8 @@ function showIframe() {
     }
 }
 function playWithIframe(iframeSrc) {
+  showIframe();
+  hideVideo();
   if (!iframe) {
   iframe = document.createElement("iframe");
   iframe.id = "dynamic-iframe";
@@ -157,8 +159,7 @@ iframe.addEventListener('load', function () {
   
                 });
   }
-  showIframe();
-  hideVideo();
+  
 }
 videoElement.addEventListener("click", () => {
   if (!player) {
