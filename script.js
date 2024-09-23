@@ -3,6 +3,7 @@ const links = document.querySelectorAll("a.open");
 const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
 const iframeContainer = document.getElementById("iframe-container");
+var iframe = null;
 var player;
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
@@ -105,9 +106,6 @@ document.querySelectorAll(".iframe").forEach((link) => {
   });
 });
 function playWithIframe(iframeSrc) {
-  
-
-  let iframe = document.getElementById("dynamic-iframe");
   if (!iframe) {
     iframe = document.createElement("iframe");
     iframe.id = "dynamic-iframe";
