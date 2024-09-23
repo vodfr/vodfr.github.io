@@ -3,7 +3,6 @@ const links = document.querySelectorAll("a.open");
 const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
 const iframeContainer = document.getElementById("iframe-container");
-var iframe = null;
 var player;
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
