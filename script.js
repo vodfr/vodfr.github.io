@@ -9,6 +9,7 @@ links.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
    const clickedLink = link.getAttribute("data-id");
+    hideIframe();
     showVideo();
     var xhr = new XMLHttpRequest();
     var baseURL =
