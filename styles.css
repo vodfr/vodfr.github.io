@@ -30,7 +30,6 @@
   z-index: 3; /* Au-dessus du lecteur vidéo */
 
 }
-
 /* Classe pour montrer le menu */
 .side-menu.open {
 
@@ -55,6 +54,17 @@
   height: 100%;
 
   z-index: 0; /* Derrière le menu */
+
+}
+.vjs-big-play-button {
+  background-color: transparent !important;
+  color: yellow !important;
+  border: 1px groove yellow !important;
+}
+.vjs-control-bar {
+
+    background-color: #000000 !important; 
+    color: yellow !important;
 
 }
 .btn.btn-primary{
@@ -197,8 +207,6 @@ input,button{
   text-decoration: none;
 
   }
-
-
 .iframe:hover{
 
   color: white;
@@ -210,7 +218,6 @@ b {
   color: yellow;
   
   }
-
 #iframe-container {
   position: absolute;
   top: -40px;
