@@ -1,4 +1,4 @@
-/*/script projet SimpleTV made in algeria/*/
+/*/script projet SimpleTV et streamers/*/
 const links = document.querySelectorAll("a.open");
 const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
@@ -145,6 +145,7 @@ document.querySelectorAll(".iframe").forEach((link) => {
     playWithIframe(iframeSrc);
   });
 });
+
 function playWithIframe(iframeSrc) {
 if (player) {
   player.pause();
@@ -177,7 +178,7 @@ if (player) {
 
   iframe.style.display = "block";
   
-const message = "Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu.";
+const message = "Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu ou tapez pour plein écran";
 
 const existingP = document.querySelector("p");
 
@@ -210,3 +211,21 @@ if (! player) {
 window.addEventListener("load", () => {
   document.getElementById("sideMenu").classList.add("open");
 });
+
+iframeContainer.addEventListener("click", () => {
+                                 
+               if (iframeContainer.requestFullscreen) {
+
+    iframeContainer.requestFullscreen();
+
+  } else if (iframeContainer.webkitRequestFullscreen) { /* Safari */
+
+    iframeContainer.webkitRequestFullscreen();
+
+  } else if (iframeContainer.msRequestFullscreen) { /* IE11 */
+
+    iframeContainer.msRequestFullscreen();
+
+  }                  
+                                 
+       });
