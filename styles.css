@@ -52,7 +52,7 @@
 
   width: 100%;
 
-  height: 100vh;
+  height: 100%;
 
   z-index: 0; /* Derrière le menu */
 
@@ -104,12 +104,12 @@
   }
 .side-menu::-webkit-scrollbar {
 
-    width: 2px;
-
+    width: 5px;
+    
     
 
-    
 
+  
   }
 .side-menu::-webkit-scrollbar-track {
 
