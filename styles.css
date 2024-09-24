@@ -59,7 +59,7 @@
 .vjs-big-play-button {
   background-color: transparent !important;
   color: yellow !important;
-  border: 1px groove yellow !important;
+  border: none !important;
 }
 .vjs-control-bar {
 
