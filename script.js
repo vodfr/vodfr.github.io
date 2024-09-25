@@ -193,21 +193,7 @@ dynPar.innerHTML = message;
   iframeContainer.insertAdjacentElement("beforeend", dynPar);
 
 }
-videoElement.addEventListener("click", () => {
-if (! player) {
-  player = videojs("my-video");
-}
 
-  if (!player.paused()) {
-    player.pause();
-    
-  } else {
-    player.play();
-    
-  }
-
-  
-});
 window.addEventListener("load", () => {
   document.getElementById("sideMenu").classList.add("open");
 });
