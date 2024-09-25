@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>tf1</title>
+  <link href="https://vjs.zencdn.net/7.20.3/video-js.css" rel="stylesheet">
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+    }
+    #my-video {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+
+  <video-js id="my-video" class="video-js vjs-default-skin" controls autoplay preload="auto" muted>
+    <source src="https://live-tf1-hls-ssai.cdn-0.diff.tf1.fr/9023effe3c16b0475d35e9f31c778b5c/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjaXAiOiI5MC4zLjEwNC4xODEiLCJjbWNkIjoiIiwiZXhwIjoxNzI3Mjk0NDEzLCJnaWQiOiIwYzk1NWQ5YmNmNmY0NTYwOTk2Zjc0NzMyYjI3M2NkNyIsImlhdCI6MTcyNzI4MDAxMywiaXNzIjoiZGVsaXZlcnkiLCJtYXhiIjowLCJzdGVtIjoiL291dC92MS8yYTVlZjJhNGNlNGE0MTIwOWUwYTg4MTA3NGQxNTkzMi90ZjEtY21hZiIsInN1YiI6IjBjOTU1ZDliY2Y2ZjQ1NjA5OTZmNzQ3MzJiMjczY2Q3In0.ZJ2JwtYvhsnYa6qh2iZPd9xe-G9dSvPe8rxi7xhx5vg/out/v1/2a5ef2a4ce4a41209e0a881074d15932/tf1-cmaf/index.m3u8" type="application/x-mpegURL">
+  </video-js>
+
+  <script src="https://vjs.zencdn.net/7.20.3/video.js"></script>
+  <script>
+    var player = videojs('my-video', {
+      techOrder: ['html5'],
+      autoplay: true,
+      controls: true,
+      preload: 'auto'
+    });
+  </script>
+
+</body>
+</html>
