@@ -151,9 +151,14 @@ if (player) {
   player.pause();
   player.src("");
   player.controls(false);
+} else {
+player = videojs("my-video");
+  player.pause();
+  player.src("");
+  player.controls(false);
+
 }
   
-
   let iframe = document.getElementById("dynamic-iframe");
 
   if (!iframe) {
@@ -200,7 +205,7 @@ window.addEventListener("load", () => {
 
 iframeContainer.addEventListener("click", () => {
                                  
-               if (iframeContainer.requestFullscreen) {
+  if (iframeContainer.requestFullscreen) {
 
     iframeContainer.requestFullscreen();
 
