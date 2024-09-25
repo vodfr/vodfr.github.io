@@ -209,9 +209,10 @@ iframeContainer.addEventListener("click", () => {
     iframeContainer.msRequestFullscreen();
 
   }                  
-                                 
+                              
        });
 function retablirChangementCh() {
+msg.style.display = "block";
 if (player) {
   player.pause();
   player.src("");
@@ -223,7 +224,7 @@ player = videojs("my-video");
   player.controls(false);
 
 }
-  msg.style.display = "block";
+  
   msg.innerHTML = "Rétablir et changer de chaine réussi!.";
   dialogbox();
   
