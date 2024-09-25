@@ -164,7 +164,7 @@ player = videojs("my-video");
   msg.style.display = "block";
   msg.innerHTML = "Rétablissement de la chaine!";
   dialogbox();
-  }, 3000);
+  }, 5000);
   let iframe = document.getElementById("dynamic-iframe");
 
   if (!iframe) {
