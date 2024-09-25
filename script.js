@@ -147,17 +147,23 @@ document.querySelectorAll(".iframe").forEach((link) => {
 });
 
 function playWithIframe(iframeSrc) {
-  if (player) {
+  setTimeout(function () {
+if (player) {
   player.pause();
   player.src("");
   player.controls(false);
-  } else {
+  
+} else {
 player = videojs("my-video");
   player.pause();
   player.src("");
   player.controls(false);
-
-  }
+  
+}
+  msg.style.display = "block";
+  msg.innerHTML = "Rétablissement de la chaine!";
+  dialogbox();
+  }, 2000);
   
   let iframe = document.getElementById("dynamic-iframe");
 
