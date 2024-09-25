@@ -212,7 +212,7 @@ iframeContainer.addEventListener("click", () => {
                               
        });
 function retablirChangementCh() {
-msg.style.display = "block";
+
 if (player) {
   player.pause();
   player.src("");
@@ -224,9 +224,6 @@ player = videojs("my-video");
   player.controls(false);
 
 }
-  
-  msg.innerHTML = "Rétablir et changer de chaine réussi!.";
-  dialogbox();
-  
+
 
 }
