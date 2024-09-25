@@ -147,24 +147,24 @@ document.querySelectorAll(".iframe").forEach((link) => {
 });
 
 function playWithIframe(iframeSrc) {
+  
   setTimeout(function () {
+    
 if (player) {
+  player.controls(false);
   player.pause();
   player.src("");
-  player.controls(false);
-  
 } else {
 player = videojs("my-video");
+  player.controls(false);
   player.pause();
   player.src("");
-  player.controls(false);
   
 }
   msg.style.display = "block";
   msg.innerHTML = "Rétablissement de la chaine!";
   dialogbox();
-  }, 5000);
-  
+  }, 3000);
   let iframe = document.getElementById("dynamic-iframe");
 
   if (!iframe) {
@@ -226,4 +226,3 @@ iframeContainer.addEventListener("click", () => {
   }                  
                               
        });
-
