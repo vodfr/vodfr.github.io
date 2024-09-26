@@ -1,4 +1,4 @@
-/*/script projet SimpleTV final by ALGERIA/*/
+/*/SimpleTV Final by ALGERIA/*/
 const links = document.querySelectorAll("a.open");
 const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
