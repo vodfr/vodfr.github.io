@@ -187,8 +187,9 @@ const dynPar = document.createElement("p");
 dynPar.innerHTML = message;
   
   iframeContainer.insertAdjacentElement("beforeend", dynPar);
-  
+  openFullscreen();
 }
+
 
 
 window.addEventListener("load", () => {
@@ -196,27 +197,20 @@ window.addEventListener("load", () => {
 });
 
  
-
+videoElement.addEventListener("click", () => {
+  alert("");
+  });
 
 iframeContainer.addEventListener("click", () => {
-  if (document.fullscreenElement) {
-   
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { // Safari
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { // IE11
-      document.msExitFullscreen();
-    }
-  } else {
-    
+ 
+  
     if (iframeContainer.requestFullscreen) {
       iframeContainer.requestFullscreen();
     } else if (iframeContainer.webkitRequestFullscreen) { // Safari
       iframeContainer.webkitRequestFullscreen();
     } else if (iframeContainer.msRequestFullscreen) { // IE11
       iframeContainer.msRequestFullscreen();
-    }
+    
   }
 });
 
@@ -238,5 +232,6 @@ function openFullscreen () {
     } 
   
   }
+
 
 
