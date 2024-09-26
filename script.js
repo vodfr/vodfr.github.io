@@ -103,19 +103,6 @@ b.addEventListener("click", function () {
 
   window.open(api + mp3);
 });
-function openFullscreen() {
-  if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-  } else if (elem.webkitRequestFullscreen) {
-    /* Safari */
-
-    elem.webkitRequestFullscreen();
-  } else if (elem.msRequestFullscreen) {
-    /* IE11 */
-
-    elem.msRequestFullscreen();
-  }
-}
 function dialogbox() {
   setTimeout(() => {
     msg.style.display = "none";
@@ -145,8 +132,6 @@ document.querySelectorAll(".iframe").forEach((link) => {
     playWithIframe(iframeSrc);
   });
 });
-
-
 function playWithIframe(iframeSrc) {
   
   setTimeout(function () {
@@ -206,13 +191,11 @@ dynPar.innerHTML = message;
 
 }
 
+
 window.addEventListener("load", () => {
   document.getElementById("sideMenu").classList.add("open");
 });
-
 function openFullscreen() {
-
-iframeContainer.addEventListener("click", () => {
   if (document.fullscreenElement) {
     
     if (document.exitFullscreen) {
@@ -224,15 +207,51 @@ iframeContainer.addEventListener("click", () => {
     }
   } else {
   
-    if (videoElement.requestFullscreen) {
-      videoElement.requestFullscreen();
-    } else if (videoElement.webkitRequestFullscreen) { // Safari
-      videoElement.webkitRequestFullscreen();
-    } else if (videoElement.msRequestFullscreen) { // IE11
-      videoElement.msRequestFullscreen();
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { // Safari
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { // IE11
+      elem.msRequestFullscreen();
     } 
   }
-});
-
-
   }
+elem.addEventListener("click", () => {
+   
+    
+    if (document.exitFullscreen) {
+
+      document.exitFullscreen();
+
+    } else if (document.webkitExitFullscreen) { // Safari
+
+      document.webkitExitFullscreen();
+
+    } else if (document.msExitFullscreen) { // IE11
+
+      document.msExitFullscreen();
+
+    }
+    
+    
+    if (elem.requestFullscreen) {
+
+      elem.requestFullscreen();
+
+    } else if (elem.webkitRequestFullscreen) { // Safari
+
+      elem.webkitRequestFullscreen();
+
+    } else if (elem.msRequestFullscreen) { // IE11
+
+      elem.msRequestFullscreen();
+
+    } 
+    
+    
+  
+      
+
+  });
+                              
+                              
