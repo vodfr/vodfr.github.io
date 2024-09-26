@@ -223,14 +223,14 @@ iframeContainer.addEventListener("click", () => {
       document.msExitFullscreen();
     }
   } else {
-    // Activer le mode plein écran
-    if (iframeContainer.requestFullscreen) {
-      iframeContainer.requestFullscreen();
-    } else if (iframeContainer.webkitRequestFullscreen) { // Safari
-      iframeContainer.webkitRequestFullscreen();
-    } else if (iframeContainer.msRequestFullscreen) { // IE11
-      iframeContainer.msRequestFullscreen();
-    }
+  
+    if (videoElement.requestFullscreen) {
+      videoElement.requestFullscreen();
+    } else if (videoElement.webkitRequestFullscreen) { // Safari
+      videoElement.webkitRequestFullscreen();
+    } else if (videoElement.msRequestFullscreen) { // IE11
+      videoElement.msRequestFullscreen();
+    } 
   }
 });
 
