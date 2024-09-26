@@ -195,27 +195,6 @@ window.addEventListener("load", () => {
   document.getElementById("sideMenu").classList.add("open");
 });
 
- 
-
-videoElement.addEventListener("click", () => {
-  if (document.fullscreenElement) {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { // Safari
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { // IE11
-      document.msExitFullscreen();
-    }
-  } else {
-    if (videoElement.requestFullscreen) {
-      videoElement.requestFullscreen();
-    } else if (videoElement.webkitRequestFullscreen) { // Safari
-      videoElement.webkitRequestFullscreen();
-    } else if (videoElement.msRequestFullscreen) { // IE11
-      videoElement.msRequestFullscreen();
-    }
-  }
-});
 iframeContainer.addEventListener("click", () => {
   if (document.fullscreenElement) {
    
