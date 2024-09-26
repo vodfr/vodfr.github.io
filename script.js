@@ -29,7 +29,7 @@ links.forEach((link) => {
         for (var i = 0; i < data.length; i++) {
           if (data[i].chaine.title === clickedLink) {
             if (data[i].chaine.protocol === "https") {
-              const type = link.getAttribute("data-youtube");
+              
               
               player = videojs("my-video");
               player.src({
@@ -146,6 +146,7 @@ document.querySelectorAll(".iframe").forEach((link) => {
   });
 });
 
+
 function playWithIframe(iframeSrc) {
   
   setTimeout(function () {
@@ -164,7 +165,7 @@ player = videojs("my-video");
   msg.style.display = "block";
   msg.innerHTML = "Rétablissement de la chaine!";
   dialogbox();
-  }, 5000);
+  }, 3000);
   let iframe = document.getElementById("dynamic-iframe");
 
   if (!iframe) {
@@ -209,20 +210,29 @@ window.addEventListener("load", () => {
   document.getElementById("sideMenu").classList.add("open");
 });
 
+function openFullscreen() {
+
 iframeContainer.addEventListener("click", () => {
-                                 
-  if (iframeContainer.requestFullscreen) {
+  if (document.fullscreenElement) {
+    
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { // Safari
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { // IE11
+      document.msExitFullscreen();
+    }
+  } else {
+    // Activer le mode plein écran
+    if (iframeContainer.requestFullscreen) {
+      iframeContainer.requestFullscreen();
+    } else if (iframeContainer.webkitRequestFullscreen) { // Safari
+      iframeContainer.webkitRequestFullscreen();
+    } else if (iframeContainer.msRequestFullscreen) { // IE11
+      iframeContainer.msRequestFullscreen();
+    }
+  }
+});
 
-    iframeContainer.requestFullscreen();
 
-  } else if (iframeContainer.webkitRequestFullscreen) { /* Safari */
-
-    iframeContainer.webkitRequestFullscreen();
-
-  } else if (iframeContainer.msRequestFullscreen) { /* IE11 */
-
-    iframeContainer.msRequestFullscreen();
-
-  }                  
-                              
-       });
+  }
