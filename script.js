@@ -187,7 +187,7 @@ const dynPar = document.createElement("p");
 dynPar.innerHTML = message;
   
   iframeContainer.insertAdjacentElement("beforeend", dynPar);
-  iframeFullscreen();
+  
 }
 
 
@@ -239,27 +239,4 @@ function openFullscreen () {
   
   }
 
-function iframeFullscreen () {
-if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) { // Safari
-      document.webkitExitFullscreen();
-    } else if (document.msExitFullscreen) { // IE11
-      document.msExitFullscreen();
-    }
 
-if (elem.requestFullscreen) {
-
-      elem.requestFullscreen();
-
-    } else if (elem.webkitRequestFullscreen) { // Safari
-
-      elem.webkitRequestFullscreen();
-
-    } else if (elem.msRequestFullscreen) { // IE11
-
-      elem.msRequestFullscreen();
-
-    } 
-
-}
