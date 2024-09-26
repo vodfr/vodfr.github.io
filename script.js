@@ -1,9 +1,9 @@
-/*/script projet SimpleTV et streamers/*/
+/*/script projet SimpleTV final by ALGERIA/*/
 const links = document.querySelectorAll("a.open");
 const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
 const iframeContainer = document.getElementById("iframe-container");
-var player;
+let player;
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
     
@@ -139,18 +139,17 @@ function playWithIframe(iframeSrc) {
 if (player) {
   player.controls(false);
   player.pause();
-  player.src("");
+  
 } else {
 player = videojs("my-video");
   player.controls(false);
   player.pause();
-  player.src("");
-  
+ 
 }
   msg.style.display = "block";
   msg.innerHTML = "Rétablissement de la chaine!";
   dialogbox();
-  }, 3000);
+  }, 4000);
   let iframe = document.getElementById("dynamic-iframe");
 
   if (!iframe) {
@@ -175,7 +174,7 @@ player = videojs("my-video");
 
   iframe.style.display = "block";
   
-const message = "Balayez dici à gauche &#8592; ou à droite &#8594; pour le menu ou tapez pour plein écran";
+const message = "1.Balayez dici à gauche&#8592;ou à droite&#8594; pour le menu || 2.ou tapez pour plein écran";
 
 const existingP = document.querySelector("p");
 
@@ -188,16 +187,18 @@ const dynPar = document.createElement("p");
 dynPar.innerHTML = message;
   
   iframeContainer.insertAdjacentElement("beforeend", dynPar);
-
+  openFullscreen();
 }
 
 
 window.addEventListener("load", () => {
   document.getElementById("sideMenu").classList.add("open");
 });
-function openFullscreen() {
+
+ 
+
+videoElement.addEventListener("click", () => {
   if (document.fullscreenElement) {
-    
     if (document.exitFullscreen) {
       document.exitFullscreen();
     } else if (document.webkitExitFullscreen) { // Safari
@@ -206,35 +207,40 @@ function openFullscreen() {
       document.msExitFullscreen();
     }
   } else {
-  
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) { // Safari
-      elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { // IE11
-      elem.msRequestFullscreen();
-    } 
-  }
-  }
-elem.addEventListener("click", () => {
-   
-    
-    if (document.exitFullscreen) {
-
-      document.exitFullscreen();
-
-    } else if (document.webkitExitFullscreen) { // Safari
-
-      document.webkitExitFullscreen();
-
-    } else if (document.msExitFullscreen) { // IE11
-
-      document.msExitFullscreen();
-
+    if (videoElement.requestFullscreen) {
+      videoElement.requestFullscreen();
+    } else if (videoElement.webkitRequestFullscreen) { // Safari
+      videoElement.webkitRequestFullscreen();
+    } else if (videoElement.msRequestFullscreen) { // IE11
+      videoElement.msRequestFullscreen();
     }
+  }
+});
+iframeContainer.addEventListener("click", () => {
+  if (document.fullscreenElement) {
+   
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { // Safari
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { // IE11
+      document.msExitFullscreen();
+    }
+  } else {
     
-    
-    if (elem.requestFullscreen) {
+    if (iframeContainer.requestFullscreen) {
+      iframeContainer.requestFullscreen();
+    } else if (iframeContainer.webkitRequestFullscreen) { // Safari
+      iframeContainer.webkitRequestFullscreen();
+    } else if (iframeContainer.msRequestFullscreen) { // IE11
+      iframeContainer.msRequestFullscreen();
+    }
+  }
+});
+
+
+function openFullscreen () {
+  if (elem.requestFullscreen) {
 
       elem.requestFullscreen();
 
@@ -247,11 +253,5 @@ elem.addEventListener("click", () => {
       elem.msRequestFullscreen();
 
     } 
-    
-    
   
-      
-
-  });
-                              
-                              
+  }
