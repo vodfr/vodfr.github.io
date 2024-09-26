@@ -187,13 +187,16 @@ const dynPar = document.createElement("p");
 dynPar.innerHTML = message;
   
   iframeContainer.insertAdjacentElement("beforeend", dynPar);
-  openFullscreen();
+  iframeFullscreen();
 }
 
 
 window.addEventListener("load", () => {
   document.getElementById("sideMenu").classList.add("open");
 });
+
+ 
+
 
 iframeContainer.addEventListener("click", () => {
   if (document.fullscreenElement) {
@@ -219,6 +222,7 @@ iframeContainer.addEventListener("click", () => {
 
 
 function openFullscreen () {
+
   if (elem.requestFullscreen) {
 
       elem.requestFullscreen();
@@ -234,3 +238,28 @@ function openFullscreen () {
     } 
   
   }
+
+function iframeFullscreen () {
+if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) { // Safari
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { // IE11
+      document.msExitFullscreen();
+    }
+
+if (elem.requestFullscreen) {
+
+      elem.requestFullscreen();
+
+    } else if (elem.webkitRequestFullscreen) { // Safari
+
+      elem.webkitRequestFullscreen();
+
+    } else if (elem.msRequestFullscreen) { // IE11
+
+      elem.msRequestFullscreen();
+
+    } 
+
+}
