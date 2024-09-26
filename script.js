@@ -1,16 +1,17 @@
-/*/SimpleTV Final by ALGERIA/*/
+/*/SimpleTV Final by ALGERIA /*/
 const links = document.querySelectorAll("a.open");
 const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
 const iframeContainer = document.getElementById("iframe-container");
+let iframeCreated = false;
 let player;
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
     
     e.preventDefault();
-
+    
     const clickedLink = link.getAttribute("data-id");
-
+    iframeCreated = false;
     iframeContainer.innerHTML = ""; //formater le contenu ->
 
     videoElement.style.display = "block";
@@ -153,6 +154,9 @@ player = videojs("my-video");
   let iframe = document.getElementById("dynamic-iframe");
 
   if (!iframe) {
+    
+    iframeCreated = true;
+    
     iframe = document.createElement("iframe");
 
     iframe.id = "dynamic-iframe";
@@ -191,19 +195,12 @@ dynPar.innerHTML = message;
 }
 
 
-
 window.addEventListener("load", () => {
   document.getElementById("sideMenu").classList.add("open");
 });
-
- 
-videoElement.addEventListener("click", () => {
-  alert("");
-  });
-
 iframeContainer.addEventListener("click", () => {
  
-  
+  if (iframeCreated === true) {
     if (iframeContainer.requestFullscreen) {
       iframeContainer.requestFullscreen();
     } else if (iframeContainer.webkitRequestFullscreen) { // Safari
@@ -212,9 +209,9 @@ iframeContainer.addEventListener("click", () => {
       iframeContainer.msRequestFullscreen();
     
   }
+    iframeCreated = false;
+  }
 });
-
-
 function openFullscreen () {
 
   if (elem.requestFullscreen) {
@@ -232,6 +229,3 @@ function openFullscreen () {
     } 
   
   }
-
-
-
