@@ -191,7 +191,13 @@ const dynPar = document.createElement("p");
 dynPar.innerHTML = message;
   
   iframeContainer.insertAdjacentElement("beforeend", dynPar);
-  openFullscreen();
+
+iframe.addEventListener("load", function () {
+   
+   openFullscreen();
+  
+   });
+  
 }
 
 
