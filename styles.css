@@ -1,4 +1,4 @@
-/* au Style boostrap pour le menu new*/
+/*/css by algeria/*/
 .side-menu {
 
   position: fixed;
@@ -176,7 +176,7 @@ input,button{
 
   padding: 10px;
 
-  width: 50%;
+  width: 60%;
 
   text-align: center;
 
@@ -189,6 +189,8 @@ input,button{
   z-index: 2;
   
   box-shadow: 0px 0px 10px 0px yellow; 
+  
+  white-space: nowrap;
 
  display: none;
 
@@ -214,6 +216,7 @@ input,button{
   text-decoration: none;
 
   }
+
 b {
   color: yellow;
   
