@@ -147,7 +147,7 @@ player = videojs("my-video");
  
 }
   msg.style.display = "block";
-  msg.innerHTML = "Rétablissement de la chaine!";
+  msg.innerHTML = "Rétablissement de la chaine ⚠️";
   dialogbox();
   }, 4000);
   let iframe = document.getElementById("dynamic-iframe");
