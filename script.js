@@ -221,7 +221,19 @@ window.addEventListener("load", () => {
 });
 
 iframeContainer.addEventListener("click", () => {
-  if (iframeCreated === true) {
+  
+    if (iframeContainer.fullscreenElement) {
+      
+    if (iframeContainer.exitFullscreen) {
+      iframeContainer.exitFullscreen();
+    } else if (iframeContainer.webkitExitFullscreen) { // Safari
+      iframeContainer.webkitExitFullscreen();
+    } else if (iframeContainer.msExitFullscreen) { // IE11
+
+      iframeContainer.msExitFullscreen();
+    }
+
+  } else {
     if (iframeContainer.requestFullscreen) {
       iframeContainer.requestFullscreen();
     } else if (iframeContainer.webkitRequestFullscreen) {
@@ -231,10 +243,9 @@ iframeContainer.addEventListener("click", () => {
       // IE11
       iframeContainer.msRequestFullscreen();
     }
-    iframeCreated = false;
   }
+  iframeCreated = false;
 });
-
 function openFullscreen() {
   if (elem.requestFullscreen) {
     elem.requestFullscreen();
