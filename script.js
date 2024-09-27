@@ -1,4 +1,4 @@
-/*/SimpleTV /*/
+/*/SimpleTV/*/
 
 const links = document.querySelectorAll("a.open");
 
@@ -7,27 +7,21 @@ const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("my-video");
 
 const iframeContainer = document.getElementById("iframe-container");
-
+let iframe = null;
 let iframeCreated = false;
 
 let player;
 
 links.forEach((link) => {
-
   link.addEventListener("click", (e) => {
-
-    
-
     e.preventDefault();
 
-    
-
     const clickedLink = link.getAttribute("data-id");
-  
-    iframeContainer.style.pointerEvents = 'auto'; 
-    
+
+    iframeContainer.style.pointerEvents = "auto";
+
     iframeCreated = false;
-   
+
     iframeContainer.innerHTML = ""; //formater le contenu ->
 
     videoElement.style.display = "block";
@@ -35,129 +29,89 @@ links.forEach((link) => {
     var xhr = new XMLHttpRequest();
 
     var baseURL =
-
       "https://raw.githubusercontent.com/ma00tv/ma00tv.github.io/main/JB.json";
 
     xhr.open("GET", baseURL, true);
 
     xhr.onload = function () {
-
       if (xhr.status === 200) {
-
         var data = JSON.parse(xhr.responseText);
 
         for (var i = 0; i < data.length; i++) {
-
           if (data[i].chaine.title === clickedLink) {
-
             if (data[i].chaine.protocol === "https") {
-
-              
-
-              
-
               player = videojs("my-video");
 
               player.src({
-
                 src: data[i].chaine.url,
 
                 type: player.currentType()
-
               });
 
-              player.ready(function (){ //lecture quant le lecteur est pret
+              player.ready(function () {
+                //lecture quant le lecteur est pret
 
-                
+                player.load();
 
-              player.load();
+                player.play();
 
-              player.play();
+                player.controls(true);
 
-              player.controls(true);
-
-              openFullscreen();
-
+                openFullscreen();
               });
-
-              
-
             } else {
-
               player.pause();
 
               window.open(data[i].chaine.url);
-
             }
 
             player.on("play", function () {
-
               msg.style.display = "block";
 
               msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
 
               dialogbox();
-
             });
 
             player.on("pause", function () {
-
               msg.style.display = "block";
 
               msg.innerHTML = link.textContent + " est en <b>PAUSE</b>...";
 
               dialogbox();
-
             });
-
           }
-
         }
-
       }
-
     };
 
     xhr.send();
-
   });
-
 });
 
 let startX;
 
 document.addEventListener("touchstart", function (e) {
-
   startX = e.touches[0].clientX;
-
 });
 
 document.addEventListener("touchmove", function (e) {
-
   let touch = e.touches[0];
 
   let deltaX = touch.clientX - startX;
 
   if (deltaX > 50) {
-
     document.getElementById("sideMenu").classList.add("open");
-    
   } else if (deltaX < -50) {
-
     document.getElementById("sideMenu").classList.remove("open");
-    
   }
-
 });
-
-
 
 const b = document.querySelector("button");
 
 const elem = document.querySelector("body");
 
 b.addEventListener("click", function () {
-
   const api = "https://api.vevioz.com/apis/search/";
 
   const d = document.querySelector(".elem");
@@ -165,34 +119,22 @@ b.addEventListener("click", function () {
   const mp3 = d.value;
 
   window.open(api + mp3);
-
 });
 
+
 function dialogbox() {
-
   setTimeout(() => {
-
     msg.style.display = "none";
 
     msg.innerHTML = "";
-
   }, 3000);
-
 }
 
 document.querySelectorAll(".iframe").forEach((link) => {
-
   link.addEventListener("click", function (e) {
-
-    
-
     e.preventDefault();
 
-  
-
     videoElement.style.display = "none";
-
-        
 
     msg.style.display = "block";
 
@@ -204,66 +146,39 @@ document.querySelectorAll(".iframe").forEach((link) => {
 
     iframeContainer.style.display = "block";
 
-    
-
     playWithIframe(iframeSrc);
-
   });
-
 });
 
 function playWithIframe(iframeSrc) {
-
-  
-
   setTimeout(function () {
+    if (player) {
+      player.controls(false);
 
-    
+      player.pause();
+    } else {
+      player = videojs("my-video");
 
-if (player) {
+      player.controls(false);
 
-  player.controls(false);
+      player.pause();
+    }
 
-  player.pause();
+    msg.style.display = "block";
 
-  
+    msg.innerHTML = "Rétablissement de la chaine ⚠️";
 
-} else {
-
-player = videojs("my-video");
-
-  player.controls(false);
-
-  player.pause();
-
- 
-
-}
-
-  msg.style.display = "block";
-
-  msg.innerHTML = "Rétablissement de la chaine ⚠️";
-
-  dialogbox();
-
+    dialogbox();
   }, 5000);
 
-  let iframe = document.getElementById("dynamic-iframe");
+  iframe = document.getElementById("dynamic-iframe");
 
   if (!iframe) {
-
-    
-
-    iframeCreated = true;
-
-    
-
     iframe = document.createElement("iframe");
 
     iframe.id = "dynamic-iframe";
 
     iframeContainer.appendChild(iframe);
-
   }
 
   iframe.src = iframeSrc;
@@ -280,71 +195,58 @@ player = videojs("my-video");
 
   iframe.style.display = "block";
 
+  const message =
+    '1. <marquee direction="left" behavior="alternate" scrollamount="2" width="100px">Menu👆</marquee>||2. ou bien click ici pour plein pour plein écran';
+  const existingP = document.querySelector("p");
 
-iframe.style.pointerEvents = 'none'; 
-iframe.addEventListener("load", function () {
+  if (existingP) {
+    existingP.remove();
+  }
 
-   
+  const dynPar = document.createElement("p");
 
-   openFullscreen();
+  dynPar.innerHTML = message;
 
-  
+  iframeContainer.insertAdjacentElement("beforeend", dynPar);
 
-   });
-  
+  iframe.addEventListener("load", function () {
+    iframeCreated = true;
 
+    openFullscreen();
+  });
 }
 
 window.addEventListener("load", () => {
-
   document.getElementById("sideMenu").classList.add("open");
-
 });
 
 iframeContainer.addEventListener("click", () => {
-
- 
-
   if (iframeCreated === true) {
-
     if (iframeContainer.requestFullscreen) {
-
       iframeContainer.requestFullscreen();
-
-    } else if (iframeContainer.webkitRequestFullscreen) { // Safari
-
+    } else if (iframeContainer.webkitRequestFullscreen) {
+      // Safari
       iframeContainer.webkitRequestFullscreen();
-
-    } else if (iframeContainer.msRequestFullscreen) { // IE11
-
+    } else if (iframeContainer.msRequestFullscreen) {
+      // IE11
       iframeContainer.msRequestFullscreen();
-
-    
-
-  }
-
+    }
     iframeCreated = false;
-
   }
-
 });
 
-function openFullscreen () {
-
+function openFullscreen() {
   if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) {
+    // Safari
 
-      elem.requestFullscreen();
+    elem.webkitRequestFullscreen();
+  } else if (elem.msRequestFullscreen) {
+    // IE11
 
-    } else if (elem.webkitRequestFullscreen) { // Safari
-
-      elem.webkitRequestFullscreen();
-
-    } else if (elem.msRequestFullscreen) { // IE11
-
-      elem.msRequestFullscreen();
-
-    } 
-
-  
-
+    elem.msRequestFullscreen();
   }
+}
+
+
