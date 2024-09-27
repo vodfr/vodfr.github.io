@@ -1,1 +1,56 @@
-https://radio-dzair.net/proxy/izuran/izuran?shoutcast
+
+/*/ radios /*/
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radio béjaia</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+           
+        }
+body {
+background: #000;
+}
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+        audio {
+            position: absolute;
+           
+            top: 50%;
+            
+            left: 50%;
+            transform: translate(-50%);
+            border: none;
+        }
+        .logo {
+            position: absolute;
+            top: 33%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+           
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <audio controls autoplay>
+        <source src="https://radio-dzair.net/proxy/izuran/izuran?shoutcast" type="audio/mpeg">
+        Votre navigateur ne supporte pas l'élément audio.
+    </audio>
+    <img src="https://www.dz-algerie.info/wp-content/uploads/2022/08/bejaia.png" alt="Logo" class="logo">
+</div>
+
+</body>
+</html>
