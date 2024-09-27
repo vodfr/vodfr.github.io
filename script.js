@@ -170,7 +170,7 @@ function playWithIframe(iframeSrc) {
 
     dialogbox();
   }, 5000);
-
+  
   iframe = document.getElementById("dynamic-iframe");
 
   if (!iframe) {
@@ -194,7 +194,9 @@ function playWithIframe(iframeSrc) {
   iframe.allowTransparency = true;
 
   iframe.style.display = "block";
-
+  
+  iframeCreated = true;
+  
   const message =
     '1. <marquee direction="left" behavior="alternate" scrollamount="2" width="100px">Balayer dici le Menu👆</marquee>||2. ou bien click ici pour plein pour plein écran';
   const existingP = document.querySelector("p");
@@ -209,10 +211,8 @@ function playWithIframe(iframeSrc) {
 
   iframeContainer.insertAdjacentElement("beforeend", dynPar);
 
-  iframe.addEventListener("load", function () {
-    iframeCreated = true;
-
-    openFullscreen();
+  iframe.addEventListener("load", function () {    
+   openFullscreen();
   });
 }
 
