@@ -221,7 +221,7 @@ window.addEventListener("load", () => {
 });
 
 iframeContainer.addEventListener("click", () => {
-  
+    if (iframeCreated === true) {
     if (iframeContainer.fullscreenElement) {
       
     if (iframeContainer.exitFullscreen) {
@@ -244,6 +244,7 @@ iframeContainer.addEventListener("click", () => {
       iframeContainer.msRequestFullscreen();
     }
   }
+    }
   iframeCreated = false;
 });
 function openFullscreen() {
