@@ -245,7 +245,7 @@ iframeContainer.addEventListener("click", () => {
     }
   }
     }
-  iframeCreated = false;
+  
 });
 function openFullscreen() {
   if (elem.requestFullscreen) {
