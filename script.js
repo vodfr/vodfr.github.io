@@ -196,7 +196,7 @@ function playWithIframe(iframeSrc) {
   iframe.style.display = "block";
 
   const message =
-    '1. <marquee direction="left" behavior="alternate" scrollamount="2" width="100px">Menu👆</marquee>||2. ou bien click ici pour plein pour plein écran';
+    '1. <marquee direction="left" behavior="alternate" scrollamount="2" width="100px">Balayer dici le Menu👆</marquee>||2. ou bien click ici pour plein pour plein écran';
   const existingP = document.querySelector("p");
 
   if (existingP) {
