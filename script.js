@@ -23,9 +23,11 @@ links.forEach((link) => {
     
 
     const clickedLink = link.getAttribute("data-id");
-
+  
+    iframeContainer.style.pointerEvents = 'auto'; 
+    
     iframeCreated = false;
-
+   
     iframeContainer.innerHTML = ""; //formater le contenu ->
 
     videoElement.style.display = "block";
@@ -139,11 +141,11 @@ document.addEventListener("touchmove", function (e) {
   if (deltaX > 50) {
 
     document.getElementById("sideMenu").classList.add("open");
-
+    
   } else if (deltaX < -50) {
 
     document.getElementById("sideMenu").classList.remove("open");
-
+    
   }
 
 });
@@ -186,7 +188,7 @@ document.querySelectorAll(".iframe").forEach((link) => {
 
     e.preventDefault();
 
-    
+  
 
     videoElement.style.display = "none";
 
