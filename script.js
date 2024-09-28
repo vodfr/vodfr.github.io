@@ -1,4 +1,4 @@
-/*/SimpleTV/*/
+/*/SimpleTV-A/*/
 
 const links = document.querySelectorAll("a.open");
 
@@ -18,10 +18,10 @@ links.forEach((link) => {
 
     const clickedLink = link.getAttribute("data-id");
 
-    iframeContainer.style.pointerEvents = "auto";
+    fullscreenBtn.classList.remove('hidden'); 
 
     iframeCreated = false;
-
+    
     iframeContainer.innerHTML = ""; //formater le contenu ->
 
     videoElement.style.display = "block";
@@ -101,11 +101,14 @@ document.addEventListener("touchmove", function (e) {
   let deltaX = touch.clientX - startX;
 
   if (deltaX > 50) {
+  
     document.getElementById("sideMenu").classList.add("open");
   } else if (deltaX < -50) {
+    
     document.getElementById("sideMenu").classList.remove("open");
   }
 });
+
 
 const b = document.querySelector("button");
 
@@ -133,7 +136,7 @@ function dialogbox() {
 document.querySelectorAll(".iframe").forEach((link) => {
   link.addEventListener("click", function (e) {
     e.preventDefault();
-
+    fullscreenBtn.classList.remove('hidden'); 
     videoElement.style.display = "none";
 
     msg.style.display = "block";
@@ -174,12 +177,11 @@ function playWithIframe(iframeSrc) {
 
   if (!iframe) {
     iframe = document.createElement("iframe");
-
-    iframe.id = "dynamic-iframe";
-
-    iframeContainer.appendChild(iframe);
-  }
-
+   }
+   
+  
+ iframe.id = "dynamic-iframe";
+  
   iframe.src = iframeSrc;
 
   iframe.width = "100%";
@@ -194,56 +196,23 @@ function playWithIframe(iframeSrc) {
 
   iframe.style.display = "block";
   
-  iframeCreated = true;
+  iframeContainer.appendChild(iframe);
   
-  const message =
-    '1. <marquee direction="left" behavior="alternate" scrollamount="2" width="100px">Balayer dici le Menu👆</marquee>||2. ou bien click ici pour plein pour plein écran';
-  const existingP = document.querySelector("p");
-
-  if (existingP) {
-    existingP.remove();
-  }
-
-  const dynPar = document.createElement("p");
-
-  dynPar.innerHTML = message;
-iframeContainer.appendChild(dynPar);
+  iframeCreated = true;
+    
  iframe.addEventListener("load", function () {    
+   
    openFullscreen();
   });
 }
+
+
 
 window.addEventListener("load", () => {
   document.getElementById("sideMenu").classList.add("open");
 });
 
-iframeContainer.addEventListener("click", () => {
-    if (iframeCreated === true) {
-    if (iframeContainer.fullscreenElement) {
-      
-    if (iframeContainer.exitFullscreen) {
-      iframeContainer.exitFullscreen();
-    } else if (iframeContainer.webkitExitFullscreen) { // Safari
-      iframeContainer.webkitExitFullscreen();
-    } else if (iframeContainer.msExitFullscreen) { // IE11
 
-      iframeContainer.msExitFullscreen();
-    }
-
-  } else {
-    if (iframeContainer.requestFullscreen) {
-      iframeContainer.requestFullscreen();
-    } else if (iframeContainer.webkitRequestFullscreen) {
-      // Safari
-      iframeContainer.webkitRequestFullscreen();
-    } else if (iframeContainer.msRequestFullscreen) {
-      // IE11
-      iframeContainer.msRequestFullscreen();
-    }
-  }
-    }
-  
-});
 function openFullscreen() {
   if (elem.requestFullscreen) {
     elem.requestFullscreen();
@@ -258,4 +227,57 @@ function openFullscreen() {
   }
 }
 
+const fullscreenBtn = document.getElementById('fullscreenBtn');
+const fullscreenIcon = fullscreenBtn.querySelector('i');
 
+fullscreenBtn.addEventListener("click", function () {
+   
+if (!document.fullscreenElement) {
+    document.getElementById("sideMenu").classList.remove("open");
+                document.documentElement.requestFullscreen();
+ fullscreenIcon.classList.remove('fa-expand');
+ fullscreenIcon.classList.add('fa-compress');
+ startHideTimer();
+            } else {
+if (document.exitFullscreen) {
+document.exitFullscreen();
+fullscreenIcon.classList.remove('fa-compress');
+fullscreenIcon.classList.add('fa-expand'); 
+fullscreenBtn.classList.remove('hidden');                 
+clearTimeout(hideTimer); 
+         }
+            }
+  
+ 
+
+     });
+
+
+function startHideTimer() {
+
+            hideTimer = setTimeout(() => {
+
+                fullscreenBtn.classList.add('hidden'); 
+               
+
+            }, 5000);
+
+        }
+
+document.addEventListener('fullscreenchange', function() {
+
+            if (document.fullscreenElement) {
+
+                startHideTimer(); 
+
+            } else {
+
+                clearTimeout(hideTimer); 
+
+                fullscreenBtn.classList.remove('hidden'); 
+                          document.getElementById("sideMenu").classList.add("open");
+
+                   
+            }
+
+        });
