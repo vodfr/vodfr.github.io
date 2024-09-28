@@ -1,4 +1,4 @@
-/*/SimpleTV-A/*/
+
 
 const links = document.querySelectorAll("a.open");
 
