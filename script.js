@@ -99,11 +99,11 @@ document.addEventListener("touchmove", function (e) {
   let deltaX = touch.clientX - startX;
 
   if (deltaX > 50) {
-  
+  fullscreenBtn.classList.remove('hidden'); 
     document.getElementById("sideMenu").classList.add("open");
   } else if (deltaX < -50) {
-    
-    document.getElementById("sideMenu").classList.remove("open");
+  document.getElementById("sideMenu").classList.remove("open");
+    startHideTimer();
   }
 });
 
@@ -150,6 +150,8 @@ document.querySelectorAll(".iframe").forEach((link) => {
     playWithIframe(iframeSrc);
   });
 });
+
+
 
 function playWithIframe(iframeSrc) {
   setTimeout(function () {
@@ -254,9 +256,10 @@ fullscreenBtn.addEventListener("click", function () {
 });
 
 function startHideTimer() {
+   
   hideTimer = setTimeout(() => {
     fullscreenBtn.classList.add("hidden");
-  }, 5000);
+  }, 4000);
 }
 
 document.addEventListener("fullscreenchange", function () {
