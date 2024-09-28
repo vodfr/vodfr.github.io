@@ -231,6 +231,7 @@ const fullscreenBtn = document.getElementById("fullscreenBtn");
 const fullscreenIcon = fullscreenBtn.querySelector("i");
 
 fullscreenBtn.addEventListener("click", function () {
+  if (iframeCreated === true) {
   if (!iframeContainer.fullscreenElement) {
     document.getElementById("sideMenu").classList.remove("open");
     iframeContainer.requestFullscreen();
@@ -245,6 +246,7 @@ fullscreenBtn.addEventListener("click", function () {
       fullscreenBtn.classList.remove("hidden");
       clearTimeout(hideTimer);
     }
+  }
   }
 });
 
