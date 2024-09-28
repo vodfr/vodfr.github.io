@@ -102,8 +102,9 @@ document.addEventListener("touchmove", function (e) {
   fullscreenBtn.classList.remove('hidden'); 
     document.getElementById("sideMenu").classList.add("open");
   } else if (deltaX < -50) {
+  startHideTimer();
   document.getElementById("sideMenu").classList.remove("open");
-    startHideTimer();
+    
   }
 });
 
