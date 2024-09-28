@@ -47,22 +47,35 @@ body {
   position: fixed;
   top: 50%;
   right: 20px;
-  transform: translateY(-50%);
+  animation: agrandir 5s linear;
   background-color: #000000;
   color: yellow !important;
   width: 40px;
   height: 40px;
-  border: 2px dashed yellow;
+  border: 3px dashed yellow;
   border-radius: 50%;
   padding: 0px;
   cursor: pointer;
   z-index: 1000;
   font-size: 18px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s, width 0.3s, height 0.3s;
 }
 
-/* Classe pour montrer le menu */
+@keyframes agrandir {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(60deg);
+  }
+  75% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .side-menu.open {
   left: 0;
 
@@ -82,7 +95,7 @@ body {
 
   height: 100%;
 
-  z-index: 0; 
+  z-index: 0;
 }
 .vjs-big-play-button {
   background-color: transparent !important;
@@ -144,6 +157,7 @@ button {
   border-radius: 3px;
 }
 
+
 .side-menu::-webkit-scrollbar-thumb {
   background: yellow;
   border-radius: 25px;
@@ -180,6 +194,7 @@ button {
 
   border-style: none none dashed dashed;
 
+  
   font-size: 11px;
 
   z-index: 2;
@@ -222,3 +237,4 @@ p {
   color: yellow;
   height: 100%;
 }
+
