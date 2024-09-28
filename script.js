@@ -247,6 +247,11 @@ fullscreenBtn.addEventListener("click", function () {
       clearTimeout(hideTimer);
     }
   }
+  } else {
+      
+      videoElement.requestFullscreen();
+      
+      
   }
 });
 
