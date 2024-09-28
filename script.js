@@ -208,10 +208,8 @@ function playWithIframe(iframeSrc) {
   const dynPar = document.createElement("p");
 
   dynPar.innerHTML = message;
-
-  iframeContainer.insertAdjacentElement("beforeend", dynPar);
-
-  iframe.addEventListener("load", function () {    
+iframeContainer.appendChild(dynPar);
+ iframe.addEventListener("load", function () {    
    openFullscreen();
   });
 }
