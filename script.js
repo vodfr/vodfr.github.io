@@ -207,6 +207,7 @@ function playWithIframe(iframeSrc) {
 
 
 window.addEventListener("load", () => {
+  fullscreenBtn.classList.add("hidden");
   document.getElementById("sideMenu").classList.add("open");
 });
 
