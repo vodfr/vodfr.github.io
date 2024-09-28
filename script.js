@@ -1,5 +1,3 @@
-
-
 const links = document.querySelectorAll("a.open");
 
 const msg = document.querySelector(".message-box");
