@@ -154,7 +154,6 @@ function playWithIframe(iframeSrc) {
   setTimeout(function () {
     if (player) {
       player.controls(false);
-
       player.pause();
     } else {
       player = videojs("my-video");
