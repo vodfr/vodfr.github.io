@@ -227,57 +227,41 @@ function openFullscreen() {
   }
 }
 
-const fullscreenBtn = document.getElementById('fullscreenBtn');
-const fullscreenIcon = fullscreenBtn.querySelector('i');
+const fullscreenBtn = document.getElementById("fullscreenBtn");
+const fullscreenIcon = fullscreenBtn.querySelector("i");
 
 fullscreenBtn.addEventListener("click", function () {
-   
-if (!document.fullscreenElement) {
+  if (!iframeContainer.fullscreenElement) {
     document.getElementById("sideMenu").classList.remove("open");
-                document.documentElement.requestFullscreen();
- fullscreenIcon.classList.remove('fa-expand');
- fullscreenIcon.classList.add('fa-compress');
- startHideTimer();
-            } else {
-if (document.exitFullscreen) {
-document.exitFullscreen();
-fullscreenIcon.classList.remove('fa-compress');
-fullscreenIcon.classList.add('fa-expand'); 
-fullscreenBtn.classList.remove('hidden');                 
-clearTimeout(hideTimer); 
-         }
-            }
-  
- 
-
-     });
-
+    iframeContainer.requestFullscreen();
+    fullscreenIcon.classList.remove("fa-expand");
+    fullscreenIcon.classList.add("fa-compress");
+    startHideTimer();
+  } else {
+    if (iframeContainer.exitFullscreen) {
+      iframeContainer.exitFullscreen();
+      fullscreenIcon.classList.remove("fa-compress");
+      fullscreenIcon.classList.add("fa-expand");
+      fullscreenBtn.classList.remove("hidden");
+      clearTimeout(hideTimer);
+    }
+  }
+});
 
 function startHideTimer() {
+  hideTimer = setTimeout(() => {
+    fullscreenBtn.classList.add("hidden");
+  }, 5000);
+}
 
-            hideTimer = setTimeout(() => {
+document.addEventListener("fullscreenchange", function () {
+  if (iframeContainer.fullscreenElement) {
+    startHideTimer();
+  } else {
+    clearTimeout(hideTimer);
 
-                fullscreenBtn.classList.add('hidden'); 
-               
-
-            }, 5000);
-
-        }
-
-document.addEventListener('fullscreenchange', function() {
-
-            if (document.fullscreenElement) {
-
-                startHideTimer(); 
-
-            } else {
-
-                clearTimeout(hideTimer); 
-
-                fullscreenBtn.classList.remove('hidden'); 
-                          document.getElementById("sideMenu").classList.add("open");
-
-                   
-            }
-
-        });
+    fullscreenBtn.classList.remove("hidden");
+    document.getElementById("sideMenu").classList.add("open");
+  }
+});
+    
