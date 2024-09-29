@@ -2,7 +2,7 @@ const links = document.querySelectorAll("a.open");
 
 const msg = document.querySelector(".message-box");
 
-const videoElement = document.getElementById("my-video");
+const videoElement = document.getElementById("videoContainer");
 
 const iframeContainer = document.getElementById("iframe-container");
 let iframe = null;
