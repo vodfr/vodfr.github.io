@@ -198,7 +198,7 @@ function playWithIframe(iframeSrc) {
   
   iframeCreated = true;
   
-  const message = "&#8592; balayer dici le menu &#8594;";
+  const message = "&#8592;  balayer d'ici le MENU  &#8594;";
 
   const existingP = document.querySelector("p");
 
