@@ -170,6 +170,7 @@ button {
   border: 0px;
 }
 .message-box {
+  
   position: absolute;
 
   top: 50%;
@@ -186,7 +187,7 @@ button {
 
   padding: 6px 0px 6px 0px;
 
-  width: 50%;
+  width: 40%;
 
   text-align: center;
 
