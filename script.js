@@ -200,9 +200,22 @@ function playWithIframe(iframeSrc) {
   iframeContainer.appendChild(iframe);
   
   iframeCreated = true;
+  
+  const message = "&#8592; balayer dici le menu &#8594;";
+
+  const existingP = document.querySelector("p");
+
+  if (existingP) {
+    existingP.remove();
+  }
+  
+  const dynPar = document.createElement("p");
+  
+  dynPar.innerHTML = message;
+  
+  iframeContainer.insertAdjacentElement("beforeend", dynPar);
     
- iframe.addEventListener("load", function () {    
-   
+  iframe.addEventListener("load", function () {   
    openFullscreen();
   });
 }
