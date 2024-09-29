@@ -47,7 +47,8 @@ links.forEach((link) => {
               });
 
               player.ready(function () {
-                //lecture quant le lecteur est pret
+
+          
 
                 player.load();
 
@@ -157,13 +158,9 @@ document.querySelectorAll(".iframe").forEach((link) => {
 function playWithIframe(iframeSrc) {
   setTimeout(function () {
     if (player) {
-      player.controls(false);
       player.pause();
     } else {
       player = videojs("my-video");
-
-      player.controls(false);
-
       player.pause();
     }
 
