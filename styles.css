@@ -241,7 +241,7 @@ p {
   text-align: center;
 }
 #searchInput {
-width: 90%;
+width: 100%;
 height: 20px;
 font-size: 12px;
 padding: 3px;
@@ -254,5 +254,6 @@ color: white !important;
   }
 .highlight {
 border: 2px dashed yellow !important;
+width: 80% !important;
 }
 
