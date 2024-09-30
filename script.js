@@ -283,4 +283,36 @@ document.addEventListener("fullscreenchange", function () {
     document.getElementById("sideMenu").classList.add("open");
   }
 });
-    
+
+const searchInput = document.getElementById("searchInput");
+const chaines = Array.from(document.querySelectorAll("#sideMenu a"));
+
+function filterAndHighlight() {
+  const filter = searchInput.value.toLowerCase();
+
+  if (filter === "") {
+    chaines.forEach((chaine) => chaine.classList.remove("highlight"));
+    return;
+  }
+
+  let firstMatch = null;
+
+  chaines.forEach((chaine) => {
+    const text = chaine.textContent.toLowerCase();
+    if (text.includes(filter)) {
+      chaine.classList.add("highlight");
+      if (!firstMatch) {
+        firstMatch = chaine;
+      }
+    } else {
+      chaine.classList.remove("highlight");
+    }
+  });
+
+  if (firstMatch) {
+    firstMatch.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+}
+
+searchInput.addEventListener("input", filterAndHighlight);
+                            
