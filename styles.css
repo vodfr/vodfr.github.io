@@ -248,7 +248,7 @@ padding: 3px;
 margin-bottom: 10px;
 border: 1px solid #ccc;
 border-radius: 3px;
-color: white;
+color: white !important;
   }
 .highlight {
 border: 2px dashed yellow !important;
