@@ -96,6 +96,8 @@ html, body {
   height: 100%;
 
   z-index: 0;
+
+  display: block;
 }
 .vjs-big-play-button {
   background-color: transparent !important;
