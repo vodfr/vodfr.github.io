@@ -40,7 +40,7 @@ html, body {
 
   display: flex;
 
-  background-color: black;
+  background-color: transparent;
 }
 
 #fullscreenBtn {
