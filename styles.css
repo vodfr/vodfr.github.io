@@ -241,14 +241,16 @@ p {
   text-align: center;
 }
 #searchInput {
-width: 100%;
+width: 90%;
 height: 20px;
 font-size: 12px;
 padding: 3px;
 margin-bottom: 10px;
 border: 1px solid #ccc;
-border-radius: 3px;
+border-radius: 2px;
+text-align: center;
 color: white !important;
+
   }
 .highlight {
 border: 2px dashed yellow !important;
