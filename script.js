@@ -211,9 +211,12 @@ function playWithIframe(iframeSrc) {
   dynPar.innerHTML = message;
   
   iframeContainer.insertAdjacentElement("beforeend", dynPar);
-    
+
+  document.body.style.pointerEvents = 'none';
+  
   iframe.addEventListener("load", function () {   
    openFullscreen();
+   document.body.style.pointerEvents = 'none';
   });
 }
 
