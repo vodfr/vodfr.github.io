@@ -215,9 +215,9 @@ function playWithIframe(iframeSrc) {
   document.body.style.pointerEvents = 'none';
   
   iframe.addEventListener("load", function () {   
-   openFullscreen();
-   document.body.style.pointerEvents = 'auto';
-  });
+  document.body.style.pointerEvents = 'auto';
+    openFullscreen();
+     });
 }
 
 
