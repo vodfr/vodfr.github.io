@@ -221,8 +221,8 @@ function playWithIframe(iframeSrc) {
 
 
 window.addEventListener("load", () => {
-  openFullscreen();
   document.getElementById("sideMenu").classList.add("open");
+  openFullscreen();
 });
 
 
