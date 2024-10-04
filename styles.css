@@ -16,7 +16,7 @@
 
   transition: left 0.3s ease;
 
-  transform: perspective(600px) rotateY(45deg);
+  transform: perspective(600px) rotateY(45deg) !important;
 
   border: 1px solid white;
 
