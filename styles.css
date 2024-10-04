@@ -1,5 +1,6 @@
 /*/css-A/*/
-html, body {
+html,
+body {
   font-family: Arial, sans-serif;
 
   margin: 0;
@@ -10,18 +11,18 @@ html, body {
 
   display: flex;
 
-  background-color: transparent;
+  background: transparent;
 }
 .side-menu {
   position: fixed;
 
-  top: 0;
+  top: 50px;
 
-  left: -300px;
+  left: -900px;
 
   width: 187px;
 
-  height: 100%;
+  height: 80%;
 
   background-color: #000000;
 
@@ -39,12 +40,10 @@ html, body {
 
   overflow-x: hidden;
 
-  transform: perspective(600px) rotateY(30deg);
+  transform: perspective(600px) rotateY(36deg);
 
   z-index: 3;
 }
-
-
 
 #fullscreenBtn {
   position: fixed;
@@ -63,7 +62,6 @@ html, body {
   font-size: 18px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
 }
-
 @keyframes agrandir {
   0% {
     transform: rotate(0deg);
@@ -78,7 +76,6 @@ html, body {
     transform: rotate(360deg);
   }
 }
-
 .side-menu.open {
   left: 0;
 
@@ -161,8 +158,6 @@ button {
 
   border-radius: 3px;
 }
-
-
 .side-menu::-webkit-scrollbar-thumb {
   background: yellow;
   border-radius: 25px;
@@ -174,8 +169,9 @@ button {
 
   border: 0px;
 }
+
+
 .message-box {
-  
   position: absolute;
 
   top: 50%;
@@ -200,7 +196,6 @@ button {
 
   border-style: none none dashed dashed;
 
-  
   font-size: 11px;
 
   z-index: 2;
@@ -239,28 +234,19 @@ b {
   background: transparent !important;
   z-index: 1;
 }
-p {
-  background-color: #000000;
-  color: yellow;
-  height: 50px;
-  width: 100%;
-  text-align: center;
-}
 #searchInput {
-width: 100%;
-height: 20px;
-font-size: 10px;
-padding: 3px;
-margin-bottom: 10px;
-margin-top: 5px;
-border: 1px solid #ccc;
-border-radius: 2px;
-text-align: center;
-color: white !important;
-
-  }
-.highlight {
-border: 2px dashed yellow !important;
-width: 90% !important;
+  width: 100%;
+  height: 20px;
+  font-size: 10px;
+  padding: 3px;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  text-align: center;
+  color: white !important;
 }
-
+.highlight {
+  border: 2px dashed yellow !important;
+  width: 90% !important;
+}
