@@ -1,4 +1,17 @@
 /*/css-A/*/
+html, body {
+  font-family: Arial, sans-serif;
+
+  margin: 0;
+
+  padding: 0;
+
+  height: 100vh;
+
+  display: flex;
+
+  background-color: transparent;
+}
 .side-menu {
   position: fixed;
 
@@ -31,19 +44,7 @@
   z-index: 3;
 }
 
-html, body {
-  font-family: Arial, sans-serif;
 
-  margin: 0;
-
-  padding: 0;
-
-  height: 100vh;
-
-  display: flex;
-
-  background-color: transparent;
-}
 
 #fullscreenBtn {
   position: fixed;
