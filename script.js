@@ -4,6 +4,8 @@ const msg = document.querySelector(".message-box");
 
 const videoElement = document.getElementById("videoContainer");
 
+const video = document.getElementById("my-video");
+
 const iframeContainer = document.getElementById("iframe-container");
 let iframe = null;
 let iframeCreated = false;
@@ -261,7 +263,7 @@ fullscreenBtn.addEventListener("click", function () {
   }
   } else {
       
-      videoElement.requestFullscreen();
+      video.requestFullscreen();
       
       
   }
