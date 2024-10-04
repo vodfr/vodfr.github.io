@@ -170,7 +170,7 @@ function playWithIframe(iframeSrc) {
 
     msg.style.display = "block";
 
-    msg.innerHTML = "<marquee width='100%' direction='left' scrollamount='5'>Rétablissement de la chaine </marquee>⚠️";
+    msg.innerHTML = "Rétablissement de la chaine ⚠️";
 
     dialogbox();
   }, 5000);
