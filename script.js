@@ -134,7 +134,7 @@ function dialogbox() {
     msg.style.display = "none";
 
     msg.innerHTML = "";
-  }, 5000);
+  }, 6000);
 }
 
 document.querySelectorAll(".iframe").forEach((link) => {
