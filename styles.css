@@ -40,8 +40,6 @@ html, body {
 
   display: flex;
 
-  transform: perspective(600px) rotateY(45deg);
-
   background-color: transparent;
 }
 
