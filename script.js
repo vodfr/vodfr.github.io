@@ -7,7 +7,9 @@ const videoElement = document.getElementById("videoContainer");
 const video = document.getElementById("my-video");
 
 const iframeContainer = document.getElementById("iframe-container");
+
 let iframe = null;
+
 let iframeCreated = false;
 
 let player;
@@ -215,9 +217,8 @@ function playWithIframe(iframeSrc) {
   iframeContainer.insertAdjacentElement("beforeend", dynPar);
 
   
-  iframe.addEventListener("load", function () {   
   openFullscreen();
-     });
+    
 }
 
 
