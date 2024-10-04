@@ -26,6 +26,8 @@
 
   overflow-x: hidden;
 
+  transform: perspective(600px) rotateY(30 deg);
+
   z-index: 3;
 }
 
