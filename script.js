@@ -71,7 +71,7 @@ links.forEach((link) => {
             player.on("play", function () {
               msg.style.display = "block";
 
-              msg.innerHTML = link.textContent + " est en <b>LECTURE...</b>";
+              msg.innerHTML = "<marquee width='100%' direction='left' scrollamount='5'>"+link.textContent + " est en <b>LECTURE...</b></marquee>";
 
               dialogbox();
             });
