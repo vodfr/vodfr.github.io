@@ -39,7 +39,7 @@ html, body {
 
   overflow-x: hidden;
 
-  transform: perspective(600px) rotateY(30 deg);
+  transform: perspective(600px) rotateY(30deg);
 
   z-index: 3;
 }
