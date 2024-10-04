@@ -216,8 +216,9 @@ function playWithIframe(iframeSrc) {
   
   iframeContainer.insertAdjacentElement("beforeend", dynPar);
 
-  
+  if (iframeCreated) {
   openFullscreen();
+  }
     
 }
 
