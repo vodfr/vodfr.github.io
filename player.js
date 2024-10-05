@@ -94,7 +94,7 @@ stopButton.onclick = () => {
     const blob = new Blob(chunks, { type: "audio/mpeg" });
 
     const audioURL = URL.createObjectURL(blob);
-    alert(audioURL);
+    
     const downloadLink = document.createElement("a");
 
     downloadLink.href = audioURL;
