@@ -10,7 +10,7 @@ let recordingInterval,
   address,
   audioContext,
   audioElement;
-let currentURL = "https://exemple.com/bejaia";
+let currentURL = window.location.href;
 let radios = [
   {
     radio: {
