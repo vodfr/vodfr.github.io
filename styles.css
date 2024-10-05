@@ -11,6 +11,8 @@ body {
 
   display: flex;
 
+  overflow: hidden;
+
   background: transparent;
 }
 .side-menu {
@@ -249,4 +251,10 @@ b {
 .highlight {
   border: 2px dashed yellow !important;
   width: 90% !important;
+}
+p {
+background-color: black;
+color: yellow;
+text-align: center;
+height: 28px;
 }
