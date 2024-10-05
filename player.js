@@ -3,12 +3,14 @@ const lecteur = document.getElementById("lecteur");
 const stopButton = document.getElementById("stopRecording");
 const downloadLinkContainer = document.getElementById("downloadLinkContainer");
 const recordingTimeDisplay = document.getElementById("recordingTime");
-let mediaRecorder;
 let chunks = [];
-let recordingInterval;
-let startTime;
-let address;
-let currentURL = window.location.href;
+let recordingInterval,
+  mediaRecorder,
+  startTime,
+  address,
+  audioContext,
+  audioElement;
+let currentURL = "https://exemple.com/bejaia";
 let radios = [
   {
     radio: {
@@ -33,6 +35,7 @@ for (let i = 0; i < radios.length; i++) {
 document.getElementById("startRecording").addEventListener("click", function () {
     audioRecorder(address);
   });
+
 function updateRecordingTime() {
   const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
 
@@ -42,17 +45,16 @@ function updateRecordingTime() {
 
   recordingTimeDisplay.textContent = `Temps d'enregistrement : ${minutes}:${seconds}`;
 }
-
 function audioRecorder(address) {
   startButton.onclick = () => {
-    const audioContext = new AudioContext();
+    audioContext = new AudioContext();
 
-    const audioElement = new Audio(adresse);
+    audioElement = new Audio(address);
 
     audioElement.crossOrigin = "anonymous";
-    lecteur.play();
-    audioElement.play();
 
+    audioElement.play();
+    lecteur.play();
     const source = audioContext.createMediaElementSource(audioElement);
 
     const streamDestination = audioContext.createMediaStreamDestination();
@@ -88,16 +90,16 @@ stopButton.onclick = () => {
   clearInterval(recordingInterval);
 
   audioElement.pause();
-  audioElement.currentTime = 0;
+
   lecteur.pause();
-  lecteur.currentTime = 0;
+
   recordingTimeDisplay.textContent = "Temps d'enregistrement : 00:00";
 
   mediaRecorder.onstop = function () {
     const blob = new Blob(chunks, { type: "audio/mpeg" });
 
     const audioURL = URL.createObjectURL(blob);
-
+    alert(audioURL);
     const downloadLink = document.createElement("a");
 
     downloadLink.href = audioURL;
