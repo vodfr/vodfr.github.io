@@ -12,16 +12,11 @@ let recordingInterval,
   audioElement;
 let currentURL = window.location.href;
 let radios = [
-  {
-    radio: {
-      region: "bejaia",
-      adresse: "https://webradio.tda.dz/Bejaia_64K.mp3"
-    }
-  },
-  {
-    radio: { region: "alger", adresse: "https://webradio.tda.dz/Alger_64K.mp3" }
-  },
-  { radio: { region: "oran", adresse: "https://webradio.tda.dz/Oran_64K.mp3" } }
+  { radio: { region: "bejaia", adresse: "https://webradio.tda.dz/Bejaia_64K.mp3"}},
+  { radio: { region: "raina", adresse: "https://radiodzair.net:8060/raina"}},
+  { radio: { region: "hawa", adresse: "https://radio4.pro-fhi.net/radio/9062/stream.mp3"}},
+  { radio: { region: "izuran", adresse: "https://radio-dzair.net/proxy/izuran/izuran?shoutcast"}}
+
 ];
 for (let i = 0; i < radios.length; i++) {
   let region = radios[i].radio.region;
