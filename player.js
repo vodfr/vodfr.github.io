@@ -78,6 +78,10 @@ function audioRecorder(address) {
     startButton.disabled = true;
 
     stopButton.disabled = false;
+    
+    startButton.classList.add("active_button");
+
+    stopButton.classList.remove("active_button");                                                                
 
   };
   
@@ -88,6 +92,10 @@ stopButton.onclick = () => {
   stopButton.disabled = true;
 
   startButton.disabled = false;
+
+  startButton.classList.remove("active_button");
+
+  stopButton.classList.add("active_button");
 
   clearInterval(recordingInterval);
 
