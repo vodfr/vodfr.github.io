@@ -41,7 +41,9 @@ function updateRecordingTime() {
   recordingTimeDisplay.textContent = `Temps d'enregistrement : ${minutes}:${seconds}`;
 }
 function audioRecorder(address) {
+  
   startButton.onclick = () => {
+    
     audioContext = new AudioContext();
 
     audioElement = new Audio(address);
@@ -49,7 +51,11 @@ function audioRecorder(address) {
     audioElement.crossOrigin = "anonymous";
 
     audioElement.play();
+    
     lecteur.play();
+    
+    downloadLinkContainer.innerHTML = "";
+    
     const source = audioContext.createMediaElementSource(audioElement);
 
     const streamDestination = audioContext.createMediaStreamDestination();
@@ -61,6 +67,7 @@ function audioRecorder(address) {
     mediaRecorder = new MediaRecorder(streamDestination.stream);
 
     mediaRecorder.ondataavailable = function (e) {
+      
       chunks.push(e.data);
     };
 
@@ -104,9 +111,9 @@ stopButton.onclick = () => {
     downloadLink.textContent = "Télécharger l'enregistrement";
 
     downloadLinkContainer.innerHTML = "";
-
+    
     downloadLinkContainer.appendChild(downloadLink);
-
+    
     chunks = [];
   };
 };
