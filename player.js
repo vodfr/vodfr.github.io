@@ -78,6 +78,8 @@ function audioRecorder(address) {
     startButton.disabled = true;
 
     stopButton.disabled = false;
+
+    downloadLinkContainer.innerHTML = "";
   };
 }
 stopButton.onclick = () => {
