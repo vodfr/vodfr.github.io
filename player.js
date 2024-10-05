@@ -54,8 +54,6 @@ function audioRecorder(address) {
     
     lecteur.play();
     
-    downloadLinkContainer.innerHTML = "";
-    
     const source = audioContext.createMediaElementSource(audioElement);
 
     const streamDestination = audioContext.createMediaStreamDestination();
