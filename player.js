@@ -79,8 +79,8 @@ function audioRecorder(address) {
 
     stopButton.disabled = false;
 
-    downloadLinkContainer.innerHTML = "";
   };
+  
 }
 stopButton.onclick = () => {
   mediaRecorder.stop();
