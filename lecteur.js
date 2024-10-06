@@ -20,6 +20,7 @@ const lecteur = document.getElementById('lecteur');
            audioElement.crossOrigin = "anonymous"; 
           audioElement.currentTime = "0";
            audioElement.play();
+           lecteur.currentTime = "0";
            lecteur.play();
            const source = audioContext.createMediaElementSource(audioElement);
            const streamDestination = audioContext.createMediaStreamDestination();
