@@ -41,9 +41,7 @@ body {
   overflow-y: scroll;
 
   overflow-x: hidden;
-
-  transform: perspective(600px) rotateY(28deg);
-
+  
   z-index: 3;
 }
 
