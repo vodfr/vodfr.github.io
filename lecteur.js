@@ -38,7 +38,6 @@ const lecteur = document.getElementById('lecteur');
         };
         stopButton.onclick = () => {
             mediaRecorder.stop();
-          audioElement.currentTime = "0";
           lecteur.currentTime = audioElement.currentTime;
           audioElement.pause();
           lecteur.pause();
