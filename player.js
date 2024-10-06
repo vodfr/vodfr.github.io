@@ -1,36 +1,49 @@
 const startButton = document.getElementById("startRecording");
-const lecteur = document.getElementById("lecteur");
 const stopButton = document.getElementById("stopRecording");
 const downloadLinkContainer = document.getElementById("downloadLinkContainer");
 const recordingTimeDisplay = document.getElementById("recordingTime");
+const lecteur = document.getElementById("lecteur");
+let mediaRecorder;
 let chunks = [];
-let recordingInterval,
-  mediaRecorder,
-  startTime,
-  address,
-  audioContext,
-  audioElement;
+let recordingInterval;
+let startTime, audioElement, address;
 let currentURL = window.location.href;
 let radios = [
-  { radio: { region: "bejaia", adresse: "https://webradio.tda.dz/Bejaia_64K.mp3"}},
-  { radio: { region: "raina", adresse: "https://radiodzair.net:8060/raina"}},
-  { radio: { region: "hawa", adresse: "https://radio4.pro-fhi.net/radio/9062/stream.mp3"}},
-  { radio: { region: "izuran", adresse: "https://radio-dzair.net/proxy/izuran/izuran?shoutcast"}}
+  { radio: { name: "bejaia", data: "https://webradio.tda.dz/Bejaia_64K.mp3" } },
 
+  { radio: { name: "raina", data: "https://radiodzair.net:8060/raina" } },
+  {
+    radio: { name: "jilfm", data: "https://webradio.tda.dz/Jeunesse_64K.mp3" }
+  },
+  {
+    radio: {
+      name: "hawana",
+      data: "https://radio4.pro-fhi.net/radio/9062/stream.mp3"
+    }
+  },
+  {
+    radio: {
+      name: "izuran",
+      data: "https://radio-dzair.net/proxy/izuran/izuran?shoutcast"
+    }
+  }
 ];
 for (let i = 0; i < radios.length; i++) {
-  let region = radios[i].radio.region;
-  if (currentURL.includes(region)) {
-    console.log("Région trouvée dans l'URL : " + region);
-    console.log("Adresse de la radio : " + radios[i].radio.adresse);
-    address = radios[i].radio.adresse;
+  let nameRadio = radios[i].radio.name;
+
+  if (currentURL.includes(nameRadio)) {
+    console.log("Région trouvée dans l'URL : " + nameRadio);
+
+    console.log("Adresse de la radio : " + radios[i].radio.data);
+
+    address = radios[i].radio.data;
+
     break;
   }
 }
 document.getElementById("startRecording").addEventListener("click", function () {
     audioRecorder(address);
   });
-
 function updateRecordingTime() {
   const elapsedTime = Math.floor((Date.now() - startTime) / 1000);
 
@@ -38,70 +51,69 @@ function updateRecordingTime() {
 
   const seconds = String(elapsedTime % 60).padStart(2, "0");
 
-  recordingTimeDisplay.textContent = `Temps d'enregistrement : ${minutes}:${seconds}`;
+  recordingTimeDisplay.innerHTML =
+    "Temps d'enregistrement : <b>" + minutes + ":" + seconds + "</b>";
 }
-function audioRecorder(address) {
-  
-  startButton.onclick = () => {
-    
-    audioContext = new AudioContext();
+function audioRecorder(chaine) {
+  chaine = address;
+  const audioContext = new AudioContext();
 
-    audioElement = new Audio(address);
+  audioElement = new Audio(chaine);
 
-    audioElement.crossOrigin = "anonymous";
+  audioElement.crossOrigin = "anonymous";
 
-    audioElement.play();
-    
-    lecteur.play();
-    
-    const source = audioContext.createMediaElementSource(audioElement);
+  audioElement.currentTime = lecteur.currentTime;
 
-    const streamDestination = audioContext.createMediaStreamDestination();
+  audioElement.play();
 
-    source.connect(streamDestination);
+  lecteur.play();
 
-    source.connect(audioContext.destination);
+  const source = audioContext.createMediaElementSource(audioElement);
 
-    mediaRecorder = new MediaRecorder(streamDestination.stream);
+  const streamDestination = audioContext.createMediaStreamDestination();
 
-    mediaRecorder.ondataavailable = function (e) {
-      
-      chunks.push(e.data);
-    };
+  source.connect(streamDestination);
 
-    mediaRecorder.start();
+  source.connect(audioContext.destination);
 
-    startTime = Date.now();
+  mediaRecorder = new MediaRecorder(streamDestination.stream);
 
-    recordingInterval = setInterval(updateRecordingTime, 1000);
-
-    startButton.disabled = true;
-
-    stopButton.disabled = false;
-    
-    startButton.classList.add("active_button");
-
-    stopButton.classList.remove("active_button");                                                                
-
+  mediaRecorder.ondataavailable = function (e) {
+    chunks.push(e.data);
   };
-  
+
+  mediaRecorder.start();
+
+  startTime = Date.now();
+
+  recordingInterval = setInterval(updateRecordingTime, 1000);
+
+  startButton.disabled = true;
+
+  startButton.classList.add("active_button");
+
+  stopButton.disabled = false;
+
+  stopButton.classList.remove("active_button");
 }
 stopButton.onclick = () => {
   mediaRecorder.stop();
 
+  audioElement.currentTime = lecteur.currentTime;
+
+  audioElement.pause();
+
+  lecteur.pause();
+
   stopButton.disabled = true;
+
+  stopButton.classList.add("active_button");
 
   startButton.disabled = false;
 
   startButton.classList.remove("active_button");
 
-  stopButton.classList.add("active_button");
-
   clearInterval(recordingInterval);
-
-  audioElement.pause();
-
-  lecteur.pause();
 
   recordingTimeDisplay.textContent = "Temps d'enregistrement : 00:00";
 
@@ -109,7 +121,7 @@ stopButton.onclick = () => {
     const blob = new Blob(chunks, { type: "audio/mpeg" });
 
     const audioURL = URL.createObjectURL(blob);
-    
+
     const downloadLink = document.createElement("a");
 
     downloadLink.href = audioURL;
@@ -119,10 +131,9 @@ stopButton.onclick = () => {
     downloadLink.textContent = "Télécharger l'enregistrement";
 
     downloadLinkContainer.innerHTML = "";
-    
+
     downloadLinkContainer.appendChild(downloadLink);
-    
+
     chunks = [];
   };
 };
-
