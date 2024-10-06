@@ -38,8 +38,8 @@ const lecteur = document.getElementById('lecteur');
         };
         stopButton.onclick = () => {
             mediaRecorder.stop();
-          lecteur.currentTime = audioElement.currentTime;
-          audioElement.pause();
+          audioElement.currentTime = lecteur.currentTime;  
+         audioElement.pause();
           lecteur.pause();
             stopButton.disabled = true;
            stopButton.classList.add("active_button");
