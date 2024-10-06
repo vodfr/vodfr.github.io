@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dzair raina</title>
 
-        <style>
+          <style>
     body, html {
       margin: 0;
       padding: 0;
@@ -18,7 +18,7 @@
     }
 
     body {
-      background: #000;
+      background: #000000;
     }
 
     .container {
@@ -32,7 +32,7 @@
       width: 300px;
       top: 50%;
       left: 50%;
-      transform: translate(-50%);
+      transform: translate(-50%) scale(0.5);
       border: none;
     }
     
@@ -50,27 +50,39 @@
 
     .logo {
       position: absolute;
-      top: 33%;
+      top: 30%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 80px;
-      height: 80px;
+      width: 90px;
+      height: 90px;
       z-index: 10;
     }
 
     a {
       text-decoration: none;
-      border: 1px solid yellow;
-      color: yellow;
-      font-size: 11px;
+      border: 1px solid red;
+      color: red;
+      font-size: 24px;
     }
 
     button {
       color: white;
-      font-size: 11px;
+      font-size: 16px;
       background: black;
       border: 1px solid white;
+      margin: 5px 5px 5px 5px;
+    
     }
+    
+    .active_button {
+     font-size: 9px;
+     font-weight: bold;
+     background: black;
+     border: 2px solid white;
+
+    }
+
+    
   </style>
 </head>
 <body>
@@ -84,8 +96,10 @@
 </div>
 
   <div id="recorderContainer">
-      
-
+   <div id="recordingTime">Temps d'enregistrement : 00:00</div>
+    <button id="startRecording">Démarrer l'enregistrement</button>
+    <button id="stopRecording" disabled>Arrêter l'enregistrement</button><br>
+    <div id="downloadLinkContainer"></div>
   </div>
     <script src="player.js"></script>
 </body>
