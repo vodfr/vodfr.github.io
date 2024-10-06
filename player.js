@@ -9,24 +9,11 @@ let recordingInterval;
 let startTime, audioElement, address;
 let currentURL = window.location.href;
 let radios = [
-  { radio: { name: "bejaia", data: "https://webradio.tda.dz/Bejaia_64K.mp3" } },
-
-  { radio: { name: "raina", data: "https://radiodzair.net:8060/raina" } },
-  {
-    radio: { name: "jilfm", data: "https://webradio.tda.dz/Jeunesse_64K.mp3" }
-  },
-  {
-    radio: {
-      name: "hawa",
-      data: "https://radio4.pro-fhi.net/radio/9062/stream.mp3"
-    }
-  },
-  {
-    radio: {
-      name: "izuran",
-      data: "https://radio-dzair.net/proxy/izuran/izuran?shoutcast"
-    }
-  }
+  { radio: { name: "bejaia", data: "https://webradio.tda.dz/Bejaia_64K.mp3"}},
+  { radio: { name: "raina", data: "https://radiodzair.net:8060/raina"}},
+  { radio: { name: "jilfm", data: "https://webradio.tda.dz/Jeunesse_64K.mp3"}},
+  { radio: { name: "hawa", data: "https://radio4.pro-fhi.net/radio/9062/stream.mp3"}},
+  { radio: { name: "iz", data: "https://radio-dzair.net/proxy/izuran/izuran?shoutcast"}}
 ];
 for (let i = 0; i < radios.length; i++) {
   let nameRadio = radios[i].radio.name;
@@ -137,7 +124,4 @@ stopButton.onclick = () => {
     chunks = [];
   };
 };
-window.addEventListener("load", () => {
-alert(window.location.href);
 
-});
