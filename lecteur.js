@@ -18,17 +18,15 @@ const lecteur = document.getElementById('lecteur');
            const audioContext = new AudioContext();
             audioElement = new Audio('https://webradio.tda.dz/Bejaia_64K.mp3');
            audioElement.crossOrigin = "anonymous"; 
-          audioElement.currentTime = "0";
+          audioElement.currentTime = lecteur.currentTime;
            audioElement.play();
-           lecteur.currentTime = "0";
            lecteur.play();
            const source = audioContext.createMediaElementSource(audioElement);
            const streamDestination = audioContext.createMediaStreamDestination();
            source.connect(streamDestination);
            source.connect(audioContext.destination);           
             mediaRecorder = new MediaRecorder(streamDestination.stream);
-          
-                      mediaRecorder.ondataavailable = function (e) {
+            mediaRecorder.ondataavailable = function (e) {
             chunks.push(e.data);
             }; 
             mediaRecorder.start();
