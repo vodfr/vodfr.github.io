@@ -11,8 +11,7 @@ const lecteur = document.getElementById('lecteur');
             const elapsedTime = Math.floor((Date.now() - startTime) / 1000); 
             const minutes = String(Math.floor(elapsedTime / 60)).padStart(2, '0');
             const seconds = String(elapsedTime % 60).padStart(2, '0');
-            recordingTimeDisplay.innerHTML = `Temps d'enregistrement : <b>${minutes}:${seconds}</b>`;
-
+            recordingTimeDisplay.innerHTML = "Temps d'enregistrement : <b>"+minutes+":"+seconds+"</b>";
         }
         startButton.onclick = () => {
            const audioContext = new AudioContext();
@@ -39,6 +38,8 @@ const lecteur = document.getElementById('lecteur');
         };
         stopButton.onclick = () => {
             mediaRecorder.stop();
+          audioElement.currentTime = "0";
+          lecteur.currentTime = audioElement.currentTime;
           audioElement.pause();
           lecteur.pause();
             stopButton.disabled = true;
