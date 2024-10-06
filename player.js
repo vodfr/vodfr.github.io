@@ -17,7 +17,7 @@ let radios = [
   },
   {
     radio: {
-      name: "hawana",
+      name: "hawa",
       data: "https://radio4.pro-fhi.net/radio/9062/stream.mp3"
     }
   },
