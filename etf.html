@@ -7,10 +7,7 @@
   <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
   <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-</head>
-<body>
 
-  <video id="player" playsinline controls width="100vw" height="100vh"></video>
 <style>
 html, body {
 display: flex;
@@ -21,6 +18,11 @@ height: 100%;
 
 }
 </style>
+</head>
+<body>
+
+  <video id="player" playsinline controls width="100vw" height="100vh"></video>
+
   <script>
     const video = document.getElementById('player');
     const source = 'https://raw.githubusercontent.com/schumijo/iptv/main/playlists/lequipe/lequipelive5.m3u8';
