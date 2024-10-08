@@ -1,29 +1,21 @@
 const links = document.querySelectorAll("a.open");
-
 const msg = document.querySelector(".message-box");
-
 const videoElement = document.getElementById("videoContainer");
-
 const video = document.getElementById("my-video");
-
 const iframeContainer = document.getElementById("iframe-container");
-
 let iframe = null;
-
 let iframeCreated = false;
-
 let player;
-
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
 
     const clickedLink = link.getAttribute("data-id");
 
-    fullscreenBtn.classList.remove('hidden'); 
+    fullscreenBtn.classList.remove("hidden");
 
     iframeCreated = false;
-    
+
     iframeContainer.innerHTML = ""; //formater le contenu ->
 
     videoElement.style.display = "block";
@@ -51,9 +43,6 @@ links.forEach((link) => {
               });
 
               player.ready(function () {
-
-          
-
                 player.load();
 
                 player.play();
@@ -71,7 +60,10 @@ links.forEach((link) => {
             player.on("play", function () {
               msg.style.display = "block";
 
-              msg.innerHTML = "<marquee width='100%' direction='left' scrollamount='10'>"+link.textContent + " est en <b>LECTURE...</b></marquee>";
+              msg.innerHTML =
+                "<marquee width='100%' direction='left' scrollamount='10'>" +
+                link.textContent +
+                " est en <b>LECTURE...</b></marquee>";
 
               dialogbox();
             });
@@ -79,7 +71,10 @@ links.forEach((link) => {
             player.on("pause", function () {
               msg.style.display = "block";
 
-              msg.innerHTML = "<marquee width='100%' direction='left' scrollamount='10'>"+link.textContent + " est en <b>PAUSE</b></marquee>";
+              msg.innerHTML =
+                "<marquee width='100%' direction='left' scrollamount='10'>" +
+                link.textContent +
+                " est en <b>PAUSE</b></marquee>";
 
               dialogbox();
             });
@@ -91,33 +86,26 @@ links.forEach((link) => {
     xhr.send();
   });
 });
-
 let startX;
-
 document.addEventListener("touchstart", function (e) {
   startX = e.touches[0].clientX;
 });
-
 document.addEventListener("touchmove", function (e) {
   let touch = e.touches[0];
 
   let deltaX = touch.clientX - startX;
 
   if (deltaX > 50) {
-  fullscreenBtn.classList.remove('hidden'); 
+    fullscreenBtn.classList.remove("hidden");
+    castBtn.classList.remove("hidden");
     document.getElementById("sideMenu").classList.add("open");
   } else if (deltaX < -50) {
-  startHideTimer();
-  document.getElementById("sideMenu").classList.remove("open");
-    
+    startHideTimer();
+    document.getElementById("sideMenu").classList.remove("open");
   }
 });
-
-
 const b = document.querySelector("button");
-
 const elem = document.querySelector("body");
-
 b.addEventListener("click", function () {
   const api = "https://api.vevioz.com/apis/search/";
 
@@ -127,8 +115,6 @@ b.addEventListener("click", function () {
 
   window.open(api + mp3);
 });
-
-
 function dialogbox() {
   setTimeout(() => {
     msg.style.display = "none";
@@ -136,16 +122,18 @@ function dialogbox() {
     msg.innerHTML = "";
   }, 6000);
 }
-
 document.querySelectorAll(".iframe").forEach((link) => {
   link.addEventListener("click", function (e) {
     e.preventDefault();
-    fullscreenBtn.classList.remove('hidden'); 
+    fullscreenBtn.classList.remove("hidden");
     videoElement.style.display = "none";
 
     msg.style.display = "block";
 
-    msg.innerHTML = "<marquee width='100%' direction='left' scrollamount='5'>"+link.textContent + " est en <b>LECTURE...</b></marquee>";
+    msg.innerHTML =
+      "<marquee width='100%' direction='left' scrollamount='5'>" +
+      link.textContent +
+      " est en <b>LECTURE...</b></marquee>";
 
     dialogbox();
 
@@ -156,9 +144,6 @@ document.querySelectorAll(".iframe").forEach((link) => {
     playWithIframe(iframeSrc);
   });
 });
-
-
-
 function playWithIframe(iframeSrc) {
   setTimeout(function () {
     if (player) {
@@ -174,16 +159,15 @@ function playWithIframe(iframeSrc) {
 
     dialogbox();
   }, 5000);
-  
+
   iframe = document.getElementById("dynamic-iframe");
 
   if (!iframe) {
     iframe = document.createElement("iframe");
-   }
-   
-  
- iframe.id = "dynamic-iframe";
-  
+  }
+
+  iframe.id = "dynamic-iframe";
+
   iframe.src = iframeSrc;
 
   iframe.width = "100%";
@@ -197,11 +181,11 @@ function playWithIframe(iframeSrc) {
   iframe.allowTransparency = true;
 
   iframe.style.display = "block";
-  
+
   iframeContainer.appendChild(iframe);
-  
+
   iframeCreated = true;
-  
+
   const message = "&#8592;  balayer d'ici le MENU  &#8594;";
 
   const existingP = document.querySelector("p");
@@ -209,26 +193,20 @@ function playWithIframe(iframeSrc) {
   if (existingP) {
     existingP.remove();
   }
-  
+
   const dynPar = document.createElement("p");
-  
+
   dynPar.innerHTML = message;
-  
+
   iframeContainer.insertAdjacentElement("beforeend", dynPar);
 
   if (iframeCreated) {
-  openFullscreen();
+    openFullscreen();
   }
-    
 }
-
-
-
 window.addEventListener("load", () => {
   document.getElementById("sideMenu").classList.add("open");
 });
-
-
 function openFullscreen() {
   if (elem.requestFullscreen) {
     elem.requestFullscreen();
@@ -242,42 +220,35 @@ function openFullscreen() {
     elem.msRequestFullscreen();
   }
 }
-
 const fullscreenBtn = document.getElementById("fullscreenBtn");
 const fullscreenIcon = fullscreenBtn.querySelector("i");
-
 fullscreenBtn.addEventListener("click", function () {
   if (iframeCreated === true) {
-  if (!iframeContainer.fullscreenElement) {
-    document.getElementById("sideMenu").classList.remove("open");
-    iframeContainer.requestFullscreen();
-    fullscreenIcon.classList.remove("fa-expand");
-    fullscreenIcon.classList.add("fa-compress");
-    startHideTimer();
-  } else {
-    if (iframeContainer.exitFullscreen) {
-      iframeContainer.exitFullscreen();
-      fullscreenIcon.classList.remove("fa-compress");
-      fullscreenIcon.classList.add("fa-expand");
-      fullscreenBtn.classList.remove("hidden");
-      clearTimeout(hideTimer);
+    if (!iframeContainer.fullscreenElement) {
+      document.getElementById("sideMenu").classList.remove("open");
+      iframeContainer.requestFullscreen();
+      fullscreenIcon.classList.remove("fa-expand");
+      fullscreenIcon.classList.add("fa-compress");
+      startHideTimer();
+    } else {
+      if (iframeContainer.exitFullscreen) {
+        iframeContainer.exitFullscreen();
+        fullscreenIcon.classList.remove("fa-compress");
+        fullscreenIcon.classList.add("fa-expand");
+        fullscreenBtn.classList.remove("hidden");
+        clearTimeout(hideTimer);
+      }
     }
-  }
   } else {
-      
-      video.requestFullscreen();
-      
-      
+    video.requestFullscreen();
   }
 });
-
 function startHideTimer() {
-   
   hideTimer = setTimeout(() => {
     fullscreenBtn.classList.add("hidden");
+    castBtn.classList.add("hidden");
   }, 4000);
 }
-
 document.addEventListener("fullscreenchange", function () {
   if (iframeContainer.fullscreenElement) {
     startHideTimer();
@@ -288,10 +259,8 @@ document.addEventListener("fullscreenchange", function () {
     document.getElementById("sideMenu").classList.add("open");
   }
 });
-
 const searchInput = document.getElementById("searchInput");
 const chaines = Array.from(document.querySelectorAll("#sideMenu a"));
-
 function filterAndHighlight() {
   const filter = searchInput.value.toLowerCase();
 
@@ -318,6 +287,4 @@ function filterAndHighlight() {
     firstMatch.scrollIntoView({ behavior: "smooth", block: "nearest" });
   }
 }
-
 searchInput.addEventListener("input", filterAndHighlight);
-                            
