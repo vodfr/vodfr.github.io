@@ -8,6 +8,7 @@ let iframeCreated = false;
 let player;
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
+   
     e.preventDefault();
 
     const clickedLink = link.getAttribute("data-id");
@@ -229,6 +230,7 @@ fullscreenBtn.addEventListener("click", function () {
       iframeContainer.requestFullscreen();
       fullscreenIcon.classList.remove("fa-expand");
       fullscreenIcon.classList.add("fa-compress");
+      
       startHideTimer();
     } else {
       if (iframeContainer.exitFullscreen) {
@@ -236,6 +238,7 @@ fullscreenBtn.addEventListener("click", function () {
         fullscreenIcon.classList.remove("fa-compress");
         fullscreenIcon.classList.add("fa-expand");
         fullscreenBtn.classList.remove("hidden");
+        
         clearTimeout(hideTimer);
       }
     }
@@ -254,7 +257,7 @@ document.addEventListener("fullscreenchange", function () {
     startHideTimer();
   } else {
     clearTimeout(hideTimer);
-
+     castBtn.classList.remove("hidden");
     fullscreenBtn.classList.remove("hidden");
     document.getElementById("sideMenu").classList.add("open");
   }
