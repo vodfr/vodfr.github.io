@@ -16,10 +16,8 @@ let radios = [
   { radio: { name: "iz", data: "https://radio-dzair.net/proxy/izuran/izuran?shoutcast"}},
   { radio: { name: "coran", data: "https://webradio.tda.dz/Coran_64K.mp3"}},
   { radio: { name: "oriental", data: "https://radiodzair.net:8070/orientale?shoutcast"}},
-  { radio: { name: "chaabia", data: "https://radiodzair.net:8010/chaabia?shoutcast"}}
-
-  
-  
+  { radio: { name: "chaabia", data: "https://radiodzair.net:8010/chaabia?shoutcast"}},
+  { radio: { name: "chansons", data: "https://chantefrance.ice.infomaniak.ch/chantefrance-128.mp3"}} 
   ];
 for (let i = 0; i < radios.length; i++) {
   let nameRadio = radios[i].radio.name;
