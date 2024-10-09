@@ -13,7 +13,7 @@ links.forEach((link) => {
     const clickedLink = link.getAttribute("data-id");
 
     fullscreenBtn.classList.remove("hidden");
-
+    castBtn.classList.remove("hidden");
     iframeCreated = false;
 
     iframeContainer.innerHTML = ""; //formater le contenu ->
