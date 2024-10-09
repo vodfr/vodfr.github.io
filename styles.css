@@ -62,7 +62,7 @@ body {
 #fullscreenBtn {
   position: fixed;
   top: 50%;
-  right: 20px;
+  right: 0px;
   animation: agrandir 5s linear;
   background-color: #000000;
   color: yellow;
