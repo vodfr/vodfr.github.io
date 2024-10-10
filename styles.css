@@ -253,11 +253,11 @@ b {
   z-index: 1;
 }
 #searchInput {
-  width: 100%;
+  width: 99%;
   height: 20px;
   font-size: 10px;
   padding: 3px;
-  margin: 30px 0px 10px 0px;
+  margin: 5px 0px 10px 0px;
   border: 1px solid #ccc;
   border-radius: 2px;
   text-align: center;
