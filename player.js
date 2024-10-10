@@ -55,8 +55,13 @@ function audioRecorder(chaine) {
 
   audioElement.crossOrigin = "anonymous";
 
-  audioElement.currentTime = lecteur.currentTime;
-
+  const delta = lecteur.currentTime - audioElement.currentTime;
+ 
+  if (delta > 0) {
+   
+  audioElement.currentTime = lecteur.currentTime; 
+  
+ }
   lecteur.play();
   
   
