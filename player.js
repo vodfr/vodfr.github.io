@@ -55,21 +55,17 @@ function audioRecorder(chaine) {
 
   audioElement.crossOrigin = "anonymous";
 
+  const time = setInterval(() => {
   const delta = lecteur.currentTime - audioElement.currentTime;
- 
+
   if (delta > 0) {
-   
-  audioElement.currentTime = lecteur.currentTime; 
-  
- }
+    audioElement.currentTime = lecteur.currentTime; 
+    clearInterval(time); 
+  }
+}, 100);
   lecteur.play();
-  
-  
   audioElement.play();
-    
-
   
-
   const source = audioContext.createMediaElementSource(audioElement);
 
   const streamDestination = audioContext.createMediaStreamDestination();
