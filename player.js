@@ -59,7 +59,11 @@ function audioRecorder(chaine) {
 
   lecteur.play();
   
-  audioElement.play();
+  lecteur.oncanplay = () => {
+    console.log('L\'audio est prêt à être lu.');
+    audioElement.play();
+  };
+  
 
   const source = audioContext.createMediaElementSource(audioElement);
 
