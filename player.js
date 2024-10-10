@@ -57,9 +57,9 @@ function audioRecorder(chaine) {
 
   audioElement.currentTime = lecteur.currentTime;
 
-  audioElement.play();
-
   lecteur.play();
+  
+  audioElement.play();
 
   const source = audioContext.createMediaElementSource(audioElement);
 
