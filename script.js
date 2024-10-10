@@ -24,7 +24,7 @@ links.forEach((link) => {
     var xhr = new XMLHttpRequest();
 
     var baseURL =
-      "https://raw.githubusercontent.com/ma00tv/ma00tv.github.io/main/JB.json";
+      "https://raw.githubusercontent.com/ma00tv/ma00tv.github.io/main/db.json";
 
     xhr.open("GET", baseURL, true);
 
