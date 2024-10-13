@@ -154,9 +154,7 @@ function playWithIframe(iframeSrc) {
       player.pause();
     }
 
-    msg.style.display = "block";
-
-    msg.innerHTML = "Changer⚠️";
+  
 
     dialogbox();
   }, 5000);
