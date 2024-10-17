@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiple YouTube Playlists avec Plyr</title>
+    <title>BOX OFFICE CINÉMA</title></title>
     <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
     <style>
         body {
@@ -142,21 +142,21 @@
     // Initialiser Plyr avec options
     const player = new Plyr('#plyr', {
         controls: [
-        'play-large',
-        'play', 
-        'progress', 
-        'current-time', 
-        'duration', 
-        'mute', 
-        'volume', 
-        'fullscreen'
-    ],
-    youtube: {
-        noCookie: true,
-        rel: 0,
-        showinfo: 1,  // Assurez-vous que les informations sont affichées
-        modestbranding: 1 // Réduit la marque YouTube
-    }
+            'play-large',
+            'play', 
+            'progress', 
+            'current-time', 
+            'duration', 
+            'mute', 
+            'volume', 
+            'fullscreen'
+        ],
+        youtube: {
+            noCookie: true,
+            rel: 0,
+            showinfo: 1,  // Assurez-vous que les informations sont affichées
+            modestbranding: 1 // Réduit la marque YouTube
+        }
     });
 
     // Fonction pour récupérer les vidéos d'une playlist
@@ -194,6 +194,7 @@
                             }],
                         };
                         player.play(); // Joue la vidéo
+                        document.getElementById('plyr').requestFullscreen(); // Demande le plein écran
                     });
 
                     // Ajouter la vidéo dans le conteneur de la playlist
