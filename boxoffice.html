@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOXOFFICE CINÉMA</title>
+    <title>Multiple YouTube Playlists avec Plyr</title>
     <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
     <style>
         body {
@@ -14,13 +14,61 @@
             background-color: transparent;
             color: white;
         }
-
         .container {
             display: flex;
             width: 100%;
             overflow-y: auto;
         }
-        #playlist::-webkit-scrollbar {
+        #playlist {
+            width: 300px;
+            overflow-y: auto;
+            background-color: #121212;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .video-item {
+            cursor: pointer;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            border: 1px solid white;
+            color: white;
+        }
+        .video-item img {
+            width: 100px;
+            margin-right: 0px;
+        }
+        .video-item p {
+            margin: 0;
+            flex-grow: 1;
+        }
+        #player {
+            flex-grow: 1;
+            height: 100%;
+            background-color: black;
+            position: relative;
+        }
+        .plyr {
+            background-color: transparent;
+        }
+        .plyr--full-ui .plyr__controls button {
+            color: yellow;
+        }
+        .plyr--full-ui .plyr__progress {
+            background: transparent;
+            color: yellow;
+        }
+        .plyr--full-ui .plyr__progress--played {
+            background: yellow;
+        }
+        .plyr--full-ui .plyr__progress--buffered {
+            background: transparent;
+        }
+        .plyr__video-embed .youtube {
+            display: none !important;
+        }
+
+#playlist::-webkit-scrollbar {
             width: 5px;
 }
         #playlist::-webkit-scrollbar-track {
@@ -31,69 +79,6 @@
   background: yellow;
   border-radius: 25px;
 }
-        #playlist {
-            width: 300px;
-            height: 100%;
-            overflow-y: auto;
-            background-color: #121212;
-            padding: 10px;
-            box-sizing: border-box;
-        }
-
-        .video-item {
-            cursor: pointer;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            border: 1px solid white;
-            color: white;
-            
-
-        }
-
-        .video-item img {
-            width: 100px;
-            height:100%;
-            margin-right: 0px;
-
-        }
-
-        .video-item p {
-            margin: 0;
-            flex-grow: 1;
-        }
-
-        #player {
-            flex-grow: 1;
-            height: 100%;
-            background-color: black;
-            position: relative;
-        }
-
-        .plyr {
-            background-color: transparent;
-        }
-
-        .plyr--full-ui .plyr__controls button {
-            color: yellow;
-        }
-
-        .plyr--full-ui .plyr__progress {
-            background: transparent;
-            color: yellow;
-        }
-
-        .plyr--full-ui .plyr__progress--played {
-            background: yellow;
-        }
-
-        .plyr--full-ui .plyr__progress--buffered {
-            background: transparent;
-        }
-
-        .plyr__video-embed .youtube {
-            display: none !important;
-        }
 
         .playlist-container {
             cursor: pointer;
@@ -101,7 +86,6 @@
             color: white;
             font-weight: bold;
         }
-
         .video-list {
             display: none;
             margin-bottom: 10px;
@@ -131,6 +115,16 @@
             <h2>COMÉDIE</h2>
         </div>
         <div id="videoList4" class="video-list"></div>
+
+        <div class="playlist-container" onclick="togglePlaylist('videoList5')">
+            <h2>FAMILLE</h2>
+        </div>
+        <div id="videoList5" class="video-list"></div>
+
+        <div class="playlist-container" onclick="togglePlaylist('videoList6')">
+            <h2>DÉSSIN ANIMÉ</h2>
+        </div>
+        <div id="videoList6" class="video-list"></div>
     </div>
 
     <div id="player">
@@ -215,6 +209,8 @@
     fetchPlaylistVideos('PLpPy9e-Nyh3uAgehMbGGP9XehzyCttJhy', 'videoList2');
     fetchPlaylistVideos('PLQJ_3JxLXqMOgmIrnIOkxpS2fka6oTzWP', 'videoList3');
     fetchPlaylistVideos('PL8KEdedRKbyv08Mactrb_WCJ-kugWNcc7', 'videoList4');
+    fetchPlaylistVideos('PLrIayymbIXKwQB6_TL9ujt7TWY6zygLNy', 'videoList5');
+    fetchPlaylistVideos('PLrIayymbIXKzzsLsZnE1yW6mr06vqpXi7', 'videoList6');
 </script>
 
 </body>
