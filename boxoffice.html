@@ -142,19 +142,21 @@
     // Initialiser Plyr avec options
     const player = new Plyr('#plyr', {
         controls: [
-            'play-large', // L'option pour un contrôle plein écran
-            'play', // Contrôle de lecture
-            'mute', // Contrôle de son
-            'volume', // Contrôle du volume
-            'progress', // Barre de progression
-            'fullscreen' // Contrôle plein écran
-        ],
-        youtube: {
-            noCookie: true, // Utiliser l'option sans cookie
-            rel: 0, // Ne pas afficher des vidéos liées à la fin
-            showinfo: 0, // Ne pas afficher d'infos sur la vidéo
-            controls: 0 // Cacher les contrôles intégrés de YouTube
-        }
+        'play-large',
+        'play', 
+        'progress', 
+        'current-time', 
+        'duration', 
+        'mute', 
+        'volume', 
+        'fullscreen'
+    ],
+    youtube: {
+        noCookie: true,
+        rel: 0,
+        showinfo: 1,  // Assurez-vous que les informations sont affichées
+        modestbranding: 1 // Réduit la marque YouTube
+    }
     });
 
     // Fonction pour récupérer les vidéos d'une playlist
