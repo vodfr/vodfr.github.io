@@ -170,38 +170,43 @@ const playlists = [
     { id: 'PLQR8HbQ7DM0D3rtVbtEdcR1gM8K9J-_xF', listId: 'videoList8' }
 
 ];
+
 function fetchPlaylistVideos(playlistId, videoListId) {
     const apiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${maxResults}&playlistId=${playlistId}&key=${apiKey}`;
+
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
             const videoListContainer = document.getElementById(videoListId);
             videoListContainer.innerHTML = '';
+
             data.items.forEach(item => {
                 const videoId = item.snippet.resourceId.videoId;
                 const title = item.snippet.title;
                 const thumbnail = item.snippet.thumbnails.default.url;
+
                 const videoElement = document.createElement('div');
                 videoElement.classList.add('video-item');
                 videoElement.setAttribute('data-video-id', videoId);
-                videoElement.innerHTML = `<img src="${thumbnail}" alt="${title}"><p>${title}</p>`;
-                
-                // Écouteur d'événements ajouté ici
+
+                videoElement.innerHTML = `
+                    <img src="${thumbnail}" alt="${title}">
+                    <p>${title}</p>
+                `;
+
                 videoElement.addEventListener('click', () => {
-                    // Vérifie si l'élément est déjà en cours de lecture pour éviter les clics répétés
-                    if (player.source && player.source.sources[0].src === videoId) {
-                        player.play(); // Joue la vidéo si elle est déjà sélectionnée
-                    } else {
-                        player.source = {
-                            type: 'video',
-                            sources: [{
-                                src: videoId,
-                                provider: 'youtube',
-                            }],
-                        };
-                        player.play();
-                        document.getElementById('plyr').requestFullscreen();
-                    }
+                    // Définir la source vidéo pour Plyr avec le bon ID de vidéo YouTube
+                    player.source = {
+                        type: 'video',
+                        sources: [{
+                            src: videoId,   // Utiliser correctement l'ID de la vidéo
+                            provider: 'youtube',
+                        }],
+                    };
+                    player.play();
+
+                    // Désactiver temporairement requestFullscreen pour tester
+                    // document.getElementById('plyr').requestFullscreen();
                 });
 
                 videoListContainer.appendChild(videoElement);
