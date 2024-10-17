@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOX OFFICE CINÉMA</title></title>
+    <title>BOXOFFICE CINÉMA</title>
     <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
     <style>
         body {
@@ -11,38 +11,36 @@
             margin: 0;
             display: flex;
             height: 100vh;
-            background-color: black; /* Fond noir pour le body */
-            color: white; /* Texte blanc */
+            background-color: transparent;
+            color: white;
         }
 
-        /* Conteneur de la playlist et du lecteur */
         .container {
             display: flex;
             width: 100%;
             overflow-y: auto;
         }
 
-        /* Playlist */
         #playlist {
             width: 300px;
-            overflow-y: auto; /* Permet le défilement */
-            background-color: #121212; /* Couleur de fond de la playlist */
+            overflow-y: auto;
+            background-color: #121212;
             padding: 10px;
-            box-sizing: border-box; /* Inclut le padding dans la largeur totale */
+            box-sizing: border-box;
         }
 
-        /* Chaque vidéo */
         .video-item {
             cursor: pointer;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
-            color: white; /* Texte blanc */
+            border: 1px solid white;
+            color: white;
         }
 
         .video-item img {
             width: 100px;
-            margin-right: 10px;
+            margin-right: 0px;
         }
 
         .video-item p {
@@ -50,42 +48,38 @@
             flex-grow: 1;
         }
 
-        /* Lecteur Plyr */
         #player {
             flex-grow: 1;
-            height: 100%; /* Hauteur 100% */
-            background-color: black; /* Fond noir pour le lecteur */
-            position: relative; /* Pour les éléments enfants */
+            height: 100%;
+            background-color: black;
+            position: relative;
         }
 
-        /* Personnalisation des icônes de Plyr */
         .plyr {
-            background-color: black; /* Fond noir pour les contrôles de Plyr */
+            background-color: transparent;
         }
 
         .plyr--full-ui .plyr__controls button {
-            color: yellow; /* Icônes en jaune */
+            color: yellow;
         }
 
-        /* Personnalisation de la barre de progression */
         .plyr--full-ui .plyr__progress {
-            background: #444; /* Couleur de la barre de progression */
+            background: transparent;
+            color: yellow;
         }
 
         .plyr--full-ui .plyr__progress--played {
-            background: yellow; /* Couleur de la barre de progression jouée */
+            background: yellow;
         }
 
         .plyr--full-ui .plyr__progress--buffered {
-            background: #888; /* Couleur de la barre de progression tamponnée */
+            background: transparent;
         }
 
-        /* Masquer les éléments de contrôle intégrés de YouTube */
         .plyr__video-embed .youtube {
-            display: none !important; /* Masquer l'élément youtube */
+            display: none !important;
         }
 
-        /* Playlist container style */
         .playlist-container {
             cursor: pointer;
             margin: 10px 0;
@@ -94,7 +88,7 @@
         }
 
         .video-list {
-            display: none; /* Masquer par défaut */
+            display: none;
             margin-bottom: 10px;
         }
     </style>
@@ -102,7 +96,6 @@
 <body>
 
 <div class="container">
-    <!-- Playlist -->
     <div id="playlist">
         <div class="playlist-container" onclick="togglePlaylist('videoList1')">
             <h2>ACTION</h2>
@@ -125,7 +118,6 @@
         <div id="videoList4" class="video-list"></div>
     </div>
 
-    <!-- Lecteur Plyr -->
     <div id="player">
         <video id="plyr" controls autoplay muted>
             <source id="videoSource" src="" type="video/mp4">
@@ -133,13 +125,11 @@
     </div>
 </div>
 
-<!-- Scripts -->
 <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
 <script>
-    const apiKey = 'AIzaSyACjurcv1oBOxM6MUshB2fZcKuF3WJdaO4';  // Votre clé API
-    const maxResults = 200;  // Nombre maximum de vidéos à récupérer
+    const apiKey = 'AIzaSyACjurcv1oBOxM6MUshB2fZcKuF3WJdaO4';
+    const maxResults = 200;
 
-    // Initialiser Plyr avec options
     const player = new Plyr('#plyr', {
         controls: [
             'play-large',
@@ -154,12 +144,11 @@
         youtube: {
             noCookie: true,
             rel: 0,
-            showinfo: 1,  // Assurez-vous que les informations sont affichées
-            modestbranding: 1 // Réduit la marque YouTube
+            showinfo: 1,
+            modestbranding: 1
         }
     });
 
-    // Fonction pour récupérer les vidéos d'une playlist
     function fetchPlaylistVideos(playlistId, videoListId) {
         const apiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${maxResults}&playlistId=${playlistId}&key=${apiKey}`;
 
@@ -167,14 +156,13 @@
             .then(response => response.json())
             .then(data => {
                 const videoListContainer = document.getElementById(videoListId);
-                videoListContainer.innerHTML = ''; // Réinitialiser la liste des vidéos
+                videoListContainer.innerHTML = '';
 
                 data.items.forEach(item => {
                     const videoId = item.snippet.resourceId.videoId;
                     const title = item.snippet.title;
                     const thumbnail = item.snippet.thumbnails.default.url;
 
-                    // Créer un élément HTML pour chaque vidéo
                     const videoElement = document.createElement('div');
                     videoElement.classList.add('video-item');
                     videoElement.setAttribute('data-video-id', videoId);
@@ -184,7 +172,6 @@
                         <p>${title}</p>
                     `;
 
-                    // Ajouter un événement 'click' pour jouer la vidéo dans le lecteur
                     videoElement.addEventListener('click', () => {
                         player.source = {
                             type: 'video',
@@ -193,25 +180,22 @@
                                 provider: 'youtube',
                             }],
                         };
-                        player.play(); // Joue la vidéo
-                        document.getElementById('plyr').requestFullscreen(); // Demande le plein écran
+                        player.play();
+                        document.getElementById('plyr').requestFullscreen();
                     });
 
-                    // Ajouter la vidéo dans le conteneur de la playlist
                     videoListContainer.appendChild(videoElement);
                 });
             })
             .catch(error => console.error('Erreur lors de la récupération des vidéos:', error));
     }
 
-    // Fonction pour afficher ou masquer la liste des vidéos
     function togglePlaylist(videoListId) {
         const videoList = document.getElementById(videoListId);
         const isVisible = videoList.style.display === 'block';
-        videoList.style.display = isVisible ? 'none' : 'block'; // Alterne entre visible et caché
+        videoList.style.display = isVisible ? 'none' : 'block';
     }
 
-    // Charger les vidéos de chaque playlist
     fetchPlaylistVideos('PL2mmBC4NntuljWb1-Rmipxqg9LjDB_Ioh', 'videoList1');
     fetchPlaylistVideos('PLpPy9e-Nyh3uAgehMbGGP9XehzyCttJhy', 'videoList2');
     fetchPlaylistVideos('PLQJ_3JxLXqMOgmIrnIOkxpS2fka6oTzWP', 'videoList3');
