@@ -204,13 +204,27 @@
         const isVisible = videoList.style.display === 'block';
         videoList.style.display = isVisible ? 'none' : 'block';
     }
-
+    
+function openFullscreen() {
+        if (document.body.requestFullscreen) {
+            document.body.requestFullscreen();
+        } else if (document.body.mozRequestFullScreen) { // Firefox
+            document.body.mozRequestFullScreen();
+        } else if (document.body.webkitRequestFullscreen) { // Chrome, Safari and Opera
+            document.body.webkitRequestFullscreen();
+        } else if (document.body.msRequestFullscreen) { // IE/Edge
+            document.body.msRequestFullscreen();
+        }
+    }
+    window.onload = function() {
+    openFullscreen();
     fetchPlaylistVideos('PL2mmBC4NntuljWb1-Rmipxqg9LjDB_Ioh', 'videoList1');
     fetchPlaylistVideos('PLpPy9e-Nyh3uAgehMbGGP9XehzyCttJhy', 'videoList2');
     fetchPlaylistVideos('PLQJ_3JxLXqMOgmIrnIOkxpS2fka6oTzWP', 'videoList3');
     fetchPlaylistVideos('PL8KEdedRKbyv08Mactrb_WCJ-kugWNcc7', 'videoList4');
     fetchPlaylistVideos('PLrIayymbIXKwQB6_TL9ujt7TWY6zygLNy', 'videoList5');
     fetchPlaylistVideos('PLrIayymbIXKzzsLsZnE1yW6mr06vqpXi7', 'videoList6');
+     };
 </script>
 
 </body>
