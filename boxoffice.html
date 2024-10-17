@@ -126,6 +126,13 @@
             <h2>DÉSSIN ANIMÉ</h2>
         </div>
         <div id="videoList6" class="video-list"></div>
+
+
+<div class="playlist-container" onclick="togglePlaylist('videoList7')">
+            <h2>RÉELS</h2>
+        </div>
+        <div id="videoList7" class="video-list"></div>
+
     </div>
 
     <div id="player">
@@ -138,51 +145,49 @@
 <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
 <script>
     const apiKey = 'AIzaSyACjurcv1oBOxM6MUshB2fZcKuF3WJdaO4';
-    const maxResults = 200;
+const maxResults = 200;
+const player = new Plyr('#plyr', {
+    controls: ['play-large', 'play', 'progress', 'current-time', 'duration', 'mute', 'volume', 'fullscreen'],
+    youtube: {
+        noCookie: true,
+        rel: 0,
+        showinfo: 1,
+        modestbranding: 1
+    }
+});
 
-    const player = new Plyr('#plyr', {
-        controls: [
-            'play-large',
-            'play', 
-            'progress', 
-            'current-time', 
-            'duration', 
-            'mute', 
-            'volume', 
-            'fullscreen'
-        ],
-        youtube: {
-            noCookie: true,
-            rel: 0,
-            showinfo: 1,
-            modestbranding: 1
-        }
-    });
+const playlists = [
+    { id: 'PL2mmBC4NntuljWb1-Rmipxqg9LjDB_Ioh', listId: 'videoList1' },
+    { id: 'PLpPy9e-Nyh3uAgehMbGGP9XehzyCttJhy', listId: 'videoList2' },
+    { id: 'PLQJ_3JxLXqMOgmIrnIOkxpS2fka6oTzWP', listId: 'videoList3' },
+    { id: 'PL8KEdedRKbyv08Mactrb_WCJ-kugWNcc7', listId: 'videoList4' },
+    { id: 'PLrIayymbIXKwQB6_TL9ujt7TWY6zygLNy', listId: 'videoList5' },
+    { id: 'PLrIayymbIXKzzsLsZnE1yW6mr06vqpXi7', listId: 'videoList6' },
+    { id: 'PL0YQ6haWgmARSc6OTnv22g_Ds1M5pPVKi', listId: 'videoList7' }
 
-    function fetchPlaylistVideos(playlistId, videoListId) {
-        const apiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${maxResults}&playlistId=${playlistId}&key=${apiKey}`;
-
-        fetch(apiUrl)
-            .then(response => response.json())
-            .then(data => {
-                const videoListContainer = document.getElementById(videoListId);
-                videoListContainer.innerHTML = '';
-
-                data.items.forEach(item => {
-                    const videoId = item.snippet.resourceId.videoId;
-                    const title = item.snippet.title;
-                    const thumbnail = item.snippet.thumbnails.default.url;
-
-                    const videoElement = document.createElement('div');
-                    videoElement.classList.add('video-item');
-                    videoElement.setAttribute('data-video-id', videoId);
-
-                    videoElement.innerHTML = `
-                        <img src="${thumbnail}" alt="${title}">
-                        <p>${title}</p>
-                    `;
-
-                    videoElement.addEventListener('click', () => {
+];
+function fetchPlaylistVideos(playlistId, videoListId) {
+    const apiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${maxResults}&playlistId=${playlistId}&key=${apiKey}`;
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const videoListContainer = document.getElementById(videoListId);
+            videoListContainer.innerHTML = '';
+            data.items.forEach(item => {
+                const videoId = item.snippet.resourceId.videoId;
+                const title = item.snippet.title;
+                const thumbnail = item.snippet.thumbnails.default.url;
+                const videoElement = document.createElement('div');
+                videoElement.classList.add('video-item');
+                videoElement.setAttribute('data-video-id', videoId);
+                videoElement.innerHTML = `<img src="${thumbnail}" alt="${title}"><p>${title}</p>`;
+                
+                // Écouteur d'événements ajouté ici
+                videoElement.addEventListener('click', () => {
+                    // Vérifie si l'élément est déjà en cours de lecture pour éviter les clics répétés
+                    if (player.source && player.source.sources[0].src === videoId) {
+                        player.play(); // Joue la vidéo si elle est déjà sélectionnée
+                    } else {
                         player.source = {
                             type: 'video',
                             sources: [{
@@ -192,40 +197,27 @@
                         };
                         player.play();
                         document.getElementById('plyr').requestFullscreen();
-                    });
-
-                    videoListContainer.appendChild(videoElement);
+                    }
                 });
-            })
-            .catch(error => console.error('Erreur lors de la récupération des vidéos:', error));
-    }
 
-    function togglePlaylist(videoListId) {
-        const videoList = document.getElementById(videoListId);
-        const isVisible = videoList.style.display === 'block';
-        videoList.style.display = isVisible ? 'none' : 'block';
-    }
-    
-function openFullscreen() {
-        if (document.body.requestFullscreen) {
-            document.body.requestFullscreen();
-        } else if (document.body.mozRequestFullScreen) { // Firefox
-            document.body.mozRequestFullScreen();
-        } else if (document.body.webkitRequestFullscreen) { // Chrome, Safari and Opera
-            document.body.webkitRequestFullscreen();
-        } else if (document.body.msRequestFullscreen) { // IE/Edge
-            document.body.msRequestFullscreen();
-        }
-    }
-    window.onload = function() {
-    openFullscreen();
-    fetchPlaylistVideos('PL2mmBC4NntuljWb1-Rmipxqg9LjDB_Ioh', 'videoList1');
-    fetchPlaylistVideos('PLpPy9e-Nyh3uAgehMbGGP9XehzyCttJhy', 'videoList2');
-    fetchPlaylistVideos('PLQJ_3JxLXqMOgmIrnIOkxpS2fka6oTzWP', 'videoList3');
-    fetchPlaylistVideos('PL8KEdedRKbyv08Mactrb_WCJ-kugWNcc7', 'videoList4');
-    fetchPlaylistVideos('PLrIayymbIXKwQB6_TL9ujt7TWY6zygLNy', 'videoList5');
-    fetchPlaylistVideos('PLrIayymbIXKzzsLsZnE1yW6mr06vqpXi7', 'videoList6');
-     };
+                videoListContainer.appendChild(videoElement);
+            });
+        })
+        .catch(error => console.error('Erreur lors de la récupération des vidéos:', error));
+}
+
+// Boucle pour récupérer les vidéos de toutes les playlists
+playlists.forEach(playlist => {
+    fetchPlaylistVideos(playlist.id, playlist.listId);
+});
+
+// Fonction pour basculer l'affichage d'une playlist
+function togglePlaylist(videoListId) {
+    const videoList = document.getElementById(videoListId);
+    videoList.style.display = videoList.style.display === 'none' ? 'block' : 'none';
+}
+
+
 </script>
 
 </body>
