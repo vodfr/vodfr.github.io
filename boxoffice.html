@@ -136,6 +136,11 @@
         </div>
         <div id="videoList8" class="video-list"></div>
 
+<div class="playlist-container" onclick="togglePlaylist('videoList9')">
+            <h2>FILMS 4K</h2>
+        </div>
+        <div id="videoList9" class="video-list"></div>
+
     </div>
 
     <div id="player">
@@ -148,7 +153,7 @@
 <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
 <script>
     const apiKey = 'AIzaSyAKCPRz2PkEqKCgQ7KdXU6lSGfRx0ERH20';
-const maxResults = 50;
+const maxResults = 100;
 const player = new Plyr('#plyr', {
     controls: ['play-large', 'play', 'progress', 'current-time', 'duration', 'mute', 'volume', 'fullscreen'],
     settings: ['quality', 'speed'],  
@@ -168,7 +173,8 @@ const playlists = [
     { id: 'PLrIayymbIXKwQB6_TL9ujt7TWY6zygLNy', listId: 'videoList5' },
     { id: 'PLrIayymbIXKzzsLsZnE1yW6mr06vqpXi7', listId: 'videoList6' },
     { id: 'PL0YQ6haWgmARSc6OTnv22g_Ds1M5pPVKi', listId: 'videoList7' },
-    { id: 'PLQR8HbQ7DM0D3rtVbtEdcR1gM8K9J-_xF', listId: 'videoList8' }
+    { id: 'PLQR8HbQ7DM0D3rtVbtEdcR1gM8K9J-_xF', listId: 'videoList8' },
+{ id: 'PLLnEDlz3w4C2nblyZxAMvJb_uFumE-JuI', listId: 'videoList9' }
 
 ];
 
