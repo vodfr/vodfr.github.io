@@ -1,462 +1,240 @@
 <!DOCTYPE html>
-
 <html lang="fr">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOX OFFICE CINÉMA</title>
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            height: 100vh;
+            background-color: transparent;
+            color: white;
+        }
+        .container {
+            display: flex;
+            width: 100%;
+            overflow-y: auto;
+            overflow-x: hidden !important;
+        }
+        #playlist {
+            width: 300px;
+            overflow-y: auto;
+            background-color: #121212;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .video-item {
+            cursor: pointer;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            border: 1px solid white;
+            color: white;
+        }
+        .video-item img {
+            width: 100px;
+            margin-right: 0px;
+        }
+        .video-item p {
+            margin: 0;
+            flex-grow: 1;
+        }
+        #player {
+            flex-grow: 1;
+            height: 100%;
+            background-color: black;
+            position: relative;
+        }
+        .plyr {
+            background-color: transparent;
+        }
+        .plyr--full-ui .plyr__controls button {
+            color: yellow;
+        }
+        .plyr--full-ui .plyr__progress {
+            background: transparent;
+            color: yellow;
+        }
+        .plyr--full-ui .plyr__progress--played {
+            background: yellow;
+        }
+        .plyr--full-ui .plyr__progress--buffered {
+            background: transparent;
+        }
+        .plyr__video-embed .youtube {
+            display: none !important;
+        }
 
-  <meta charset="UTF-8">
+#playlist::-webkit-scrollbar {
+            width: 5px;
+}
+        #playlist::-webkit-scrollbar-track {
+            background: tranparent;
+            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+        #playlist::-webkit-scrollbar-thumb {
+  background: yellow;
+  border-radius: 25px;
+}
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>SIMPLE-TV***VOD EN DIRECT***</title>
-
-  <link href="https://unpkg.com/video.js/dist/video-js.css" rel="stylesheet">
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-  <link rel="stylesheet" href="styles.css">
-
-  <link rel="icon" type="image/png" href="https://www.iconarchive.com/download/i128785/pictogrammers/material/youtube-tv.32.png" />
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="https://www.gstatic.com/cv/js/sender/v1/cast_sender.js?loadCastFramework=1"></script>
-
+        .playlist-container {
+            cursor: pointer;
+            margin: 10px 0;
+            color: white;
+            font-weight: bold;
+        }
+        .video-list {
+            display: none;
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
-
 <body>
 
-  <div id="sideMenu" class="side-menu">
-    <input type="text" id="searchInput" placeholder="Rechercher chaine..."><br>
-<a href="https://aff.free.nf" class="journal btn btn-primary">AVIS CONCOURS</a><br>
+<div class="container">
+    <div id="playlist">
+        <div class="playlist-container" onclick="togglePlaylist('videoList1')">
+            <h2>ACTION</h2>
+        </div>
+        <div id="videoList1" class="video-list"></div>
 
+        <div class="playlist-container" onclick="togglePlaylist('videoList2')">
+            <h2>HORREUR</h2>
+        </div>
+        <div id="videoList2" class="video-list"></div>
+
+        <div class="playlist-container" onclick="togglePlaylist('videoList3')">
+            <h2>NOUVEAUTÉS</h2>
+        </div>
+        <div id="videoList3" class="video-list"></div>
+
+        <div class="playlist-container" onclick="togglePlaylist('videoList4')">
+            <h2>COMÉDIE</h2>
+        </div>
+        <div id="videoList4" class="video-list"></div>
+
+        <div class="playlist-container" onclick="togglePlaylist('videoList5')">
+            <h2>FAMILLE</h2>
+        </div>
+        <div id="videoList5" class="video-list"></div>
+
+        <div class="playlist-container" onclick="togglePlaylist('videoList6')">
+            <h2>DÉSSIN ANIMÉ</h2>
+        </div>
+        <div id="videoList6" class="video-list"></div>
+<div class="playlist-container" onclick="togglePlaylist('videoList7')">
+            <h2>RÉELS</h2>
+        </div>
+        <div id="videoList7" class="video-list"></div>
     
-    <a href="https://v.calameo.com/library/?type=account&id=5653905&rows=1&sortBy=latestPublished&theme=&bgColor=&thumbSize=large&showTitle=true&showShadow=true&showGloss=true&showInfo=&linkTo=view&linkTarget=_blank" class="journal btn btn-primary">PRÈSSE INJAZAT</a><br>
-
-    <a href="https://v.calameo.com/library/?type=account&id=6174701
-
-&rows=1&sortBy=latestPublished&theme=&bgColor=&thumbSize=large&showTitle=true&showShadow=true&showGloss=true&showInfo=&linkTo=view&linkTarget=_blank" class="journal btn btn-primary">COMPÉTITION</a><br>
-
-    <a href="https://v.calameo.com/library/?type=account&id=1085220
-
-&rows=1&sortBy=latestPublished&theme=&bgColor=&thumbSize=large&showTitle=true&showShadow=true&showGloss=true&showInfo=&linkTo=view&linkTarget=_blank" class="journal btn btn-primary">DERBY</a><br>
-
-    <a href="https://www.lesoirdalgerie.com/pdf/slim/latest" class="journal btn btn-primary">LE SOIR</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="emotion">ÉMOTION MUSIC A.D'OR</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/bejaia.html">RADIO-BÉJAIA</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/iz.html">RADIO-IZURAN</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/raina.html">RADIO-RAINA</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/jilfm.html">RADIO-JILFM</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/oriental.html">RADIO-ORIENTAL</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/coran.html">RADIO-CORAN</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/bast.html">RADIO-BAST</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/chaabia.html">RADIO-CHAABIA</a><br>
-   <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/chansons.html">RADIO-BELLE-CHANSONS</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/tf1fr.html">TF1-FRANCE</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/tf1s.html">TF1-SÉRIES FILMS</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/tfx.html">TFX</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/tmc.html">TMC</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/algeria_live.php?id=entv_algerie">ALGÉRIE 1 الأرضية</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/algeria_live.php?id=algerie">ALGÉRIE 2</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/algeria_live.php?id=algeria3">ALGÉRIE 3</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/algeria_live.php?id=algerie4">ALGÉRIE 4</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/algeria_live.php?id=algerie5">ALGÉRIE 5</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/algeria_live.php?id=algerie6">ALGÉRIE 6</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/algeria_live.php?id=algerie7">ALGÉRIE 7</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/algeria_live.php?id=algerie8">ALGÉRIE 8</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/algeria_live.php?id=ennahartv">ENNAHAR TV النهار</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/algeria_live.php?id=echorouk_tvhd">ECHOROUK TV الشروق</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/algeria_live.php?id=samira_tv">SAMIRA TV</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/algeria_live.php?id=el_fadjr_tv">El FAJR الفجر</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/algeria_live.php?id=el_djazairia">El DJAZAIRIA الجزائرية</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/algeria_live.php?id=elbilad">El BILAD البلاد</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/algeria_live.php?id=elhayatonline">EL HAYAT الحياة</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/algeria_live.php?id=alanis_tv">EL ANIS الأنيس</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="nessma">NÉSSMA TUNISIA</a><br>
-    <a href="#" class="open btn btn-primary" data-id="2m">2M MARROC</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/O_02mf1vpQo?autoplay=1&mute=1">BEIN SPORT NEWS الإخبارية</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://aflam4you.net/playerae.php?vid=68&aflam_s=1&aflam_k=2221222222">BEIN SPORT1 ARA</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://aflam4you.net/playeraf.php?vid=2&aflam_s=1&aflam_k=1111322211111">BEIN SPORT2 ARA</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://aflam4you.net/playerae.php?vid=1&aflam_s=1&aflam_k=2221222222">BEIN SPORT3 ARA</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://aflam4you.net/playerae.php?vid=3&aflam_s=1&aflam_k=2221222222">BEIN SPORT4 ARA</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://aflam4you.net/playerae.php?vid=73&aflam_s=1&aflam_k=2221222222">BEIN SPORT5 ARA</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://aflam4you.net/playerae.php?vid=79&aflam_s=1&aflam_k=2221222222">BEIN SPORT6 ARA</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.aflam4you.net/playerae.php?vid=167&amp;aflam_s=1">SSC1</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://live.new-yalla-shoots.com/albaplayer/bein-1/?serv=0">YALLA SHOOTS يلا شوت</a><br>
-    <a href="#" class="open btn btn-primary" data-id="link30">REAL MADRID</a><br>
-    <a href="#" class="open btn btn-primary" data-id="live_foot3">LA LIGA</a><br>
-    <a href="#" class="open btn btn-primary" data-id="link61">SOLO-CALCIO</a><br>
-    <a href="#" class="open btn btn-primary" data-id="fifa+">FIFA+</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/etf.html">L'ÉQUIPE FOOT</a><br>
-    <a href="#" class="open btn btn-primary" data-id="lequipe1">L'ÉQUIPE 1</a><br>
-    <a href="#" class="open btn btn-primary" data-id="lequipe2">L'ÉQUIPE 2</a><br>
-    <a href="#" class="open btn btn-primary" data-id="link2">YOGA TV</a><br>
-    <a href="#" class="open btn btn-primary" data-id="myzen">MYZEN TV</a><br>
-    <a href="#" class="open btn btn-primary" data-id="masterfight">MASTER FIGHT</a><br>
-    <a href="#" class="open btn btn-primary" data-id="wresteling">WRESTELING</a><br>
-    <a href="#" class="open btn btn-primary" data-id="strongmen">STRONGMEN CHAMPION</a><br>
-    <a href="#" class="open btn btn-primary" data-id="mbcdrama">MBC+ DRAMA</a><br>
-    <a href="#" class="open btn btn-primary" data-id="mbc1">MBC1</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://tv.aflam4you.net/playerae.php?vid=6&aflam_s=1&aflam_k=2221222222">MBC2</a><br>
-    <a href="#" class="open btn btn-primary" data-id="mbc4">MBC4</a><br>
-    <a href="#" class="open btn btn-primary" data-id="mbc5">MBC5</a><br>
-    <a href="#" class="open btn btn-primary" data-id="mbcirak">MBC IRAK</a><br>
-    <a href="#" class="open btn btn-primary" data-id="mbc_bollywood">MBC BOLLYWOOD</a><br>
-    <a href="#" class="open btn btn-primary" data-id="zee_aflam">ZEE AFLAM</a><br>
-    <a href="#" class="open btn btn-primary" data-id="zee_alwan">ZEE ALWAN</a><br>
-    <a href="#" class="open btn btn-primary" data-id="abudhabi">ABU DHABI</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/Ye7sEzAxD8w?autoplay=1&mute=1">Turk cinéma مدبلج</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/YKHWAb6b48I?autoplay=1&mute=1">bee movies أفلام عربي</a><br>
-    <a href="#" class="open btn btn-primary" data-id="link55">ALLOCINÉ ACTU</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link48">MOVIES ACTION مترجم</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="mix">MIX MOVIES مترجم</a><br>
-    <a class="btn btn-primary" href="https://vodfr.github.io/boxoffice.html">*BOX OFFICE*</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/mytf1_films.html">MYTF1-FILMS</a><br>
-    
-    <a href="#" class="open btn btn-primary" data-id="films_bollywood">F I L M S</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link8">SCREAM IN</a><br>
-    <a href="#" class="open btn btn-primary" data-id="link28">WILDSIDE CINÉMA</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link32">Ciné Science-Fiction</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link31">Ciné CATASTROPHE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link6">HITS ACTION</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="p_action">ACTION cinéma</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link4">Ciné MAX</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="family_club">FAMILY CINÉMA</a><br>
-   <a href="#" class="open btn btn-primary" data-id="link9">HITS COMÉDIE</a><br>
-    <a href="#" class="open btn btn-primary" data-id="telefilms">TÉLÉFILMS</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="cinewestern">Ciné WESTERN TOP</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link40">WESTERN FILMS</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="cine_prime">Ciné prime</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link29">GOLDEN SWEET TV</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="mytime">MYTIME CINÉMA</a><br>
-    <a href="#" class="open btn btn-primary" data-id="link38">Cinéma</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link39">Ciné+</a><br>
-    
-
-    <a href="#" class="open btn btn-primary" data-id="bref_cine">bref Cinéma</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="univers_cine">Univers Cinéma</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link15">Ciné PLEX</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link16">MYTV ACTION</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="runtime">RUNTIME CINÉMA</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link47">Ciné NANAR</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link32">Ciné ASIE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link12">Ciné BLACKLIST</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="hfavoris">HITS FAVORIS</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="trailers">Trailers</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link60">Ajyal افلام</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link41">P-Thriller</a><br>
-
-    
-    <a href="#" class="open btn btn-primary" data-id="link5">Séries MAX</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link10">Séries THRILLER</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link11">Séries COMÉDIE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="omega">Ciné ALPHA OMÉGA </a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="divin">DIVIN Ciné</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link7">WUTA KUNG FU MOVIES(1)</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link42">KUNG FU MOVIES(2)</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="hiyah">HIYAH KUNG FU MOVIES(3)</a><br>
-    <a href="#" class="open btn btn-primary" data-id="wild_earth">WILD EARTH</a><br>
-    <a href="#" class="open btn btn-primary" data-id="wild_earth_1080p">WILD EARTH 1080p</a><br>
-    <a href="#" class="open btn btn-primary" data-id="alwathaeqya">DOCUMENTARY الوثائقية</a><br>
-    <a href="#" class="open btn btn-primary" data-id="sharkdisc">DISCOVERY الشرق إكتشاف</a><br>
-    <a href="#" class="open btn btn-primary" data-id="sharkdoc">DOCUMENTARY الشرق الوثائقية</a><br>
-    <a href="#" class="open btn btn-primary" data-id="oman_cultural">oman cultural عمان الثقافية</a><br>
-    <a href="#" class="open btn btn-primary" data-id="link71">NATGEO ABUDHABI</a><br>
-    <a href="#" class="open btn btn-primary" data-id="jsc_doc">AL JAZEERA DOC الجزيرة الوثائقية</a><br>
-    <a href="#" class="open btn btn-primary" data-id="dw">DW ARABIC</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link36">PIMP MY RIDE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link34">RIDICULE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link51">TEMPLE DE TAKASHI</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="topsante">TOP SANTÉ</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="topgear">TOP GEAR</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="techco">NOUVEAUTÉS TECH</a><br>
-    <a href="#" class="open btn btn-primary" data-id="reportages_epic">TRAVELXP</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/rdc.html">Résto-du-coeur</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/ushuaia.html">USHUAÏA FOR CHANGES</a><br>
-    <a href="#" class="open btn btn-primary" data-id="reportages_epic">REPORTAGES</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="bfmgr">BFM GRANDS REPORTAGES</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link46">RMC DECOUVÉRTE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="rmc_alert">RMC ALERTE SERCOURS</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="rmcmystere">RMC MYSTÈRE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="jirai_dor">RMC j'irai dormir chez vous</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="love_planete">LOVE PLANÈTE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link44">ANIMAUX</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="nature_time">NATURE TIME</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="destination_nature">DÉSTINATION NATURE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="jami">CPAS SORCIER AVC JAMI</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="docstory">DOC STORY</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link100">SCÈNE DE CRIME</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="dossier_fbi">DOSSIER FBI</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="detectives">LES NOUVEAUX DÉTÉCTIVES</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link18">100%DOC</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link37">AVENTURE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="30histoires">LES 30 HISTOIRES</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link43">PARANORMAL</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link74">HISTOIRE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link45">VOYAGE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link75">TOUTE UNE HISTOIRE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="areyoutheone">C'EST TOI?(ÉMISSION)</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="mama">MAMAN ADOLÉCENTE</a><br>
-    <a href="#" class="open btn btn-primary" data-id="cribs">MAISON DE STAR</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="reality">TÉLÉ RÉALITÉ</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="victorious">VICTORIOUS</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="inside">inside</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="invest">invéstigation</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="adjuge">À djugé VENDU</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="faites_entrer_laccuse">faites entrer l'accusé</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link20">Enquête de choc</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link24">HOMICIDE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link25">EFFETS PAPILLON</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link53">Qive gagner ds millions</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link70">Yak la vérité ki compte</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="ugf">MAISON&TRAVAUX AFRIQUE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link101">MAISON&TRAVAUX</a><br>
-    <a href="#" class="open btn btn-primary" data-id="sqooltv">SqoolTV</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link21">5MIN BRICOLAGE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link22">télé artisanale</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link56">MADE IT MYSELF</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/a0EwGJwicXc?autoplay=1&mute=1">AL MAGHARIBIA YOUTUBE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="al_magharibia">AL MAGHARIBIA</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="rtfrance">RT FRANCE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link63">BFM FRANCE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link1">EURONEWS france</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/l8PMl7tUDIE?autoplay=1&mute=1">FRANCE24 FR YOUTUBE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link35">FRANCE24 FRA</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/VuYzy8IuT0Y?autoplay=1&mute=1">FRANCE24 AR YOUTUBE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link72">FRANCE24 ARA</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link80">BBC NEWS</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="skynews_240p">SKYNEWS 240p</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="skynews_720p">SKYNEWS 720p</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="jsc_mub">AL JAZEERA MUB الجزيرة مباشرة</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="jsc_jsc">AL JAZEERA الجزيرة</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/bNyUyrR0PHo?autoplay=1&mute=1">AL JAZEERA AR YOUTUBE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="alarabiya">Al ARABIYA العربية</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/bCgJhh5qoog?autoplay=1&mute=1">AL ARABIYA AR العربية YOUTUBE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="alhadath">Al HADATH الحدث</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/et0bSUddkn4?autoplay=1&mute=1">AL HADATH AR الحدث YOUTUBE</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/uTMc48XmjrA?autoplay=1&mute=1">RIRE AVEC MR BEAN ضحك</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link52">JUSTE POUR RIRE ضحك</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="justforlaughs">JUST FOR LAUGHS ضحك</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="camerasmile">CAMERASMILE ضحك</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="pet_collective">PET COLLECTIVE ضحك</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link68">FUNNY VIDEOS ضحك</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="supersport1">PREMIERSPORT1</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link66">BEK SPORT</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link3">ITV SPORT</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link69">S-Sport</a><br>
-    <a href="#" class="open btn btn-primary" data-id="link62">QAZSPORT HD</a><br>
-    <a href="#" class="open btn btn-primary" data-id="link19">Bein sport1 fr</a><br>
-    <a href="#" class="open btn btn-primary" data-id="link26">Infosport fr</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="rfamily">FAMILY RAKUTEN</a><br>
-    <a href="#" class="open btn btn-primary" data-id="mrbean">MR BEAN </a><br>
-    <a href="#" class="open btn btn-primary" data-id="kids_animation">KIDS ANIMATION </a><br>
-    <a href="#" class="open btn btn-primary" data-id="kids_animation">KIDS JUNIOR </a><br>
-    <a href="#" class="open btn btn-primary" data-id="babyfirst">Babyfirst france</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="japonimtv">JAPONIM TV TOONS</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="xilam_toons">XILAM TOONS</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link23">WASABI TOONS</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="south_park">SOUTH PARK</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="conan">DÉTECTIVE CONAN</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="olivier">OLIVIER TOM</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="yogiyoh">YO GI YOH!</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="onepiece">ONE PIECE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="bob">BOB L'ÉPONGE FR</a><br>
-
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/W-xQy08kr7c?autoplay=1&mute=1">BOB L'ÉPONGE AR</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/Dm9fE76g38s?autoplay=1&mute=1">SCOOBY DO</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/p5l3ZS1jVUE?autoplay=1&mute=1">LOONEY TUNES</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/IJbbpAhjboI?autoplay=1&mute=1">1.Tom&jerry توم وجري</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/LXoQVDGeuRc?autoplay=1&mute=1">2.Tom&jerry توم وجري</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/1Yy5zZCnCB4?autoplay=1&mute=1">3.Tom&jerry توم وجري</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/iWZIkkLZL8o?autoplay=1&mute=1">smurf السنافر</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/NwmR0iv6vGA?autoplay=1&mute=1">TOYOR EL JANAH طيور الجنة</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/N3l5gMsIJAQ?autoplay=1&mute=1">OSRATOUNA أسرتنا</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/VprsKy13ynM?autoplay=1&mute=1">SHAUN THE SHEEP الكبش</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.elahmad.com/tv/watchtv.php?id=baraem">BARAEM براعم</a><br>
-    <a href="#" class="iframe btn btn-primary" data-id="https://www.youtube.com/embed/95mJZlwWh8I?autoplay=1&mute=1">Karameech كراميش</a><br>
-    <a href="#" class="open btn btn-primary" data-id="spacetoon">SPACETOON</a><br>
-    <a href="#" class="open btn btn-primary" data-id="mbc3">MBC3</a><br>
-    <a href="#" class="open btn btn-primary" data-id="cartoons">TOP CARTOONS RETRO</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link54">RETRO CARTOON FRANCE</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link58">RETRO CARTOON ENGLAIS</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="tvs">TVS TOP TOONS</a><br>
-
-    <a href="#" class="open btn btn-primary" data-id="link65">NINJA KIDS</a><br>
-
-    <a href="https://www.oha.to/" class="toutsat btn btn-primary">TOUT SAT? CLICK ICI</a>
-
-    <br>
-
-    <div class="search">
-
-      <input class="elem btn btn-dark btn-sm" type="text" value=""><br>
-
-      <button id="mp3Btn" class="btn btn-dark btn-sm">chercher mp3</button>
-
-      <br><br>
+<div class="playlist-container" onclick="togglePlaylist('videoList8')">
+            <h2>FICTION</h2>
+        </div>
+        <div id="videoList8" class="video-list"></div>
+
+<div class="playlist-container" onclick="togglePlaylist('videoList9')">
+            <h2>FILMS 4K</h2>
+        </div>
+        <div id="videoList9" class="video-list"></div>
 
     </div>
 
-  </div>
+    <div id="player">
+        <video id="plyr" controls autoplay muted>
+            <source id="videoSource" src="" type="video/mp4">
+        </video>
+    </div>
+</div>
 
-  <div class="message-box"></div>
-  <div id="iframe-container"></div>
-  <div id="videoContainer"><video id="my-video" class="video-js vjs-default-skin vjs-fluid" width="100%" height="100%" playsinline contrôles loop="true" preload="none" data-setup='{}'></video></div>
-  <!-- Lecteur Video.js -->
-  <button id="fullscreenBtn"><i class="fas fa-expand"></i></button>
-  <button id="castBtn"><i class="fas fa-tv"></i></button>
-  <script src="script.js"></script>
-    <script src="cast.js"></script>
-  <script src="https://unpkg.com/video.js/dist/alt/video.core.js"></script>
+<script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
+<script>
+    const apiKey = 'AIzaSyAKCPRz2PkEqKCgQ7KdXU6lSGfRx0ERH20';
+const maxResults = 100;
+const player = new Plyr('#plyr', {
+    controls: ['play-large', 'play', 'progress', 'current-time', 'duration', 'mute', 'volume', 'fullscreen'],
+    settings: ['quality', 'speed'],  
+    youtube: {
+        noCookie: true,
+        rel: 0,
+        showinfo: 1,
+        modestbranding: 1
+    }
+});
 
-  <script src="https://unpkg.com/@videojs/http-streaming@1/dist/videojs-http-streaming.js"></script>
+const playlists = [
+    { id: 'PL2mmBC4NntuljWb1-Rmipxqg9LjDB_Ioh', listId: 'videoList1' },
+    { id: 'PLpPy9e-Nyh3uAgehMbGGP9XehzyCttJhy', listId: 'videoList2' },
+    { id: 'PLQJ_3JxLXqMOgmIrnIOkxpS2fka6oTzWP', listId: 'videoList3' },
+    { id: 'PL8KEdedRKbyv08Mactrb_WCJ-kugWNcc7', listId: 'videoList4' },
+    { id: 'PLrIayymbIXKwQB6_TL9ujt7TWY6zygLNy', listId: 'videoList5' },
+    { id: 'PLrIayymbIXKzzsLsZnE1yW6mr06vqpXi7', listId: 'videoList6' },
+    { id: 'PL0YQ6haWgmARSc6OTnv22g_Ds1M5pPVKi', listId: 'videoList7' },
+    { id: 'PLQR8HbQ7DM0D3rtVbtEdcR1gM8K9J-_xF', listId: 'videoList8' },
+{ id: 'PLLnEDlz3w4C2nblyZxAMvJb_uFumE-JuI', listId: 'videoList9' }
+
+];
+
+function fetchPlaylistVideos(playlistId, videoListId) {
+    const apiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${maxResults}&playlistId=${playlistId}&key=${apiKey}`;
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            const videoListContainer = document.getElementById(videoListId);
+            videoListContainer.innerHTML = '';
+
+            data.items.forEach(item => {
+                const videoId = item.snippet.resourceId.videoId;
+                const title = item.snippet.title;
+                const thumbnail = item.snippet.thumbnails.default.url;
+
+                const videoElement = document.createElement('div');
+                videoElement.classList.add('video-item');
+                videoElement.setAttribute('data-video-id', videoId);
+
+                videoElement.innerHTML = `
+                    <img src="${thumbnail}" alt="${title}">
+                    <p>${title}</p>
+                `;
+
+                videoElement.addEventListener('click', () => {
+                    // Définir la source vidéo pour Plyr avec le bon ID de vidéo YouTube
+                    player.source = {
+                        type: 'video',
+                        sources: [{
+                            src: videoId,   // Utiliser correctement l'ID de la vidéo
+                            provider: 'youtube',
+                        }],
+                    };
+                    player.play();
+
+                    // Désactiver temporairement requestFullscreen pour tester
+                    // document.getElementById('plyr').requestFullscreen();
+                });
+
+                videoListContainer.appendChild(videoElement);
+            });
+        })
+        .catch(error => console.error('Erreur lors de la récupération des vidéos:', error));
+}
+
+// Boucle pour récupérer les vidéos de toutes les playlists
+playlists.forEach(playlist => {
+    fetchPlaylistVideos(playlist.id, playlist.listId);
+});
+
+// Fonction pour basculer l'affichage d'une playlist
+function togglePlaylist(videoListId) {
+    const videoList = document.getElementById(videoListId);
+    videoList.style.display = videoList.style.display === 'none' ? 'block' : 'none';
+}
+
+
+</script>
 
 </body>
 </html>
