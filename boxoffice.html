@@ -1,240 +1,242 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOX OFFICE CINÉMA</title>
-    <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
-    <style>
-        body {
-            font-family: Arial, sans-serif;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BOX OFFICE CINÉMA</title>
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.6.8/plyr.css" />
+  <style>
+    html, body {
+            height: 100%;
             margin: 0;
             display: flex;
-            height: 100vh;
-            background-color: transparent;
-            color: white;
+            flex-direction: column;
         }
-        .container {
+
+        body {
+       font-family: Arial, sans-serif;
+       background-color: #000;
+       color: white;
+        }
+
+    .container {
             display: flex;
+            flex-grow: 1;
             width: 100%;
+            height: 100%;
             overflow-y: auto;
             overflow-x: hidden !important;
-        }
-        #playlist {
+            background-color:  #222;
+  
+    }
+
+    #playlist {
             width: 300px;
             overflow-y: auto;
             background-color: #121212;
             padding: 10px;
             box-sizing: border-box;
-        }
-        .video-item {
-            cursor: pointer;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            border: 1px solid white;
-            color: white;
-        }
-        .video-item img {
-            width: 100px;
-            margin-right: 0px;
-        }
-        .video-item p {
-            margin: 0;
-            flex-grow: 1;
-        }
-        #player {
-            flex-grow: 1;
-            height: 100%;
-            background-color: black;
-            position: relative;
-        }
-        .plyr {
-            background-color: transparent;
-        }
-        .plyr--full-ui .plyr__controls button {
-            color: yellow;
-        }
-        .plyr--full-ui .plyr__progress {
-            background: transparent;
-            color: yellow;
-        }
-        .plyr--full-ui .plyr__progress--played {
-            background: yellow;
-        }
-        .plyr--full-ui .plyr__progress--buffered {
-            background: transparent;
-        }
-        .plyr__video-embed .youtube {
-            display: none !important;
-        }
+    }
 
-#playlist::-webkit-scrollbar {
-            width: 5px;
-}
-        #playlist::-webkit-scrollbar-track {
-            background: tranparent;
-            box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-}
-        #playlist::-webkit-scrollbar-thumb {
-  background: yellow;
-  border-radius: 25px;
-}
+    .video-item {
+      cursor: pointer;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      border: 1px solid white;
+      color: white;
+    }
 
-        .playlist-container {
-            cursor: pointer;
+    .video-item img {
+      width: 100px;
+      margin-right: 0px;
+    }
+
+    .video-item p {
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    #player {
+      flex-grow: 1;
+      height: 100%;
+      background-color: #222;
+      position: relative;
+    }
+    .plyr {
+      flex-grow: 1;
+      background-color: yellow;
+    }
+
+    .plyr--full-ui .plyr__controls button {
+      color: yellow;
+    }
+
+    .plyr--full-ui .plyr__progress {
+      background: transparent;
+      color: yellow;
+    }
+
+    .plyr--full-ui .plyr__progress--played {
+      background: yellow;
+    }
+
+    .plyr--full-ui .plyr__progress--buffered {
+      background: transparent;
+    }
+
+    .plyr__video-embed .youtube {
+      display: none !important;
+    }
+
+    #playlist::-webkit-scrollbar {
+      width: 5px;
+    }
+
+    #playlist::-webkit-scrollbar-track {
+      background: tranparent;
+      box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    }
+
+    #playlist::-webkit-scrollbar-thumb {
+      background: yellow;
+      border-radius: 25px;
+    }
+
+    .playlist-container {
+      cursor: pointer;
+      margin: 10px 0;
+      color: white;
+      font-weight: bold;
+    }
+
+    .video-list {
+      display: none;
+      margin-bottom: 10px;
+    }
+
+    #search-box {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
             margin: 10px 0;
+            background-color: #333;
             color: white;
-            font-weight: bold;
+            border: none;
+            border-radius: 4px;
+    }
+
+    #results {
+            height: 340px;
+            overflow-y: auto;
+            background-color: transparent;
+            color: white;
+            padding: 10px;
+            box-sizing: border-box;
+    }
+
+    #results li {
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #333;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+
+    #results li img {
+      margin-right: 10px;
+      width: 120px;
+      height: 90px;
+      border: 1px solid #ccc;
+    }
+
+    #results li:hover {
+      background-color: #555;
+      border: 1px solid yellow;
+    }
+
+    #results li .video-details {
+      display: flex;
+      flex-direction: column;
+    }
+
+    #results li .video-duration {
+      font-size: 0.9em;
+      color: #bbb;
+    }
+    #player > video {
+      width: 100%;
+      height: auto;
         }
-        .video-list {
-            display: none;
-            margin-bottom: 10px;
-        }
-    </style>
+  </style>
 </head>
+
 <body>
 
-<div class="container">
+  <div class="container">
     <div id="playlist">
-        <div class="playlist-container" onclick="togglePlaylist('videoList1')">
-            <h2>ACTION</h2>
-        </div>
-        <div id="videoList1" class="video-list"></div>
+      <div class="playlist-container" onclick="togglePlaylist('videoList1')">
+        <h2>ACTION</h2>
+      </div>
+      <div id="videoList1" class="video-list"></div>
 
-        <div class="playlist-container" onclick="togglePlaylist('videoList2')">
-            <h2>HORREUR</h2>
-        </div>
-        <div id="videoList2" class="video-list"></div>
+      <div class="playlist-container" onclick="togglePlaylist('videoList2')">
+        <h2>HORREUR</h2>
+      </div>
+      <div id="videoList2" class="video-list"></div>
 
-        <div class="playlist-container" onclick="togglePlaylist('videoList3')">
-            <h2>NOUVEAUTÉS</h2>
-        </div>
-        <div id="videoList3" class="video-list"></div>
+      <div class="playlist-container" onclick="togglePlaylist('videoList3')">
+        <h2>NOUVEAUTÉS</h2>
+      </div>
+      <div id="videoList3" class="video-list"></div>
 
-        <div class="playlist-container" onclick="togglePlaylist('videoList4')">
-            <h2>COMÉDIE</h2>
-        </div>
-        <div id="videoList4" class="video-list"></div>
+      <div class="playlist-container" onclick="togglePlaylist('videoList4')">
+        <h2>COMÉDIE</h2>
+      </div>
+      <div id="videoList4" class="video-list"></div>
 
-        <div class="playlist-container" onclick="togglePlaylist('videoList5')">
-            <h2>FAMILLE</h2>
-        </div>
-        <div id="videoList5" class="video-list"></div>
+      <div class="playlist-container" onclick="togglePlaylist('videoList5')">
+        <h2>FAMILLE</h2>
+      </div>
+      <div id="videoList5" class="video-list"></div>
 
-        <div class="playlist-container" onclick="togglePlaylist('videoList6')">
-            <h2>DÉSSIN ANIMÉ</h2>
-        </div>
-        <div id="videoList6" class="video-list"></div>
-<div class="playlist-container" onclick="togglePlaylist('videoList7')">
-            <h2>RÉELS</h2>
-        </div>
-        <div id="videoList7" class="video-list"></div>
-    
-<div class="playlist-container" onclick="togglePlaylist('videoList8')">
-            <h2>FICTION</h2>
-        </div>
-        <div id="videoList8" class="video-list"></div>
+      <div class="playlist-container" onclick="togglePlaylist('videoList6')">
+        <h2>DÉSSIN ANIMÉ</h2>
+      </div>
+      <div id="videoList6" class="video-list"></div>
+      <div class="playlist-container" onclick="togglePlaylist('videoList7')">
+        <h2>RÉELS</h2>
+      </div>
+      <div id="videoList7" class="video-list"></div>
 
-<div class="playlist-container" onclick="togglePlaylist('videoList9')">
-            <h2>FILMS 4K</h2>
-        </div>
-        <div id="videoList9" class="video-list"></div>
+      <div class="playlist-container" onclick="togglePlaylist('videoList8')">
+        <h2>FICTION</h2>
+      </div>
+      <div id="videoList8" class="video-list"></div>
+
+      <div class="playlist-container" onclick="togglePlaylist('videoList9')">
+        <h2>FILMS 4K</h2>
+      </div>
+      <div id="videoList9" class="video-list"></div>
 
     </div>
 
     <div id="player">
-        <video id="plyr" controls autoplay muted>
-            <source id="videoSource" src="" type="video/mp4">
-        </video>
+      <video id="plyr" controls autoplay muted>
+        <source id="videoSource" src="" type="video/mp4">
+      </video>
+      <div class="input-container">
+        <input type="text" id="search-box" placeholder="Search videos..." />
+        <ul id="results"></ul>
+      </div>
     </div>
-</div>
+  </div>
 
-<script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
-<script>
-    const apiKey = 'AIzaSyAKCPRz2PkEqKCgQ7KdXU6lSGfRx0ERH20';
-const maxResults = 100;
-const player = new Plyr('#plyr', {
-    controls: ['play-large', 'play', 'progress', 'current-time', 'duration', 'mute', 'volume', 'fullscreen'],
-    settings: ['quality', 'speed'],  
-    youtube: {
-        noCookie: true,
-        rel: 0,
-        showinfo: 1,
-        modestbranding: 1
-    }
-});
-
-const playlists = [
-    { id: 'PL2mmBC4NntuljWb1-Rmipxqg9LjDB_Ioh', listId: 'videoList1' },
-    { id: 'PLpPy9e-Nyh3uAgehMbGGP9XehzyCttJhy', listId: 'videoList2' },
-    { id: 'PLQJ_3JxLXqMOgmIrnIOkxpS2fka6oTzWP', listId: 'videoList3' },
-    { id: 'PL8KEdedRKbyv08Mactrb_WCJ-kugWNcc7', listId: 'videoList4' },
-    { id: 'PLrIayymbIXKwQB6_TL9ujt7TWY6zygLNy', listId: 'videoList5' },
-    { id: 'PLrIayymbIXKzzsLsZnE1yW6mr06vqpXi7', listId: 'videoList6' },
-    { id: 'PL0YQ6haWgmARSc6OTnv22g_Ds1M5pPVKi', listId: 'videoList7' },
-    { id: 'PLQR8HbQ7DM0D3rtVbtEdcR1gM8K9J-_xF', listId: 'videoList8' },
-    { id: 'PLLnEDlz3w4C2nblyZxAMvJb_uFumE-JuI', listId: 'videoList9' }
-
-];
-
-function fetchPlaylistVideos(playlistId, videoListId) {
-    const apiUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=${maxResults}&playlistId=${playlistId}&key=${apiKey}`;
-
-    fetch(apiUrl)
-        .then(response => response.json())
-        .then(data => {
-            const videoListContainer = document.getElementById(videoListId);
-            videoListContainer.innerHTML = '';
-
-            data.items.forEach(item => {
-                const videoId = item.snippet.resourceId.videoId;
-                const title = item.snippet.title;
-                const thumbnail = item.snippet.thumbnails.default.url;
-
-                const videoElement = document.createElement('div');
-                videoElement.classList.add('video-item');
-                videoElement.setAttribute('data-video-id', videoId);
-
-                videoElement.innerHTML = `
-                    <img src="${thumbnail}" alt="${title}">
-                    <p>${title}</p>
-                `;
-
-                videoElement.addEventListener('click', () => {
-                    // Définir la source vidéo pour Plyr avec le bon ID de vidéo YouTube
-                    player.source = {
-                        type: 'video',
-                        sources: [{
-                            src: videoId,   // Utiliser correctement l'ID de la vidéo
-                            provider: 'youtube',
-                        }],
-                    };
-                    player.play();
-
-                    // Désactiver temporairement requestFullscreen pour tester
-                    // document.getElementById('plyr').requestFullscreen();
-                });
-
-                videoListContainer.appendChild(videoElement);
-            });
-        })
-        .catch(error => console.error('Erreur lors de la récupération des vidéos:', error));
-}
-
-// Boucle pour récupérer les vidéos de toutes les playlists
-playlists.forEach(playlist => {
-    fetchPlaylistVideos(playlist.id, playlist.listId);
-});
-
-// Fonction pour basculer l'affichage d'une playlist
-function togglePlaylist(videoListId) {
-    const videoList = document.getElementById(videoListId);
-    videoList.style.display = videoList.style.display === 'none' ? 'block' : 'none';
-}
-
-
-</script>
-
+  <script src="https://cdn.plyr.io/3.6.8/plyr.polyfilled.js"></script>
+  <script src="y.js"></script>
 </body>
+
 </html>
