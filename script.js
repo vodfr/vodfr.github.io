@@ -7,9 +7,7 @@ let iframe = null;
 let iframeCreated = false;
 let player;
 links.forEach((link) => {
-  link.addEventListener("click", (e) => {
-   
-    e.preventDefault();
+  link.addEventListener("click", () => {
 
     const clickedLink = link.getAttribute("data-id");
 
