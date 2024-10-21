@@ -207,6 +207,7 @@ const message = "&#9776;";
     dynToggle.style.lineHeight = "30px";
     dynToggle.style.fontSize = "20px";
     dynToggle.style.transform = "translateY(-50%)";
+    dynToggle.style.border = "1px solid white";
     dynToggle.style.zIndex = "9999";
     dynToggle.style.boxSizing = "border-box";
     dynToggle.style.display = "block"
