@@ -175,7 +175,7 @@ input,
 
 
 .side-menu::-webkit-scrollbar-thumb {
-  background: yellow;
+  background: white;
   border-radius: 25px;
 }
 .search {
@@ -260,6 +260,6 @@ b {
   color: white !important;
 }
 .highlight {
-  border: 2px dashed yellow !important;
+  border: 1px solid white !important;
   width: 90% !important;
 }
