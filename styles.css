@@ -154,7 +154,7 @@ body {
   padding: 5px 5px;
 }
 .side-menu::-webkit-scrollbar {
-  width: 5px;
+  width: 3px;
 }
 .side-menu::-webkit-scrollbar-track {
   background: tranparent;
