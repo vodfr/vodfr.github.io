@@ -6,11 +6,14 @@ const iframeContainer = document.getElementById("iframe-container");
 let iframe = null;
 let iframeCreated = false;
 let player;
+let dynToggle;
 links.forEach((link) => {
   link.addEventListener("click", () => {
 
     const clickedLink = link.getAttribute("data-id");
-
+   if (dynToggle) {
+      dynToggle.style.display = "none";
+     }
     fullscreenBtn.classList.remove("hidden");
     castBtn.classList.remove("hidden");
     iframeCreated = false;
@@ -183,20 +186,42 @@ function playWithIframe(iframeSrc) {
 
   iframeCreated = true;
 
-  const message = "&#8592;  balayer d'ici le MENU  &#8594;";
-
-  const existingP = document.querySelector("p");
-
-  if (existingP) {
-    existingP.remove();
-  }
-
-  const dynPar = document.createElement("p");
-
-  dynPar.innerHTML = message;
-
-  iframeContainer.insertAdjacentElement("beforeend", dynPar);
-
+const message = "&#9776;";
+    const existingP = document.querySelector("#menuToggle");
+    if (existingP) {
+        existingP.remove();
+    }
+    dynToggle = document.createElement("div");
+    dynToggle.id = "menuToggle";
+    dynToggle.innerHTML = message;
+    dynToggle.style.position = "fixed";
+    dynToggle.style.top = "50%";
+    dynToggle.style.left = "0";
+    dynToggle.style.backgroundColor = "#333";
+    dynToggle.style.color = "yellow"; 
+    dynToggle.style.padding = "0px";
+    dynToggle.style.cursor = "pointer";
+    dynToggle.style.textAlign = "center";
+    dynToggle.style.width = "30px";
+    dynToggle.style.height = "30px";
+    dynToggle.style.lineHeight = "30px";
+    dynToggle.style.fontSize = "20px";
+    dynToggle.style.transform = "translateY(-50%)";
+    dynToggle.style.zIndex = "9999";
+    dynToggle.style.boxSizing = "border-box";
+    dynToggle.style.display = "block"
+    document.body.appendChild(dynToggle);
+    dynToggle.addEventListener("click", function() {
+   if (dynToggle) {
+    document.getElementById("sideMenu").classList.toggle("open");
+      
+     } else {
+       
+document.getElementById("sideMenu").classList.remove("open");
+          
+       }
+        
+        });
   if (iframeCreated) {
     openFullscreen();
   }
@@ -209,11 +234,9 @@ function openFullscreen() {
     elem.requestFullscreen();
   } else if (elem.webkitRequestFullscreen) {
     // Safari
-
     elem.webkitRequestFullscreen();
   } else if (elem.msRequestFullscreen) {
     // IE11
-
     elem.msRequestFullscreen();
   }
 }
@@ -226,7 +249,6 @@ fullscreenBtn.addEventListener("click", function () {
       iframeContainer.requestFullscreen();
       fullscreenIcon.classList.remove("fa-expand");
       fullscreenIcon.classList.add("fa-compress");
-      
       startHideTimer();
     } else {
       if (iframeContainer.exitFullscreen) {
