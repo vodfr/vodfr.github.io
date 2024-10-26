@@ -122,7 +122,7 @@ function dialogbox() {
     msg.style.display = "none";
 
     msg.innerHTML = "";
-  }, 6000);
+  }, 10000);
 }
 document.querySelectorAll(".iframe").forEach((link) => {
   link.addEventListener("click", function (e) {
@@ -158,7 +158,7 @@ function playWithIframe(iframeSrc) {
   
 
     dialogbox();
-  }, 5000);
+  }, 10000);
 
   iframe = document.getElementById("dynamic-iframe");
 
