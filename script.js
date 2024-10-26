@@ -13,9 +13,6 @@ links.forEach((link) => {
     const clickedLink = link.getAttribute("data-id");
    if (dynToggle) {
     dynToggle.style.display = "none";
-    msg.style.display = "block";
-    msg.innerHTML =  "<marquee width='100%' direction='left' scrollamount='10'>"BALAYEZ L'ECRAN PR<b>AFFICHER LE MENU</b></marquee>";
-    dialogbox();
      }
     fullscreenBtn.classList.remove("hidden");
     castBtn.classList.remove("hidden");
