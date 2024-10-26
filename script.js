@@ -9,7 +9,7 @@ let player;
 let dynToggle;
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
-   e.stopPropagation();
+   e.preventDefault();
     const clickedLink = link.getAttribute("data-id");
    if (dynToggle) {
       dynToggle.style.display = "none";
@@ -126,7 +126,7 @@ function dialogbox() {
 }
 document.querySelectorAll(".iframe").forEach((link) => {
   link.addEventListener("click", function (e) {
-     e.stopPropagation();
+     e.preventDefault();
     fullscreenBtn.classList.remove("hidden");
     videoElement.style.display = "none";
 
