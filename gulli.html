@@ -43,10 +43,13 @@ height: 100%;
       });
     }
 
-    const player = new Plyr(video, {
+  const player = new Plyr(video, {
       autoplay: true,
       muted: true
     });
+  player.on("play", () => {
+	player.fullscreen.enter();
+	});
   </script>
 
 </body>
