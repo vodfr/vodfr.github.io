@@ -35,7 +35,6 @@ overflow: hidden;
       hls.attachMedia(video);
       hls.on(Hls.Events.MANIFEST_PARSED, function () {
         video.play();
-        
       });
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
       video.src = source;
