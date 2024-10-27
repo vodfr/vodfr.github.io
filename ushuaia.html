@@ -49,9 +49,10 @@ const player = new Plyr(video, {
       autoplay: true,
       muted: true
     });
-player.on("ready", () => {
-player.fullscreen.enter();
-  });
+player.on("play", () => {
+	player.play();	
+	player.fullscreen.enter();
+	});
 });
   </script>
 
