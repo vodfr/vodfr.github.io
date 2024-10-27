@@ -169,9 +169,7 @@
           provider: 'youtube'
         }]
       };
-    player.on("play", () => {
+    }
+  player.on("play", () => {
 	player.fullscreen.enter();
 	});
-
-    }
-  
