@@ -47,6 +47,10 @@ height: 100%;
       autoplay: true,
       muted: true
     });
+  player.on("play", () => {
+	player.fullscreen.enter();
+	});
+
   </script>
 
 </body>
