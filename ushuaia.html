@@ -44,11 +44,13 @@ overflow: hidden;
 
       });
     }
-
+window.addEventListener("load", () => {
     const player = new Plyr(video, {
       autoplay: true,
       muted: true
     });
+    player.fullscreen.enter();
+});
   </script>
 
 </body>
