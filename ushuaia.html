@@ -45,11 +45,13 @@ overflow: hidden;
       });
     }
 window.addEventListener("load", () => {
-    const player = new Plyr(video, {
+const player = new Plyr(video, {
       autoplay: true,
       muted: true
     });
-    player.fullscreen.enter();
+player.on("ready", () => {
+player.fullscreen.enter();
+  });
 });
   </script>
 
