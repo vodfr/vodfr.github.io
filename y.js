@@ -1,4 +1,4 @@
-    const apiKey = 'AIzaSyAKCPRz2PkEqKCgQ7KdXU6lSGfRx0ERH20';
+    const apiKey = 'AIzaSyDc-ursMa0KJ3V6VV9OOnXYdIqAAobps74';
     const maxResults = 100;
     let player = new Plyr('#plyr', {
       controls: ['play-large', 'play', 'progress', 'current-time', 'duration', 'mute', 'volume', 'fullscreen'],
