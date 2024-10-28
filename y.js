@@ -98,13 +98,15 @@
     const resultsList = document.getElementById('results');
     searchBox.addEventListener('input', function() {
       const query = searchBox.value;
-      
+      if (query !== "") {
        searchVideos(query);
-       
+      } else {
+     resultsList.style.display = "none";
+      }
     });
 
     function searchVideos(query) {
-    
+      resultsList.style.display = "block";
       resultsList.innerHTML = ''; // Réinitialiser les résultats
       playlists.forEach(playlist => {
         searchPlaylistVideos(playlist.id, query);
