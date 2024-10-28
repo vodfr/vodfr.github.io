@@ -263,3 +263,19 @@ b {
   border: 1px solid white !important;
   width: 90% !important;
 }
+.styleBtn{
+  cursor: pointer;
+  animation: colorAnimation 1s infinite;
+  animation-iteration-count: 4;
+  transition: box-shadow 0.5s ease-in-out;
+}
+@keyframes colorAnimation {
+  from {
+    background: transparent;
+    box-shadow: 0 0 20px 5px rgba(255, 255, 0, 0.3);
+  }
+  to {
+    box-shadow: 0 0 30px 15px rgba(255, 255, 0, 0.8);
+    background: yellow;
+  }
+}
