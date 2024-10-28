@@ -193,7 +193,7 @@ const message = "&#9776;";
     dynToggle.style.position = "fixed";
     dynToggle.style.top = "50%";
     dynToggle.style.left = "0";
-    dynToggle.style.backgroundColor = "#000";
+    dynToggle.style.backgroundColor = "transparent";
     dynToggle.style.color = "white"; 
     dynToggle.style.padding = "0px";
     dynToggle.style.cursor = "pointer";
@@ -204,11 +204,11 @@ const message = "&#9776;";
     dynToggle.style.fontSize = "20px";
     dynToggle.style.transform = "translateY(-50%)";
     dynToggle.style.border = "1px solid white";
-    dynToggle.style.borderRadius = "5px";
+    dynToggle.style.borderRadius = "8px";
     dynToggle.style.zIndex = "9999";
     dynToggle.style.boxSizing = "border-box";
     dynToggle.style.display = "block";
-    dynToggle.classList.add('styleBtn');
+    dynToggle.classList.add("styleBtn");
     document.body.appendChild(dynToggle);
     dynToggle.addEventListener("click", function() {
    if (dynToggle) {
