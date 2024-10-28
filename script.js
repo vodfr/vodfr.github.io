@@ -206,7 +206,8 @@ const message = "&#9776;";
     dynToggle.style.border = "1px solid white";
     dynToggle.style.zIndex = "9999";
     dynToggle.style.boxSizing = "border-box";
-    dynToggle.style.display = "block"
+    dynToggle.style.display = "block";
+    dynToggle.classList.add('styleBtn');
     document.body.appendChild(dynToggle);
     dynToggle.addEventListener("click", function() {
    if (dynToggle) {
