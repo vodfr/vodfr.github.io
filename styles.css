@@ -266,7 +266,7 @@ b {
 .styleBtn{
   cursor: pointer;
   animation: colorAnimation 1s infinite;
-  animation-iteration-count: 4;
+  animation-iteration-count: 2;
   transition: box-shadow 0.5s ease-in-out;
 }
 @keyframes colorAnimation {
