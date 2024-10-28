@@ -154,7 +154,7 @@ function playWithIframe(iframeSrc) {
       player.pause();
     }
     dialogbox();
-  }, 10000);
+  }, 5000);
 
   iframe = document.getElementById("dynamic-iframe");
 
