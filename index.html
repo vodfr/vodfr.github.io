@@ -18,15 +18,20 @@
 <body>
   <div id="sideMenu" class="side-menu">
     <input type="text" id="searchInput" placeholder="Rechercher chaine..."><br>
-    <a href="https://avis.42web.io/a/" class="journal btn btn-primary">AVIS&CONCOURSإعلانات العمل</a><br>
-    <a href="https://v.calameo.com/library/?type=account&id=3500706&rows=1&sortBy=latestPublished&theme=&bgColor=&thumbSize=large&showTitle=true&showShadow=true&showGloss=true&showInfo=&linkTo=view&linkTarget=_blank" class="journal btn btn-primary">الجزائر الجديدة</a><br>
-    <a href="https://v.calameo.com/library/?type=account&id=5653905&rows=1&sortBy=latestPublished&theme=&bgColor=&thumbSize=large&showTitle=true&showShadow=true&showGloss=true&showInfo=&linkTo=view&linkTarget=_blank" class="journal btn btn-primary">PRÈSSE INJAZAT</a><br>
-    <a href="https://v.calameo.com/library/?type=account&id=6174701
-&rows=1&sortBy=latestPublished&theme=&bgColor=&thumbSize=large&showTitle=true&showShadow=true&showGloss=true&showInfo=&linkTo=view&linkTarget=_blank" class="journal btn btn-primary">COMPÉTITION</a><br>
-    <a href="https://v.calameo.com/library/?type=account&id=1085220
-&rows=1&sortBy=latestPublished&theme=&bgColor=&thumbSize=large&showTitle=true&showShadow=true&showGloss=true&showInfo=&linkTo=view&linkTarget=_blank" class="journal btn btn-primary">DERBY</a><br>
-    <a href="https://www.lesoirdalgerie.com/pdf/slim/latest" class="journal btn btn-primary">LE SOIR</a><br>
-    <a href="#" class="open btn btn-primary" data-id="emotion">ÉMOTION MUSIC A.D'OR</a><br>
+     <div class="conteneur">
+      <div class="section-title">AVIS</div>
+      <ul class="groupe">
+    <li><a href="https://avis.42web.io/a/" class="journal btn btn-primary">AVIS&CONCOURSإعلانات العمل</a></li></ul></div>
+      <div class="conteneur">
+      <div class="section-title">JOURNAUX</div>
+      <ul class="groupe">
+    <li><a href="https://v.calameo.com/library/?type=account&id=3500706&rows=1&sortBy=latestPublished&theme=&bgColor=&thumbSize=large&showTitle=true&showShadow=true&showGloss=true&showInfo=&linkTo=view&linkTarget=_blank" class="journal btn btn-primary">الجزائر الجديدة</a></li>
+    <li><a href="https://v.calameo.com/library/?type=account&id=5653905&rows=1&sortBy=latestPublished&theme=&bgColor=&thumbSize=large&showTitle=true&showShadow=true&showGloss=true&showInfo=&linkTo=view&linkTarget=_blank" class="journal btn btn-primary">PRÈSSE INJAZAT</a></li>
+    <li><a href="https://v.calameo.com/library/?type=account&id=6174701
+&rows=1&sortBy=latestPublished&theme=&bgColor=&thumbSize=large&showTitle=true&showShadow=true&showGloss=true&showInfo=&linkTo=view&linkTarget=_blank" class="journal btn btn-primary">COMPÉTITION</a></li>
+    <li><a href="https://v.calameo.com/library/?type=account&id=1085220
+&rows=1&sortBy=latestPublished&theme=&bgColor=&thumbSize=large&showTitle=true&showShadow=true&showGloss=true&showInfo=&linkTo=view&linkTarget=_blank" class="journal btn btn-primary">DERBY</a></li>
+   <li><a href="https://www.lesoirdalgerie.com/pdf/slim/latest" class="journal btn btn-primary">LE SOIR</a></li></ul></div>
     <div class="conteneur">
       <div class="section-title">RADIOS</div>
       <ul class="groupe">
@@ -41,6 +46,7 @@
         <li><a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/trad.html">RADIO-CORAN-KABYLE</a></li>
         <li><a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/chaabia.html">RADIO-CHAABIA</a></li>
         <li><a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/chansons.html">RADIO-BELLE-CHANSONS</a></li></ul></div>
+    <a href="#" class="open btn btn-primary" data-id="emotion">ÉMOTION MUSIC A.D'OR</a><br>
    <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/tf1fr.html">TF1-FRANCE</a><br><a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/tf1s.html">TF1-SÉRIES FILMS</a><br>
     <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/tfx.html">TFX</a><br>
     <a href="#" class="iframe btn btn-primary" data-id="https://vodfr.github.io/tmc.html">TMC</a><br>
@@ -331,7 +337,6 @@
     <div class="message-box"></div>
     <div id="iframe-container"></div>
     <div id="videoContainer"><video id="my-video" class="video-js vjs-default-skin vjs-fluid" width="100%" height="100%" playsinline controls loop="true" preload="none"></video></div>
-    <!-- Lecteur Video.js -->
     <button id="fullscreenBtn"><i class="fas fa-expand"></i></button>
     <button id="castBtn"><i class="fas fa-tv"></i></button>
     <script src="script.js"></script>
