@@ -308,3 +308,10 @@ function filterAndHighlight() {
   }
 }
 searchInput.addEventListener("input", filterAndHighlight);
+document.querySelectorAll(".conteneur").forEach(function (conteneur) {
+  const title = conteneur.querySelector(".section-title");
+
+  title.addEventListener("click", function () {
+    conteneur.classList.toggle("active");
+  });
+});
