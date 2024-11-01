@@ -311,7 +311,7 @@ b {
   margin: 2px 0;
 }
 .groupe li a {
-  color: white;
+  color: yellow !important;
   text-decoration: none;
 }
 .groupe li a:hover {
