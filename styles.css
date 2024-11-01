@@ -279,3 +279,49 @@ b {
     background: yellow;
   }
 }
+.conteneur {
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.section-title {
+  font-family: Arial, sans-serif;
+  color: white;
+  margin-left: 12px;
+  margin-bottom: 0px;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+}
+.section-title::after {
+  content: "\25BC"; 
+  font-size: 0.8em;
+  position: absolute;
+  right: 10px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+.groupe {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: none; 
+}
+.groupe li {
+  margin: 2px 0;
+}
+.groupe li a {
+  color: white;
+  text-decoration: none;
+}
+.groupe li a:hover {
+  text-decoration: none;
+}
+.conteneur.active .groupe {
+  display: block;
+}
+.conteneur.active .section-title::after {
+  content: "\25B2"; 
+}
+
+  
