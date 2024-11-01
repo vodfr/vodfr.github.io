@@ -315,3 +315,7 @@ document.querySelectorAll(".conteneur").forEach(function (conteneur) {
     conteneur.classList.toggle("active");
   });
 });
+document.addEventListener("DOMContentLoaded", function() {
+  player  = videojs("my-video");
+  });
+
