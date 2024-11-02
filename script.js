@@ -87,6 +87,10 @@ links.forEach((link) => {
 
               dialogbox();
             });
+           player.on("timeupdate", function () {
+           player.controls(true);
+           });
+            
           }
         }
       }
