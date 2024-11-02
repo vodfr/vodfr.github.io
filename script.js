@@ -12,7 +12,7 @@ player = videojs("my-video", {
       techOrder:["html5"],
       controls: true,
       autoplay: false,
-      preload: 'auto',
+      preload: "auto",
     }); 
 
 links.forEach((link) => {
