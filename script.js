@@ -5,8 +5,16 @@ const video = document.getElementById("my-video");
 const iframeContainer = document.getElementById("iframe-container");
 let iframe = null;
 let iframeCreated = false;
-let player;
 let dynToggle;
+let player;
+
+player = videojs("my-video", {
+      techOrder:["html5"],
+      controls: true,
+      autoplay: false,
+      preload: 'auto',
+    }); 
+
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
    e.preventDefault();
@@ -314,11 +322,6 @@ document.querySelectorAll(".conteneur").forEach(function (conteneur) {
     conteneur.classList.toggle("active");
   });
 });
-player = videojs("my-video", {
-      techOrder:["html5"],
-      controls: true,
-      autoplay: false,
-      preload: 'auto',
-    }); 
+
 
 
