@@ -8,12 +8,7 @@ let iframeCreated = false;
 let dynToggle;
 let player;
 
-player = videojs("my-video", {
-      techOrder:["html5"],
-      controls: true,
-      autoplay: false,
-      preload: "auto",
-    }); 
+
 
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
@@ -233,6 +228,12 @@ document.getElementById("sideMenu").classList.remove("open");
   }
 }
 window.addEventListener("load", () => {
+  player = videojs("my-video", {
+      techOrder:["html5"],
+      controls: true,
+      autoplay: false,
+      preload: "auto",
+    });     
   document.getElementById("sideMenu").classList.add("open");
 });
 function openFullscreen() {
