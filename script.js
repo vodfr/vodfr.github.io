@@ -9,10 +9,10 @@ let dynToggle;
 let player;
 document.addEventListener("DOMContentLoaded", () => {
   player = videojs("my-video", {
-      techOrder:["html5"],
       controls: true,
       autoplay: false,
       preload: "auto",
+      techOrder: ["html5","flash","hls"]
     }); 
     });
 links.forEach((link) => {
