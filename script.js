@@ -36,7 +36,6 @@ links.forEach((link) => {
         for (var i = 0; i < data.length; i++) {
           if (data[i].chaine.title === clickedLink) {
             if (data[i].chaine.protocol === "https") {
-              player = videojs("my-video");
 
               player.src({
                 src: data[i].chaine.url,
@@ -315,7 +314,13 @@ document.querySelectorAll(".conteneur").forEach(function (conteneur) {
     conteneur.classList.toggle("active");
   });
 });
-document.addEventListener("DOMContentLoaded", function() {
-  player  = videojs("my-video");
-  });
+  
+  document.addEventListener('DOMContentLoaded', () => {
+  player = videojs("my-video", {
+      techOrder:["html5"],
+      controls: true,
+      autoplay: false,
+      preload: 'auto',
+    }); 
+});
 
