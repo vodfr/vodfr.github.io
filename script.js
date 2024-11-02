@@ -314,13 +314,11 @@ document.querySelectorAll(".conteneur").forEach(function (conteneur) {
     conteneur.classList.toggle("active");
   });
 });
-  
-  document.addEventListener('DOMContentLoaded', () => {
-  player = videojs("my-video", {
+player = videojs("my-video", {
       techOrder:["html5"],
       controls: true,
       autoplay: false,
       preload: 'auto',
     }); 
-});
+
 
