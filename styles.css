@@ -110,7 +110,9 @@ body {
   height: 100%;
 
   z-index: 0;
-
+  
+  transform: perspective(600px) rotateY(45deg);
+  
   display: block;
 }
 .vjs-big-play-button {
@@ -125,7 +127,7 @@ body {
   border: 1px solid #222;
   border-radius: 10px;
   margin-bottom: 40px;
-  transform: scale(0.6);
+  transform: scale(0.6) perspective(400px) rotateY(10deg);
 }
 .btn.btn-primary {
   color: white;
@@ -221,6 +223,8 @@ input,
 
   white-space: nowrap;
 
+  transform: scale(0.6) perspective(90px) rotateY(9deg);
+  
   display: none;
 }
 .toutsat:hover {
