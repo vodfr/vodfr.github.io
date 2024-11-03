@@ -207,7 +207,7 @@ input,
 
   border: 1px solid white;
 
-  padding: 6px 0px 6px 0px;
+  padding: 5px 0px 10px 0px;
 
   width: 20%;
 
@@ -215,7 +215,7 @@ input,
 
   border-radius: 5px;
 
-  font-size: 11px;
+  font-size: 7px;
 
   z-index: 2;
 
