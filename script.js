@@ -272,6 +272,7 @@ fullscreenBtn.addEventListener("click", function () {
   }
 });
 function startHideTimer() {
+  startSpeedTest();
   hideTimer = setTimeout(() => {
     fullscreenBtn.classList.add("hidden");
     castBtn.classList.add("hidden");
@@ -339,10 +340,10 @@ function updateSpeed() {
   let qualityText = "";
   let qualityClass = "";
 
-if (percentage > 80) {
+if (percentage > 10) {
     qualityText = "Excellente";
     qualityClass = "excellent";
-  } else if (percentage >= 50) {
+  } else if (percentage >= 0.5) {
     qualityText = "Bonne";
     qualityClass = "good";
   } else {
