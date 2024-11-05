@@ -337,10 +337,10 @@ function updateSpeed() {
   let qualityText = "";
   let qualityClass = "";
 
-  if (percentage >= 80) {
+  if (percentage > 10) {
     qualityText = "Excellente";
     qualityClass = "excellent";
-  } else if (percentage >= 10) {
+  } else if (percentage >= 0.5) {
     qualityText = "Bonne";
     qualityClass = "good";
   } else {
