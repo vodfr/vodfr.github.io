@@ -14,6 +14,7 @@ links.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
     const clickedLink = link.getAttribute("data-id");
+    startSpeedTest();
     if (dynToggle) {
       dynToggle.style.display = "none";
     }
@@ -127,6 +128,7 @@ function dialogbox() {
 document.querySelectorAll(".iframe").forEach((link) => {
   link.addEventListener("click", function (e) {
     e.preventDefault();
+    startSpeedTest();
     fullscreenBtn.classList.remove("hidden");
     videoElement.style.display = "none";
 
@@ -324,7 +326,7 @@ document.querySelectorAll(".conteneur").forEach(function (conteneur) {
 
 let downloadSize = 5616998;
 
-let startTime, timerInterval;
+let startTime, timer;
 
 function updateSpeed() {
   let currentTime = new Date().getTime();
@@ -377,10 +379,11 @@ function updateSignalStrength(percentage, qualityClass) {
 
 function startSpeedTest() {
   startTime = new Date().getTime();
-  timerInterval = setTimeout(updateSpeed, 1000);
+  timer = setTimeout(updateSpeed, 1000);
 }
 function controls() {
   bar.style.opacity = "1";
+  startSpeedTest();
   setTimeout(function () {
     bar.style.opacity = "0";
   }, 7000);
