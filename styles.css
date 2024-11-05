@@ -374,8 +374,6 @@ b {
 .poor {
   color: red;
 }
-
-/* Barre de signal */
 .signal-strength {
   display: flex;
   gap: 3px;
