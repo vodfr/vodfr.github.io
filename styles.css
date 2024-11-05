@@ -335,7 +335,7 @@ b {
 .custom-controls {
   position: fixed;
   bottom: 20px;
-  width: 80%;
+  width: 95%;
   max-width: 700px;
   background-color: #000;
   color: #fff;
@@ -343,6 +343,7 @@ b {
   align-items: center;
   justify-content: space-between;
   border-radius: 10px;
+  border: 1px solid #222;
   padding: 10px 20px;
   font-size: 1em;
   margin: 0 auto;
