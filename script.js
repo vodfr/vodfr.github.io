@@ -3,25 +3,20 @@ const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("videoContainer");
 const video = document.getElementById("my-video");
 const iframeContainer = document.getElementById("iframe-container");
+let bar = document.querySelector(".custom-controls");
 let iframe = null;
 let iframeCreated = false;
 let dynToggle;
+let hideTimer;
 let player;
-document.addEventListener("DOMContentLoaded", () => {
-  player = videojs("my-video", {
-      controls: true,
-      autoplay: false,
-      preload: "auto",
-      techOrder: ["html5","flash","hls"]
-    }); 
-    });
+
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
-   e.preventDefault();
+    e.preventDefault();
     const clickedLink = link.getAttribute("data-id");
-   if (dynToggle) {
-    dynToggle.style.display = "none";
-     }
+    if (dynToggle) {
+      dynToggle.style.display = "none";
+    }
     fullscreenBtn.classList.remove("hidden");
     castBtn.classList.remove("hidden");
     iframeCreated = false;
@@ -44,7 +39,6 @@ links.forEach((link) => {
         for (var i = 0; i < data.length; i++) {
           if (data[i].chaine.title === clickedLink) {
             if (data[i].chaine.protocol === "https") {
-
               player.src({
                 src: data[i].chaine.url,
 
@@ -55,8 +49,6 @@ links.forEach((link) => {
                 player.load();
 
                 player.play();
-
-                player.controls(true);
 
                 openFullscreen();
               });
@@ -73,7 +65,7 @@ links.forEach((link) => {
                 "<marquee width='100%' direction='left' scrollamount='10'>" +
                 link.textContent +
                 " est en <b>LECTURE...</b></marquee>";
-
+              controls();
               dialogbox();
             });
 
@@ -87,10 +79,6 @@ links.forEach((link) => {
 
               dialogbox();
             });
-           player.on("timeupdate", function () {
-           player.controls(true);
-           });
-            
           }
         }
       }
@@ -111,6 +99,7 @@ document.addEventListener("touchmove", function (e) {
   if (deltaX > 50) {
     fullscreenBtn.classList.remove("hidden");
     castBtn.classList.remove("hidden");
+    controls();
     document.getElementById("sideMenu").classList.add("open");
   } else if (deltaX < -50) {
     startHideTimer();
@@ -128,6 +117,7 @@ b.addEventListener("click", function () {
 
   window.open(api + mp3);
 });
+
 function dialogbox() {
   setTimeout(() => {
     msg.style.display = "none";
@@ -136,7 +126,7 @@ function dialogbox() {
 }
 document.querySelectorAll(".iframe").forEach((link) => {
   link.addEventListener("click", function (e) {
-     e.preventDefault();
+    e.preventDefault();
     fullscreenBtn.classList.remove("hidden");
     videoElement.style.display = "none";
 
@@ -193,57 +183,56 @@ function playWithIframe(iframeSrc) {
 
   iframeCreated = true;
 
-const message = "&#9776;";
-    const existingP = document.querySelector("#menuToggle");
-    if (existingP) {
-        existingP.remove();
+  const message = "&#9776;";
+  const existingP = document.querySelector("#menuToggle");
+  if (existingP) {
+    existingP.remove();
+  }
+  dynToggle = document.createElement("div");
+  dynToggle.id = "menuToggle";
+  dynToggle.innerHTML = message;
+  dynToggle.style.position = "fixed";
+  dynToggle.style.top = "50%";
+  dynToggle.style.left = "0";
+  dynToggle.style.backgroundColor = "#000";
+  dynToggle.style.color = "white";
+  dynToggle.style.padding = "0px";
+  dynToggle.style.cursor = "pointer";
+  dynToggle.style.textAlign = "center";
+  dynToggle.style.width = "30px";
+  dynToggle.style.height = "30px";
+  dynToggle.style.lineHeight = "30px";
+  dynToggle.style.fontSize = "20px";
+  dynToggle.style.transform = "translateY(-50%)";
+  dynToggle.style.border = "1px solid white";
+  dynToggle.style.borderRadius = "8px";
+  dynToggle.style.zIndex = "9999";
+  dynToggle.style.boxSizing = "border-box";
+  dynToggle.style.display = "block";
+  dynToggle.classList.add("styleBtn");
+  document.body.appendChild(dynToggle);
+  dynToggle.addEventListener("click", function () {
+    video.style.pointerEvents = "none";
+    dynToggle.style.pointerEvents = "auto";
+    if (dynToggle) {
+      document.getElementById("sideMenu").classList.toggle("open");
+    } else {
+      document.getElementById("sideMenu").classList.remove("open");
     }
-    dynToggle = document.createElement("div");
-    dynToggle.id = "menuToggle";
-    dynToggle.innerHTML = message;
-    dynToggle.style.position = "fixed";
-    dynToggle.style.top = "50%";
-    dynToggle.style.left = "0";
-    dynToggle.style.backgroundColor = "#000";
-    dynToggle.style.color = "white"; 
-    dynToggle.style.padding = "0px";
-    dynToggle.style.cursor = "pointer";
-    dynToggle.style.textAlign = "center";
-    dynToggle.style.width = "30px";
-    dynToggle.style.height = "30px";
-    dynToggle.style.lineHeight = "30px";
-    dynToggle.style.fontSize = "20px";
-    dynToggle.style.transform = "translateY(-50%)";
-    dynToggle.style.border = "1px solid white";
-    dynToggle.style.borderRadius = "8px";
-    dynToggle.style.zIndex = "9999";
-    dynToggle.style.boxSizing = "border-box";
-    dynToggle.style.display = "block";
-    dynToggle.classList.add("styleBtn");
-    document.body.appendChild(dynToggle);
-    dynToggle.addEventListener("click", function() {
-   if (dynToggle) {
-    document.getElementById("sideMenu").classList.toggle("open");
-      
-     } else {
-       
-document.getElementById("sideMenu").classList.remove("open");
-          
-       }
-        
-        });
+  });
   if (iframeCreated) {
     openFullscreen();
   }
 }
 window.addEventListener("load", () => {
   player = videojs("my-video", {
-      techOrder:["html5"],
-      controls: true,
-      autoplay: false,
-      preload: "auto",
-    });     
+    controls: false,
+    autoplay: false,
+    preload: "auto",
+    techOrder: ["html5", "flash", "hls"]
+  });
   document.getElementById("sideMenu").classList.add("open");
+  startSpeedTest();
 });
 function openFullscreen() {
   if (elem.requestFullscreen) {
@@ -272,7 +261,7 @@ fullscreenBtn.addEventListener("click", function () {
         fullscreenIcon.classList.remove("fa-compress");
         fullscreenIcon.classList.add("fa-expand");
         fullscreenBtn.classList.remove("hidden");
-        
+
         clearTimeout(hideTimer);
       }
     }
@@ -284,14 +273,14 @@ function startHideTimer() {
   hideTimer = setTimeout(() => {
     fullscreenBtn.classList.add("hidden");
     castBtn.classList.add("hidden");
-  }, 4000);
+  }, 6000);
 }
 document.addEventListener("fullscreenchange", function () {
   if (iframeContainer.fullscreenElement) {
     startHideTimer();
   } else {
     clearTimeout(hideTimer);
-     castBtn.classList.remove("hidden");
+    castBtn.classList.remove("hidden");
     fullscreenBtn.classList.remove("hidden");
     document.getElementById("sideMenu").classList.add("open");
   }
@@ -333,5 +322,88 @@ document.querySelectorAll(".conteneur").forEach(function (conteneur) {
   });
 });
 
+let downloadSize = 5616998;
+
+let startTime, timerInterval;
+
+function updateSpeed() {
+  let currentTime = new Date().getTime();
+  let duration = (currentTime - startTime) / 1000;
+  let bitsLoaded = downloadSize * 8;
+  let speedBps = bitsLoaded / duration;
+  let speedMbps = (speedBps / (1024 * 1024)).toFixed(2);
+  let percentage = Math.min((speedMbps / 100) * 100, 100).toFixed(2);
+  document.getElementById("speed-display").textContent = speedMbps + " Mbps";
+  let qualityText = "";
+  let qualityClass = "";
+
+  if (percentage >= 80) {
+    qualityText = "Excellente";
+    qualityClass = "excellent";
+  } else if (percentage >= 50) {
+    qualityText = "Bonne";
+    qualityClass = "good";
+  } else {
+    qualityText = "Faible";
+    qualityClass = "poor";
+  }
+
+  let percentageDisplay = document.getElementById("percentage-display");
+  percentageDisplay.textContent = percentage + "% (" + qualityText + ")";
+  percentageDisplay.className = "percentage-display " + qualityClass;
+  updateSignalStrength(percentage, qualityClass);
+}
+
+function updateSignalStrength(percentage, qualityClass) {
+  let signalBars = document.querySelectorAll(".signal-bar");
+
+  let activeBars = Math.ceil((percentage / 100) * signalBars.length);
+
+  signalBars.forEach((bar, index) => {
+    if (index < activeBars) {
+      bar.classList.add("active");
+      bar.style.backgroundColor =
+        qualityClass === "excellent"
+          ? "lime"
+          : qualityClass === "good"
+          ? "yellow"
+          : "red";
+    } else {
+      bar.classList.remove("active");
+      bar.style.backgroundColor = "#fff";
+    }
+  });
+}
+
+function startSpeedTest() {
+  startTime = new Date().getTime();
+  timerInterval = setInterval(updateSpeed, 1000);
+}
+function controls() {
+  bar.style.opacity = "1";
+  setTimeout(function () {
+    bar.style.opacity = "0";
+  }, 7000);
+}
+video.addEventListener("touchmove", () => {
+  if (bar) {
+    bar.classList.toggle(".aff");
+  } else {
+    bar.classList.remove(".aff");
+  }
+  controls();
+});
+let controlplay = document.querySelector("#play-button");
+let controlpause = document.querySelector("#pause-button");
+let controlfull = document.querySelector("#fullscreen-button");
+controlplay.addEventListener("click", () => {
+  player.play();
+});
+controlpause.addEventListener("click", () => {
+  player.pause();
+});
+controlfull.addEventListener("click", () => {
+  video.requestFullscreen();
+});
 
 
