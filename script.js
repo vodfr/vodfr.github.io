@@ -337,10 +337,10 @@ function updateSpeed() {
   let qualityText = "";
   let qualityClass = "";
 
-  if (percentage > 10) {
+if (percentage > 80) {
     qualityText = "Excellente";
     qualityClass = "excellent";
-  } else if (percentage >= 0.5) {
+  } else if (percentage >= 50) {
     qualityText = "Bonne";
     qualityClass = "good";
   } else {
@@ -377,7 +377,7 @@ function updateSignalStrength(percentage, qualityClass) {
 
 function startSpeedTest() {
   startTime = new Date().getTime();
-  timerInterval = setInterval(updateSpeed, 1000);
+  timerInterval = setTimeout(updateSpeed, 1000);
 }
 function controls() {
   bar.style.opacity = "1";
