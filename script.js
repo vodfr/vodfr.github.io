@@ -340,7 +340,7 @@ function updateSpeed() {
   if (percentage >= 80) {
     qualityText = "Excellente";
     qualityClass = "excellent";
-  } else if (percentage >= 50) {
+  } else if (percentage >= 10) {
     qualityText = "Bonne";
     qualityClass = "good";
   } else {
