@@ -95,6 +95,9 @@ window.addEventListener("load", () => {
                 controls();
                 dialogbox();
               });
+              player.on("timeupdate", () => {
+               startSpeedTest();
+               });
             }
           }
         }
