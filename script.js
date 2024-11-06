@@ -9,7 +9,13 @@ let iframeCreated = false;
 let dynToggle;
 let hideTimer;
 let player;
-
+window.addEventListener("load", () => {
+  player = videojs("my-video", {
+    controls: false,
+    autoplay: false,
+    preload: "auto",
+    techOrder: ["html5"]
+  });
 links.forEach((link) => {
   link.addEventListener("click", (e) => {
     e.preventDefault();
@@ -43,7 +49,7 @@ links.forEach((link) => {
               player.src({
                 src: data[i].chaine.url,
 
-                type: player.currentType()
+                type: "application/x-mpegURL"
               });
 
               player.ready(function () {
@@ -88,6 +94,7 @@ links.forEach((link) => {
     xhr.send();
   });
 });
+  
 let startX;
 document.addEventListener("touchstart", function (e) {
   startX = e.touches[0].clientX;
@@ -226,13 +233,7 @@ function playWithIframe(iframeSrc) {
     openFullscreen();
   }
 }
-window.addEventListener("load", () => {
-  player = videojs("my-video", {
-    controls: false,
-    autoplay: false,
-    preload: "auto",
-    techOrder: ["html5", "flash", "hls"]
-  });
+
   document.getElementById("sideMenu").classList.add("open");
   startSpeedTest();
 });
