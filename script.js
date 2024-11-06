@@ -3,7 +3,9 @@ const msg = document.querySelector(".message-box");
 const videoElement = document.getElementById("videoContainer");
 const video = document.getElementById("my-video");
 const iframeContainer = document.getElementById("iframe-container");
-let bar = document.querySelector(".custom-controls");
+const bar = document.querySelector(".custom-controls");
+const b = document.querySelector("button");
+const elem = document.querySelector("body");
 let iframe = null;
 let iframeCreated = false;
 let dynToggle;
@@ -16,223 +18,221 @@ window.addEventListener("load", () => {
     preload: "auto",
     techOrder: ["html5"]
   });
-links.forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-    const clickedLink = link.getAttribute("data-id");
-    startSpeedTest();
-    if (dynToggle) {
-      dynToggle.style.display = "none";
-    }
-    fullscreenBtn.classList.remove("hidden");
-    castBtn.classList.remove("hidden");
-    iframeCreated = false;
+  links.forEach((link) => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const clickedLink = link.getAttribute("data-id");
+      startSpeedTest();
+      if (dynToggle) {
+        dynToggle.style.display = "none";
+      }
 
-    iframeContainer.innerHTML = ""; //formater le contenu ->
+      fullscreenBtn.classList.remove("hidden");
+      castBtn.classList.remove("hidden");
+      iframeCreated = false;
 
-    videoElement.style.display = "block";
+      iframeContainer.innerHTML = ""; //formater le contenu ->
 
-    var xhr = new XMLHttpRequest();
+      videoElement.style.display = "block";
 
-    var baseURL =
-      "https://raw.githubusercontent.com/vodfr/ma00tv.github.io/refs/heads/main/db.json";
+      var xhr = new XMLHttpRequest();
 
-    xhr.open("GET", baseURL, true);
+      var baseURL =
+        "https://raw.githubusercontent.com/vodfr/ma00tv.github.io/refs/heads/main/db.json";
 
-    xhr.onload = function () {
-      if (xhr.status === 200) {
-        var data = JSON.parse(xhr.responseText);
+      xhr.open("GET", baseURL, true);
 
-        for (var i = 0; i < data.length; i++) {
-          if (data[i].chaine.title === clickedLink) {
-            if (data[i].chaine.protocol === "https") {
-              player.src({
-                src: data[i].chaine.url,
+      xhr.onload = function () {
+        if (xhr.status === 200) {
+          var data = JSON.parse(xhr.responseText);
 
-                type: "application/x-mpegURL"
+          for (var i = 0; i < data.length; i++) {
+            if (data[i].chaine.title === clickedLink) {
+              if (data[i].chaine.protocol === "https") {
+                player.src({
+                  src: data[i].chaine.url,
+
+                  type: "application/x-mpegURL"
+                });
+
+                player.ready(function () {
+                  player.load();
+
+                  player.play();
+
+                  openFullscreen();
+                });
+              } else {
+                player.pause();
+
+                window.open(data[i].chaine.url);
+              }
+
+              player.on("play", function () {
+                msg.style.display = "block";
+
+                msg.innerHTML =
+                  "<marquee width='100%' direction='left' scrollamount='10'>" +
+                  link.textContent +
+                  " est en <b>LECTURE...</b></marquee>";
+                controls();
+                dialogbox();
               });
 
-              player.ready(function () {
-                player.load();
+              player.on("pause", function () {
+                msg.style.display = "block";
 
-                player.play();
+                msg.innerHTML =
+                  "<marquee width='100%' direction='left' scrollamount='10'>" +
+                  link.textContent +
+                  " est en <b>PAUSE</b></marquee>";
 
-                openFullscreen();
+                dialogbox();
               });
-            } else {
-              player.pause();
-
-              window.open(data[i].chaine.url);
             }
-
-            player.on("play", function () {
-              msg.style.display = "block";
-
-              msg.innerHTML =
-                "<marquee width='100%' direction='left' scrollamount='10'>" +
-                link.textContent +
-                " est en <b>LECTURE...</b></marquee>";
-              controls();
-              dialogbox();
-            });
-
-            player.on("pause", function () {
-              msg.style.display = "block";
-
-              msg.innerHTML =
-                "<marquee width='100%' direction='left' scrollamount='10'>" +
-                link.textContent +
-                " est en <b>PAUSE</b></marquee>";
-
-              dialogbox();
-            });
           }
         }
-      }
-    };
+      };
 
-    xhr.send();
+      xhr.send();
+    });
   });
-});
-  
-let startX;
-document.addEventListener("touchstart", function (e) {
-  startX = e.touches[0].clientX;
-});
-document.addEventListener("touchmove", function (e) {
-  let touch = e.touches[0];
 
-  let deltaX = touch.clientX - startX;
-
-  if (deltaX > 50) {
-    fullscreenBtn.classList.remove("hidden");
-    castBtn.classList.remove("hidden");
-    controls();
-    document.getElementById("sideMenu").classList.add("open");
-  } else if (deltaX < -50) {
-    startHideTimer();
-    document.getElementById("sideMenu").classList.remove("open");
-  }
-});
-const b = document.querySelector("button");
-const elem = document.querySelector("body");
-b.addEventListener("click", function () {
-  const api = "https://api.vevioz.com/apis/search/";
-
-  const d = document.querySelector(".elem");
-
-  const mp3 = d.value;
-
-  window.open(api + mp3);
-});
-
-function dialogbox() {
-  setTimeout(() => {
-    msg.style.display = "none";
-    msg.innerHTML = "";
-  }, 10000);
-}
-document.querySelectorAll(".iframe").forEach((link) => {
-  link.addEventListener("click", function (e) {
-    e.preventDefault();
-    startSpeedTest();
-    fullscreenBtn.classList.remove("hidden");
-    videoElement.style.display = "none";
-
-    msg.style.display = "block";
-
-    msg.innerHTML =
-      "<marquee width='100%' direction='left' scrollamount='5'>" +
-      link.textContent +
-      " est en <b>LECTURE...</b></marquee>";
-
-    dialogbox();
-
-    const iframeSrc = this.getAttribute("data-id");
-
-    iframeContainer.style.display = "block";
-
-    playWithIframe(iframeSrc);
+  let startX;
+  document.addEventListener("touchstart", function (e) {
+    startX = e.touches[0].clientX;
   });
-});
-function playWithIframe(iframeSrc) {
-  setTimeout(function () {
-    if (player) {
-      player.pause();
-    } else {
-      player = videojs("my-video");
-      player.pause();
-    }
-    dialogbox();
-  }, 5000);
+  document.addEventListener("touchmove", function (e) {
+    let touch = e.touches[0];
 
-  iframe = document.getElementById("dynamic-iframe");
+    let deltaX = touch.clientX - startX;
 
-  if (!iframe) {
-    iframe = document.createElement("iframe");
-  }
-
-  iframe.id = "dynamic-iframe";
-
-  iframe.src = iframeSrc;
-
-  iframe.width = "100%";
-
-  iframe.height = "100%";
-
-  iframe.frameBorder = "0";
-
-  iframe.allowFullscreen = true;
-
-  iframe.allowTransparency = true;
-
-  iframe.style.display = "block";
-
-  iframeContainer.appendChild(iframe);
-
-  iframeCreated = true;
-
-  const message = "&#9776;";
-  const existingP = document.querySelector("#menuToggle");
-  if (existingP) {
-    existingP.remove();
-  }
-  dynToggle = document.createElement("div");
-  dynToggle.id = "menuToggle";
-  dynToggle.innerHTML = message;
-  dynToggle.style.position = "fixed";
-  dynToggle.style.top = "50%";
-  dynToggle.style.left = "0";
-  dynToggle.style.backgroundColor = "#000";
-  dynToggle.style.color = "white";
-  dynToggle.style.padding = "0px";
-  dynToggle.style.cursor = "pointer";
-  dynToggle.style.textAlign = "center";
-  dynToggle.style.width = "30px";
-  dynToggle.style.height = "30px";
-  dynToggle.style.lineHeight = "30px";
-  dynToggle.style.fontSize = "20px";
-  dynToggle.style.transform = "translateY(-50%)";
-  dynToggle.style.border = "1px solid white";
-  dynToggle.style.borderRadius = "8px";
-  dynToggle.style.zIndex = "9999";
-  dynToggle.style.boxSizing = "border-box";
-  dynToggle.style.display = "block";
-  dynToggle.classList.add("styleBtn");
-  document.body.appendChild(dynToggle);
-  dynToggle.addEventListener("click", function () {
-    video.style.pointerEvents = "none";
-    dynToggle.style.pointerEvents = "auto";
-    if (dynToggle) {
-      document.getElementById("sideMenu").classList.toggle("open");
-    } else {
+    if (deltaX > 50) {
+      fullscreenBtn.classList.remove("hidden");
+      castBtn.classList.remove("hidden");
+      controls();
+      document.getElementById("sideMenu").classList.add("open");
+    } else if (deltaX < -50) {
+      startHideTimer();
       document.getElementById("sideMenu").classList.remove("open");
     }
   });
-  if (iframeCreated) {
-    openFullscreen();
+
+  b.addEventListener("click", function () {
+    const api = "https://api.vevioz.com/apis/search/";
+
+    const d = document.querySelector(".elem");
+
+    const mp3 = d.value;
+
+    window.open(api + mp3);
+  });
+
+  function dialogbox() {
+    setTimeout(() => {
+      msg.style.display = "none";
+      msg.innerHTML = "";
+    }, 10000);
   }
-}
+  document.querySelectorAll(".iframe").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      startSpeedTest();
+      fullscreenBtn.classList.remove("hidden");
+      videoElement.style.display = "none";
+
+      msg.style.display = "block";
+
+      msg.innerHTML =
+        "<marquee width='100%' direction='left' scrollamount='5'>" +
+        link.textContent +
+        " est en <b>LECTURE...</b></marquee>";
+
+      dialogbox();
+
+      const iframeSrc = this.getAttribute("data-id");
+
+      iframeContainer.style.display = "block";
+
+      playWithIframe(iframeSrc);
+    });
+  });
+  function playWithIframe(iframeSrc) {
+    setTimeout(function () {
+      if (player) {
+        player.pause();
+      } else {
+        player = videojs("my-video");
+        player.pause();
+      }
+      dialogbox();
+    }, 5000);
+
+    iframe = document.getElementById("dynamic-iframe");
+
+    if (!iframe) {
+      iframe = document.createElement("iframe");
+    }
+
+    iframe.id = "dynamic-iframe";
+
+    iframe.src = iframeSrc;
+
+    iframe.width = "100%";
+
+    iframe.height = "100%";
+
+    iframe.frameBorder = "0";
+
+    iframe.allowFullscreen = true;
+
+    iframe.allowTransparency = true;
+
+    iframe.style.display = "block";
+
+    iframeContainer.appendChild(iframe);
+
+    iframeCreated = true;
+
+    const message = "&#9776;";
+    const existingP = document.querySelector("#menuToggle");
+    if (existingP) {
+      existingP.remove();
+    }
+    dynToggle = document.createElement("div");
+    dynToggle.id = "menuToggle";
+    dynToggle.innerHTML = message;
+    dynToggle.style.position = "fixed";
+    dynToggle.style.top = "50%";
+    dynToggle.style.left = "0";
+    dynToggle.style.backgroundColor = "#000";
+    dynToggle.style.color = "white";
+    dynToggle.style.padding = "0px";
+    dynToggle.style.cursor = "pointer";
+    dynToggle.style.textAlign = "center";
+    dynToggle.style.width = "30px";
+    dynToggle.style.height = "30px";
+    dynToggle.style.lineHeight = "30px";
+    dynToggle.style.fontSize = "20px";
+    dynToggle.style.transform = "translateY(-50%)";
+    dynToggle.style.border = "1px solid white";
+    dynToggle.style.borderRadius = "8px";
+    dynToggle.style.zIndex = "999";
+    dynToggle.style.boxSizing = "border-box";
+    dynToggle.style.display = "block";
+    dynToggle.classList.add("styleBtn");
+    document.body.appendChild(dynToggle);
+    dynToggle.addEventListener("click", function () {
+      if (dynToggle) {
+        document.getElementById("sideMenu").classList.toggle("open");
+      } else {
+        document.getElementById("sideMenu").classList.remove("open");
+      }
+    });
+    if (iframeCreated) {
+      openFullscreen();
+    }
+  }
 
   document.getElementById("sideMenu").classList.add("open");
   startSpeedTest();
@@ -272,6 +272,7 @@ fullscreenBtn.addEventListener("click", function () {
     video.requestFullscreen();
   }
 });
+
 function startHideTimer() {
   startSpeedTest();
   hideTimer = setTimeout(() => {
@@ -341,7 +342,7 @@ function updateSpeed() {
   let qualityText = "";
   let qualityClass = "";
 
-if (percentage > 80) {
+  if (percentage > 80) {
     qualityText = "Excellente";
     qualityClass = "excellent";
   } else if (percentage >= 50) {
@@ -372,6 +373,7 @@ function updateSignalStrength(percentage, qualityClass) {
           : qualityClass === "good"
           ? "yellow"
           : "red";
+      
     } else {
       bar.classList.remove("active");
       bar.style.backgroundColor = "#fff";
@@ -379,9 +381,10 @@ function updateSignalStrength(percentage, qualityClass) {
   });
 }
 
+
 function startSpeedTest() {
   startTime = new Date().getTime();
-  timer = setTimeout(updateSpeed, 4000);
+  timer = setTimeout(updateSpeed, 3000);
 }
 function controls() {
   bar.style.opacity = "1";
@@ -398,9 +401,9 @@ video.addEventListener("touchmove", () => {
   }
   controls();
 });
-let controlplay = document.querySelector("#play-button");
-let controlpause = document.querySelector("#pause-button");
-let controlfull = document.querySelector("#fullscreen-button");
+const controlplay = document.querySelector("#play-button");
+const controlpause = document.querySelector("#pause-button");
+const controlfull = document.querySelector("#fullscreen-button");
 controlplay.addEventListener("click", () => {
   player.play();
 });
