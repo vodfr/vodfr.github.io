@@ -398,9 +398,9 @@ b {
   color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 8px 12px;
+  padding: 0px auto;
   cursor: pointer;
-  font-size: 2em;
+  font-size: 1em;
   transition: background-color 0.3s, transform 0.3s;
   display: flex;
   align-items: center;
@@ -411,6 +411,7 @@ b {
 .control-button:hover {
   background-color: #555;
   transform: scale(1.05);
+  font-size: 1em;
 }
 
 .control-button i {
