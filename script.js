@@ -11,6 +11,9 @@ let iframeCreated = false;
 let dynToggle;
 let hideTimer;
 let player;
+let downloadSize = 5616998;
+let startTime;
+let timer;
 window.addEventListener("load", () => {
   player = videojs("my-video", {
     controls: false,
@@ -22,7 +25,12 @@ window.addEventListener("load", () => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
       const clickedLink = link.getAttribute("data-id");
+      
       startSpeedTest();
+      if (iframeContainer) {
+        iframeContainer.style.display = "none";
+        videoElement.style.display = "block";
+      }
       if (dynToggle) {
         dynToggle.style.display = "none";
       }
@@ -30,10 +38,6 @@ window.addEventListener("load", () => {
       fullscreenBtn.classList.remove("hidden");
       castBtn.classList.remove("hidden");
       iframeCreated = false;
-
-      iframeContainer.innerHTML = ""; //formater le contenu ->
-
-      videoElement.style.display = "block";
 
       var xhr = new XMLHttpRequest();
 
@@ -48,6 +52,7 @@ window.addEventListener("load", () => {
 
           for (var i = 0; i < data.length; i++) {
             if (data[i].chaine.title === clickedLink) {
+              
               if (data[i].chaine.protocol === "https") {
                 player.src({
                   src: data[i].chaine.url,
@@ -75,6 +80,7 @@ window.addEventListener("load", () => {
                   "<marquee width='100%' direction='left' scrollamount='10'>" +
                   link.textContent +
                   " est en <b>LECTURE...</b></marquee>";
+                
                 controls();
                 dialogbox();
               });
@@ -86,7 +92,7 @@ window.addEventListener("load", () => {
                   "<marquee width='100%' direction='left' scrollamount='10'>" +
                   link.textContent +
                   " est en <b>PAUSE</b></marquee>";
-
+                controls();
                 dialogbox();
               });
             }
@@ -101,6 +107,8 @@ window.addEventListener("load", () => {
   let startX;
   document.addEventListener("touchstart", function (e) {
     startX = e.touches[0].clientX;
+    
+
   });
   document.addEventListener("touchmove", function (e) {
     let touch = e.touches[0];
@@ -138,9 +146,11 @@ window.addEventListener("load", () => {
     link.addEventListener("click", function (e) {
       e.preventDefault();
       startSpeedTest();
+      if (videoElement) {
+        iframeContainer.style.display = "block";
+        videoElement.style.display = "none";
+      }
       fullscreenBtn.classList.remove("hidden");
-      videoElement.style.display = "none";
-
       msg.style.display = "block";
 
       msg.innerHTML =
@@ -237,6 +247,7 @@ window.addEventListener("load", () => {
   document.getElementById("sideMenu").classList.add("open");
   startSpeedTest();
 });
+
 function openFullscreen() {
   if (elem.requestFullscreen) {
     elem.requestFullscreen();
@@ -248,6 +259,7 @@ function openFullscreen() {
     elem.msRequestFullscreen();
   }
 }
+
 const fullscreenBtn = document.getElementById("fullscreenBtn");
 const fullscreenIcon = fullscreenBtn.querySelector("i");
 fullscreenBtn.addEventListener("click", function () {
@@ -327,10 +339,6 @@ document.querySelectorAll(".conteneur").forEach(function (conteneur) {
   });
 });
 
-let downloadSize = 5616998;
-
-let startTime, timer;
-
 function updateSpeed() {
   let currentTime = new Date().getTime();
   let duration = (currentTime - startTime) / 1000;
@@ -341,45 +349,35 @@ function updateSpeed() {
   document.getElementById("speed-display").textContent = speedMbps + " Mbps";
   let qualityText = "";
   let qualityClass = "";
-
-  if (percentage > 80) {
-    qualityText = "Excellente";
-    qualityClass = "excellent";
-  } else if (percentage >= 50) {
-    qualityText = "Bonne";
-    qualityClass = "good";
-  } else {
-    qualityText = "Faible";
-    qualityClass = "poor";
-  }
-
-  let percentageDisplay = document.getElementById("percentage-display");
-  percentageDisplay.textContent = percentage + "% (" + qualityText + ")";
-  percentageDisplay.className = "percentage-display " + qualityClass;
-  updateSignalStrength(percentage, qualityClass);
-}
-
-function updateSignalStrength(percentage, qualityClass) {
   let signalBars = document.querySelectorAll(".signal-bar");
-
   let activeBars = Math.ceil((percentage / 100) * signalBars.length);
-
   signalBars.forEach((bar, index) => {
     if (index < activeBars) {
       bar.classList.add("active");
-      bar.style.backgroundColor =
-        qualityClass === "excellent"
-          ? "lime"
-          : qualityClass === "good"
-          ? "yellow"
-          : "red";
-      
+      if (percentage > 80) {
+        qualityText = "Excellente";
+        qualityClass = "excellent";
+        bar.style.backgroundColor = "lime";
+      } else if (percentage >= 50) {
+        qualityText = "Bonne";
+        qualityClass = "good";
+        bar.style.backgroundColor = "yellow";
+      } else {
+        qualityText = "Faible";
+        qualityClass = "poor";
+        bar.style.backgroundColor = "red";
+      }
+
+      let percentageDisplay = document.getElementById("percentage-display");
+      percentageDisplay.textContent = percentage + "% (" + qualityText + ")";
+      percentageDisplay.className = "percentage-display " + qualityClass;
     } else {
       bar.classList.remove("active");
       bar.style.backgroundColor = "#fff";
     }
   });
 }
+
 
 
 function startSpeedTest() {
@@ -395,9 +393,9 @@ function controls() {
 }
 video.addEventListener("touchmove", () => {
   if (bar) {
-    bar.classList.toggle(".aff");
+    bar.classList.toggle("aff");
   } else {
-    bar.classList.remove(".aff");
+    bar.classList.remove("aff");
   }
   controls();
 });
@@ -415,3 +413,5 @@ controlfull.addEventListener("click", () => {
 });
 
 
+                
+      
