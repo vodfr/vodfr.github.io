@@ -377,7 +377,6 @@ function updateSpeed() {
 
 
 function startSpeedTest() {
-  controls();
   startTime = new Date().getTime();
   timer = setTimeout(updateSpeed, 2000);
 }
