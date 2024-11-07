@@ -379,7 +379,7 @@ function updateSpeed() {
 
 function startSpeedTest() {
   startTime = new Date().getTime();
-  timer = setTimeout(updateSpeed, 3000);
+  timer = setTimeout(updateSpeed, 2000);
 }
 function controls() {
   bar.style.opacity = "1";
