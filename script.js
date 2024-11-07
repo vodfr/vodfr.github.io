@@ -387,7 +387,7 @@ function controls() {
 timeoutId =  setTimeout(function () {
     bar.style.opacity = "0";
     msg.style.display = "none";
-  }, 10000);
+  }, 3000);
 }
 video.addEventListener("touchmove", () => {
   if (bar) {
