@@ -57,38 +57,31 @@ window.addEventListener("load", () => {
               if (data[i].chaine.protocol === "https") {
                 player.src({
                   src: data[i].chaine.url,
-
                   type: "application/x-mpegURL"
                 });
 
                 player.ready(function () {
                   player.load();
-
                   player.play();
-
                   openFullscreen();
                 });
               } else {
                 player.pause();
-
                 window.open(data[i].chaine.url);
               }
 
               player.on("play", function () {
                 msg.style.display = "block";
-
                 msg.innerHTML =
                   "<marquee width='100%' direction='left' scrollamount='10'>" +
                   link.textContent +
                   " est en <b>LECTURE...</b></marquee>";
-                
                 controls();
                 
               });
 
               player.on("pause", function () {
                 msg.style.display = "block";
-
                 msg.innerHTML =
                   "<marquee width='100%' direction='left' scrollamount='10'>" +
                   link.textContent +
@@ -98,13 +91,9 @@ window.addEventListener("load", () => {
               });
               player.on("timeupdate", () => {
                startSpeedTest();
-              if (!player.isLive) {
-                
+              if (!player.isLive) {  
                 controls();
                 } 
-
-
-              
                });
             }
           }
