@@ -384,7 +384,7 @@ function startSpeedTest() {
 function controls() {
   bar.style.opacity = "1";
   if (timeoutId) {
-        clearTimeout(timeouId);
+        clearTimeout(timeoutId);
     }
 timeoutId =  setTimeout(function () {
     bar.style.opacity = "0";
