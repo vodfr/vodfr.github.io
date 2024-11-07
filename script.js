@@ -14,6 +14,7 @@ let player;
 let downloadSize = 5616998;
 let startTime;
 let timer;
+let timeoutId;
 window.addEventListener("load", () => {
   player = videojs("my-video", {
     controls: false,
@@ -383,7 +384,10 @@ function startSpeedTest() {
 }
 function controls() {
   bar.style.opacity = "1";
-  setTimeout(function () {
+  if (timeoutId) {
+        clearTimeout(timeouId);
+    }
+timeoutId =  setTimeout(function () {
     bar.style.opacity = "0";
     msg.style.display = "none";
   }, 23000);
