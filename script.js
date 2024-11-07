@@ -392,7 +392,7 @@ function controls() {
   startSpeedTest();
   setTimeout(function () {
     bar.style.opacity = "0";
-  }, 12000);
+  }, 19000);
 }
 video.addEventListener("touchmove", () => {
   if (bar) {
