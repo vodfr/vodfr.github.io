@@ -279,6 +279,9 @@ fullscreenBtn.addEventListener("click", function () {
 });
 
 function startHideTimer() {
+if (hideTimer) {
+  clearTimeout(hideTimer);
+}
   hideTimer = setTimeout(() => {
     fullscreenBtn.classList.add("hidden");
     castBtn.classList.add("hidden");
