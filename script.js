@@ -82,7 +82,7 @@ window.addEventListener("load", () => {
                   " est en <b>LECTURE...</b></marquee>";
                 
                 controls();
-                dialogbox();
+                
               });
 
               player.on("pause", function () {
@@ -93,7 +93,7 @@ window.addEventListener("load", () => {
                   link.textContent +
                   " est en <b>PAUSE</b></marquee>";
                 controls();
-                dialogbox();
+                
               });
               player.on("timeupdate", () => {
                startSpeedTest();
@@ -139,12 +139,7 @@ window.addEventListener("load", () => {
     window.open(api + mp3);
   });
 
-  function dialogbox() {
-    setTimeout(() => {
-      msg.style.display = "none";
-      msg.innerHTML = "";
-    }, 10000);
-  }
+  
   document.querySelectorAll(".iframe").forEach((link) => {
     link.addEventListener("click", function (e) {
       e.preventDefault();
@@ -161,7 +156,6 @@ window.addEventListener("load", () => {
         link.textContent +
         " est en <b>LECTURE...</b></marquee>";
 
-      dialogbox();
 
       const iframeSrc = this.getAttribute("data-id");
 
@@ -178,7 +172,7 @@ window.addEventListener("load", () => {
         player = videojs("my-video");
         player.pause();
       }
-      dialogbox();
+      controls();
     }, 5000);
 
     iframe = document.getElementById("dynamic-iframe");
@@ -389,10 +383,10 @@ function startSpeedTest() {
 }
 function controls() {
   bar.style.opacity = "1";
-  startSpeedTest();
   setTimeout(function () {
     bar.style.opacity = "0";
-  }, 19000);
+    msg.style.display = "none";
+  }, 20000);
 }
 video.addEventListener("touchmove", () => {
   if (bar) {
