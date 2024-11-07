@@ -13,7 +13,6 @@ let hideTimer;
 let player;
 let downloadSize = 5616998;
 let startTime;
-let timer;
 let timeoutId;
 window.addEventListener("load", () => {
   player = videojs("my-video", {
