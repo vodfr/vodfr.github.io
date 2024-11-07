@@ -161,14 +161,18 @@ window.addEventListener("load", () => {
     });
   });
   function playWithIframe(iframeSrc) {
-    setTimeout(function () {
+    let changed;
+    if (changed) {
+   clearTimeout(changed);
+    }
+   changed = setTimeout(function () {
       if (player) {
         player.pause();
       } else {
         player = videojs("my-video");
         player.pause();
       }
-      controls();
+      
     }, 5000);
 
     iframe = document.getElementById("dynamic-iframe");
