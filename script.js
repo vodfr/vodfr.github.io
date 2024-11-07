@@ -283,7 +283,6 @@ fullscreenBtn.addEventListener("click", function () {
 });
 
 function startHideTimer() {
-  startSpeedTest();
   hideTimer = setTimeout(() => {
     fullscreenBtn.classList.add("hidden");
     castBtn.classList.add("hidden");
