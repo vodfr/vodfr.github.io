@@ -91,9 +91,6 @@ window.addEventListener("load", () => {
               });
               player.on("timeupdate", () => {
                startSpeedTest();
-              if (!player.isLive) {  
-                controls();
-                } 
                });
             }
           }
