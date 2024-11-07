@@ -90,7 +90,7 @@ window.addEventListener("load", () => {
               controls();
               });
               player.on("playing", () => {
-              clearTimeout(timeoutId);
+              controls();
               });
             }
           }
@@ -383,7 +383,7 @@ function controls() {
   timeoutId = setTimeout(function () {
     bar.style.opacity = "0";
     msg.style.display = "none";
-  }, 3000);
+  }, 7000);
 }
 video.addEventListener("touchmove", () => {
   controls();
