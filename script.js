@@ -122,7 +122,6 @@ window.addEventListener("load", () => {
     if (deltaX > 50) {
       fullscreenBtn.classList.remove("hidden");
       castBtn.classList.remove("hidden");
-      controls();
       document.getElementById("sideMenu").classList.add("open");
     } else if (deltaX < -50) {
       startHideTimer();
