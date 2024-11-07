@@ -386,11 +386,6 @@ function controls() {
   }, 3000);
 }
 video.addEventListener("touchmove", () => {
-  if (bar) {
-    bar.classList.toggle("aff");
-  } else {
-    bar.classList.remove("aff");
-  }
   controls();
 });
 const controlplay = document.querySelector("#play-button");
