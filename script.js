@@ -99,11 +99,7 @@ window.addEventListener("load", () => {
               player.on("timeupdate", () => {
                startSpeedTest();
               if (!player.isLive) {
-                msg.style.display = "block";
-
-                msg.innerHTML =
-                  "<marquee width='100%' direction='left' scrollamount='10'>Problème <b>RÉSEAUمشكلة في الشبكة</b></marquee>";
-            
+                
                 controls();
                 } 
 
