@@ -26,7 +26,7 @@ window.addEventListener("load", () => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
       const clickedLink = link.getAttribute("data-id");
-      
+
       startSpeedTest();
       if (iframeContainer) {
         iframeContainer.style.display = "none";
@@ -53,7 +53,6 @@ window.addEventListener("load", () => {
 
           for (var i = 0; i < data.length; i++) {
             if (data[i].chaine.title === clickedLink) {
-              
               if (data[i].chaine.protocol === "https") {
                 player.src({
                   src: data[i].chaine.url,
@@ -76,22 +75,23 @@ window.addEventListener("load", () => {
                   "<marquee width='100%' direction='left' scrollamount='10'>" +
                   link.textContent +
                   " est en <b>LECTURE...</b></marquee>";
-                controls();
-                
               });
-
               player.on("pause", function () {
                 msg.style.display = "block";
                 msg.innerHTML =
                   "<marquee width='100%' direction='left' scrollamount='10'>" +
                   link.textContent +
                   " est en <b>PAUSE</b></marquee>";
-                controls();
-                
               });
               player.on("timeupdate", () => {
-               startSpeedTest();
-               });
+              startSpeedTest(); 
+              });
+              player.on("waiting", () => {
+              controls();
+              });
+              player.on("playing", () => {
+              clearTimeout(timeoutId);
+              });
             }
           }
         }
@@ -104,8 +104,6 @@ window.addEventListener("load", () => {
   let startX;
   document.addEventListener("touchstart", function (e) {
     startX = e.touches[0].clientX;
-    
-
   });
   document.addEventListener("touchmove", function (e) {
     let touch = e.touches[0];
@@ -132,7 +130,6 @@ window.addEventListener("load", () => {
     window.open(api + mp3);
   });
 
-  
   document.querySelectorAll(".iframe").forEach((link) => {
     link.addEventListener("click", function (e) {
       e.preventDefault();
@@ -149,7 +146,6 @@ window.addEventListener("load", () => {
         link.textContent +
         " est en <b>LECTURE...</b></marquee>";
 
-
       const iframeSrc = this.getAttribute("data-id");
 
       iframeContainer.style.display = "block";
@@ -160,16 +156,15 @@ window.addEventListener("load", () => {
   function playWithIframe(iframeSrc) {
     let changed;
     if (changed) {
-   clearTimeout(changed);
+      clearTimeout(changed);
     }
-   changed = setTimeout(function () {
+    changed = setTimeout(function () {
       if (player) {
         player.pause();
       } else {
         player = videojs("my-video");
         player.pause();
       }
-      
     }, 5000);
 
     iframe = document.getElementById("dynamic-iframe");
@@ -242,6 +237,7 @@ window.addEventListener("load", () => {
   startSpeedTest();
 });
 
+
 function openFullscreen() {
   if (elem.requestFullscreen) {
     elem.requestFullscreen();
@@ -280,9 +276,9 @@ fullscreenBtn.addEventListener("click", function () {
 });
 
 function startHideTimer() {
-if (hideTimer) {
-  clearTimeout(hideTimer);
-}
+  if (hideTimer) {
+    clearTimeout(hideTimer);
+  }
   hideTimer = setTimeout(() => {
     fullscreenBtn.classList.add("hidden");
     castBtn.classList.add("hidden");
@@ -375,17 +371,16 @@ function updateSpeed() {
 }
 
 
-
 function startSpeedTest() {
   startTime = new Date().getTime();
-   updateSpeed();
+  updateSpeed();
 }
 function controls() {
   bar.style.opacity = "1";
   if (timeoutId) {
-        clearTimeout(timeoutId);
-    }
-timeoutId =  setTimeout(function () {
+    clearTimeout(timeoutId);
+  }
+  timeoutId = setTimeout(function () {
     bar.style.opacity = "0";
     msg.style.display = "none";
   }, 3000);
@@ -411,6 +406,3 @@ controlfull.addEventListener("click", () => {
   video.requestFullscreen();
 });
 
-
-                
-      
