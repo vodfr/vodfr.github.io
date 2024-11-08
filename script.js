@@ -21,6 +21,8 @@ window.addEventListener("load", () => {
     preload: "auto",
     techOrder: ["html5"]
   });
+  document.getElementById("sideMenu").classList.add("open");
+    startSpeedTest();
 });
   links.forEach((link) => {
     link.addEventListener("click", (e) => {
@@ -233,11 +235,6 @@ window.addEventListener("load", () => {
       openFullscreen();
     }
   }
-
-  document.getElementById("sideMenu").classList.add("open");
-  startSpeedTest();
-});
-
 
 function openFullscreen() {
   if (elem.requestFullscreen) {
