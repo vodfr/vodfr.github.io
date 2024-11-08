@@ -373,6 +373,7 @@ function startSpeedTest() {
 }
 function controls() {
   bar.style.opacity = "1";
+  msg.style.display = "block";
   if (timeoutId) {
     clearTimeout(timeoutId);
   }
