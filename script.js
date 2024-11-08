@@ -21,8 +21,9 @@ window.addEventListener("load", () => {
     preload: "auto",
     techOrder: ["html5"]
   });
-  document.getElementById("sideMenu").classList.add("open");
-    startSpeedTest();
+msg.innerHTML = "Bienvenue sur le site!";
+document.getElementById("sideMenu").classList.add("open");
+startSpeedTest();
 });
   links.forEach((link) => {
     link.addEventListener("click", (e) => {
