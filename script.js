@@ -136,14 +136,12 @@ window.addEventListener("load", () => {
   document.querySelectorAll(".iframe").forEach((link) => {
     link.addEventListener("click", function (e) {
       e.preventDefault();
-      startSpeedTest();
+      controls();
       if (videoElement) {
         iframeContainer.style.display = "block";
         videoElement.style.display = "none";
       }
       fullscreenBtn.classList.remove("hidden");
-      msg.style.display = "block";
-
       msg.innerHTML =
         "<marquee width='100%' direction='left' scrollamount='5'>" +
         link.textContent +
