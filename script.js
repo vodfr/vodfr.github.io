@@ -30,6 +30,7 @@ window.addEventListener("load", () => {
       if (iframeContainer) {
         iframeContainer.style.display = "none";
         videoElement.style.display = "block";
+        iframeContainer.innerHTML = "";
       }
       if (dynToggle) {
         dynToggle.style.display = "none";
