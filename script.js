@@ -21,6 +21,7 @@ window.addEventListener("load", () => {
     preload: "auto",
     techOrder: ["html5"]
   });
+});
   links.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
