@@ -47,6 +47,8 @@ window.addEventListener("load", () => {
 const player = new Plyr(video, {
       autoplay: true,
       muted: true
+      width: "100%",
+      height: "100%"
     });
 player.on("play", () => {
 	player.fullscreen.enter();
