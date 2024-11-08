@@ -349,7 +349,7 @@ b {
   margin: 0 auto;
   left: 0;
   right: 0;
-  z-index: 0;
+  z-index: 2;
 }
 
 .progress-container {
