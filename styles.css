@@ -223,7 +223,7 @@ input,
 
   white-space: nowrap;
 
-  display: none;
+  display: block;
 }
 .toutsat:hover {
   color: white;
