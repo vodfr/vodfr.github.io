@@ -11,9 +11,11 @@ let iframeCreated = false;
 let dynToggle;
 let hideTimer;
 let player;
-let downloadSize = 5616998;
+let downloadSize = 10000000;
+let elapsedTime = 0;
 let startTime;
 let timeoutId;
+let timer;
 window.addEventListener("load", () => {
   player = videojs("my-video", {
     controls: false,
@@ -328,6 +330,7 @@ document.querySelectorAll(".conteneur").forEach(function (conteneur) {
   });
 });
 
+
 function updateSpeed() {
   let currentTime = new Date().getTime();
   let duration = (currentTime - startTime) / 1000;
@@ -336,6 +339,7 @@ function updateSpeed() {
   let speedMbps = (speedBps / (1024 * 1024)).toFixed(2);
   let percentage = Math.min((speedMbps / 100) * 100, 100).toFixed(2);
   document.getElementById("speed-display").textContent = speedMbps + " Mbps";
+
   let qualityText = "";
   let qualityClass = "";
   let signalBars = document.querySelectorAll(".signal-bar");
@@ -356,7 +360,6 @@ function updateSpeed() {
         qualityClass = "poor";
         bar.style.backgroundColor = "red";
       }
-
       let percentageDisplay = document.getElementById("percentage-display");
       percentageDisplay.textContent = percentage + "% (" + qualityText + ")";
       percentageDisplay.className = "percentage-display " + qualityClass;
@@ -365,13 +368,43 @@ function updateSpeed() {
       bar.style.backgroundColor = "#fff";
     }
   });
-}
 
+  let distance = calculateDistance();
+  let type = determineConnectionType(speedMbps);
+  document.getElementById("distance-display").textContent =
+    "Distance: " + distance + " m";
+  document.getElementById("type-display").textContent = "Type: " + type;
+}
 
 function startSpeedTest() {
   startTime = new Date().getTime();
-  updateSpeed();
+  document.getElementById("type-display").textContent = "Type: Inconnu";
+  timer = setInterval(function () {
+    elapsedTime += 1000;
+    updateSpeed();
+    if (elapsedTime >= 1000) {
+      clearInterval(timer);
+    }
+  }, 1000);
 }
+
+function calculateDistance() {
+  return Math.floor(Math.random() * 1000) + 1;
+}
+
+function determineConnectionType(speedMbps) {
+  if (speedMbps > 50) {
+    return "5G";
+  } else if (speedMbps > 20) {
+    return "4G";
+  } else if (speedMbps > 5) {
+    return "Wi-Fi";
+  } else {
+    return "Ethernet";
+  }
+}
+
+
 function controls() {
   bar.style.opacity = "1";
   msg.style.display = "block";
