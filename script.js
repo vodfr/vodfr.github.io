@@ -122,7 +122,7 @@ startSpeedTest();
       startHideTimer();
       document.getElementById("sideMenu").classList.remove("open");
     }
-    startSpeedTest();
+    
   });
 
   b.addEventListener("click", function () {
