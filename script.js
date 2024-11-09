@@ -165,10 +165,16 @@ startSpeedTest();
       if (player) {
         player.pause();
       } else {
-        player = videojs("my-video");
+        player = videojs("my-video", {
+        controls: false,
+        autoplay: false,
+        preload: "auto",
+        techOrder: ["html5"]
+        });
         player.pause();
       }
-    }, 5000);
+      controls();
+    }, 3000);
 
     iframe = document.getElementById("dynamic-iframe");
 
