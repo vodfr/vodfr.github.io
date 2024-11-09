@@ -173,9 +173,9 @@ startSpeedTest();
         });
         player.pause();
       }
-      
+      controls();
     }, 4000);
-     controls();
+     
     iframe = document.getElementById("dynamic-iframe");
 
     if (!iframe) {
