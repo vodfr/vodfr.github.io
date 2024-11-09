@@ -89,9 +89,7 @@ startSpeedTest();
                   link.textContent +
                   " est en <b>PAUSE</b></marquee>";
               });
-              player.on("timeupdate", () => {
-              startSpeedTest(); 
-              });
+          
               player.on("waiting", () => {
               controls();
               });
