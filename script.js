@@ -174,7 +174,7 @@ startSpeedTest();
         player.pause();
       }
       
-    }, 2000);
+    }, 4000);
      controls();
     iframe = document.getElementById("dynamic-iframe");
 
