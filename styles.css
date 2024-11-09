@@ -357,10 +357,11 @@ b {
   margin: 0 20px;
   position: relative;
 }
-
 .speed-display,
-.percentage-display {
-  font-size: 1.1em;
+.percentage-display,
+.distance-display,
+.type-display {
+  font-size: 0.8em;
   width: 70px;
   text-align: center;
 }
