@@ -172,6 +172,6 @@
         }]
       };
     }
-  player.on("play", () => {
+  player.on("ready", () => {
 	player.fullscreen.enter();
 	});
