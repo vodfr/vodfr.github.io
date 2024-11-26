@@ -201,7 +201,17 @@ startSpeedTest();
     iframeContainer.appendChild(iframe);
 
     iframeCreated = true;
-
+    
+    if (event.target.classList.contains('algerchaine')) {
+    iframe.style.position = 'absolute';
+    iframe.style.top = '-45px';
+    iframe.style.left = '0';
+    } else {
+    iframe.style.position = 'absolute';
+    iframe.style.top = '0px';
+    iframe.style.left = '0';
+    }
+    
     const message = "&#9776;";
     const existingP = document.querySelector("#menuToggle");
     if (existingP) {
