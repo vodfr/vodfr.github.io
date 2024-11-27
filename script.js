@@ -96,6 +96,15 @@ startSpeedTest();
               player.on("playing", () => {
               controls();
               });
+              player.on("timeupdate", () => {
+              if (!navigator.onLine){
+                msg.style.display = "block";
+                msg.innerHTML = "vérifiez-connection!.";
+                
+                } else {
+                 return;
+                  }
+              });
             }
           }
         }
