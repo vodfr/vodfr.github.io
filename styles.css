@@ -11,7 +11,7 @@ body {
 
   display: flex;
 
-  overflow: hidden;
+  overflow: hidden !important;
 
   background: transparent;
 }
