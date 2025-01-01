@@ -53,7 +53,6 @@
       {
 	id: 'PLdazn9PZleCZB74wARpQtHWtT2q5FMvHS',
         listId: 'videoList11'
-      },     
       }
     ];
 
