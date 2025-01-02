@@ -30,7 +30,7 @@ const today = new Date();
             year: 'numeric'
         });
        
-msg.innerHTML = "Aujourd'hui: <b>"+formattedDate+"</b>";
+msg.innerHTML = "Date: <b>"+formattedDate+"</b>";
 document.getElementById("sideMenu").classList.add("open");
 startSpeedTest();
 });
