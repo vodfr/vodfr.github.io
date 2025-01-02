@@ -23,7 +23,14 @@ window.addEventListener("load", () => {
     preload: "auto",
     techOrder: ["html5"]
   });
-msg.innerHTML = "Bienvenue sur le site!";
+const today = new Date();
+        const formattedDate = today.toLocaleDateString('fr-FR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric'
+        });
+       
+msg.innerHTML = "Aujourd'hui: <b>"+formattedDate+"</b>";
 document.getElementById("sideMenu").classList.add("open");
 startSpeedTest();
 });
