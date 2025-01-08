@@ -29,7 +29,18 @@ const today = new Date();
             month: '2-digit',
             year: 'numeric'
         });
-       
+let table = [
+    "dimanche",
+    "lundi",
+    "mardi",
+    "mercredi",
+    "jeudi",
+    "vendredi",
+    "samedi"
+  ];
+let jourIndex = today.getDay();
+let jourNom = table[jourIndex];
+msg.innerHTML = jourNom+ " le : <b>"+formattedDate + "</b>";       
 msg.innerHTML = "Date: <b>"+formattedDate+"</b>";
 document.getElementById("sideMenu").classList.add("open");
 startSpeedTest();
