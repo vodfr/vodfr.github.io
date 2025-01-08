@@ -40,7 +40,7 @@ let table = [
   ];
 let jourIndex = today.getDay();
 let jourNom = table[jourIndex];
-msg.innerHTML = jourNom+ " le : <b>"+formattedDate + "</b>";       
+msg.innerHTML = jourNom+ " le : <b>" + formattedDate + "</b>";       
 msg.innerHTML = "Date: <b>"+formattedDate+"</b>";
 document.getElementById("sideMenu").classList.add("open");
 startSpeedTest();
