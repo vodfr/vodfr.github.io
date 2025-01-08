@@ -23,6 +23,11 @@ window.addEventListener("load", () => {
     preload: "auto",
     techOrder: ["html5"]
   });
+msg.innerHTML = jourNom+ " le : <b>" + formattedDate + "</b>";       
+msg.innerHTML = "Date: <b>"+formattedDate+"</b>";
+document.getElementById("sideMenu").classList.add("open");
+startSpeedTest();
+});
 let today = new Date();
 let formattedDate = today.toLocaleDateString('fr-FR', {
 day: '2-digit',
@@ -32,11 +37,7 @@ year: 'numeric'
 let table = ["dimanche","lundi","mardi","mercredi","jeudi","vendredi","samedi"];
 let jourIndex = today.getDay();
 let jourNom = table[jourIndex];
-msg.innerHTML = jourNom+ " le : <b>" + formattedDate + "</b>";       
-msg.innerHTML = "Date: <b>"+formattedDate+"</b>";
-document.getElementById("sideMenu").classList.add("open");
-startSpeedTest();
-});
+
   links.forEach((link) => {
     link.addEventListener("click", (e) => {
       e.preventDefault();
