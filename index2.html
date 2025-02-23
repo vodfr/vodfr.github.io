@@ -204,7 +204,7 @@
         let streamUrl = e.target.dataset.url;
         if (streamUrl) {
           window.open(streamUrl, '_blank');
-          openFullscreen();
+          
         }
       }
     });
@@ -212,8 +212,8 @@
     icons.forEach(icon => {
       icon.addEventListener('click', () => {
         const link = icon.getAttribute('data-link');
-        window.open(link, '_blank');
-        
+        window.open(link, '_self');
+        openFullscreen();
       });
     });
 let elem = document.getElementById("body");
