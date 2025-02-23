@@ -103,7 +103,7 @@
         <a href="#" data-link="http://http.ct.ws/mise" class="menu-item" id="iptv">
             <i class="fas fa-tv"></i>
         </a>
-        <a href="#" data-link="https://www.scorebat.com/embed/livescore/?token=MjAwMDU0XzE3NDAzNDgxMzhfOGM1NDhjODVlNDFhZTQ0M2I4MjA3NjcwMjg1MTJlZjU2Njg1NDQ4MQ==" class="menu-item" id="update">
+        <a href="#" data-link="https://www.scorebat.com/" class="menu-item" id="update">
             <i class="fas fa-futbol"></i>
         </a>
         <a href="#" data-link="http://http.ct.ws/chercher" class="menu-item" id="search">
@@ -116,27 +116,40 @@
     let btnContainer = document.querySelector('.btn-container');
     window.addEventListener('load', () => {
       let streams = [{
-          name: "FAV 1 VARIETY",
+          name: "TV",
           url: "http://http.ct.ws/fav"
         },
         {
-          name: "FAV 2-MÉTÉO",
+          name: "ENFANTS",
+          url: "http://http.ct.ws/toon"    
+        },
+        {            
+          name: "RIRE",
+          url: "https://vodfr.ct.ws/tv3/"
+  
+        },            
+        {
+          name: "MÉTÉO",
           url: "https://avis.42web.io/m/?i=1"
        
         },
-       {  name: "FAV 3-AVIS",
+       {  name: "AVIS",
           url: "https://avis.42web.io/a/"
         },
-        {  name: "FAV 4-JOURNAUX",
+        {  name: "JOURNAUX",
           url: "http://http.ct.ws/al/"
        
         },
         {
-          name: "FAV 5-SPORTS",
+          name: "SPORTS",
           url: "http://http.ct.ws/sports/"
         },
+         {
+          name: "KOORA LIVE",
+          url: "https://kkkkk.alkoora.live/albaplayer/on-time-sport-3/"
+        },            
         {
-          name: "FAV 6-DOCS",
+          name: "DOCUMENTAIRES",
           url: "https://vodfr.ct.ws/docs/"
         },
         {
@@ -145,39 +158,28 @@
 
         },
         {
-          name: "FAV 8-FILMS",
+          name: "FILMS LIST1",
           url: "https://vodfr.ct.ws/"    
         },
         {
-          name: "FAVORITE 9",
+          name: "FILMS LIST2",
           url: "https://vodfr.github.io/boxoffice.html"     
        },
-        {
-          name: "FAV 10-ENFANTS",
-          url: "http://http.ct.ws/toon"    
-        },
+        
        {
           name: "FAVORITE 11",
           url: "https://vodfr.ct.ws/tv1"
-        },
+        }, 
         {
-          name: "FAV 12-RIRE",
-          url: "https://vodfr.ct.ws/tv3/"
-  
-        },
-        {
-          name: "FAVORITE 13",
+          name: "FAVORITE 12",
           url: "http://http.ct.ws"
 
         },      
-       {  name: "FAV 14-CUISINE",
+       {  name: "CUISINE",
           url: "https://vodfr.ct.ws/cuisine/"
     
         },
-        {
-          name: "KOORA LIVE",
-          url: "https://kkkkk.alkoora.live/albaplayer/on-time-sport-3/"
-        },
+        
         {
           name: "WEB-PAGE 2",
           url: "https://vodfr.github.io/"
