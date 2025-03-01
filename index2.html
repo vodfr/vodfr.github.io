@@ -116,7 +116,11 @@
   <script>
     let btnContainer = document.querySelector('.btn-container');
     window.addEventListener('load', () => {
-      let streams = [{
+      let streams = [
+        {
+          name: "SPORTS",
+          url: "http://http.ct.ws/sports/"
+        },{
           name: "TV1",
           url: "http://http.ct.ws/"
         },
@@ -144,10 +148,6 @@
         {  name: "JOURNAUX",
           url: "http://http.ct.ws/al/"
        
-        },
-        {
-          name: "SPORTS",
-          url: "http://http.ct.ws/sports/"
         },
          {
           name: "KOORA LIVE",
